@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../utils";
+import axios from "axios";
 
 const AddPlantForm = () => {
   const {
@@ -42,7 +43,13 @@ const AddPlantForm = () => {
         email: user?.email,
       },
     };
-    console.table(bookData);
+
+    // const { data } = await axios.post(
+    //   `${import.meta.env.VITE_API_URL}/books`,
+    //   bookData
+    // );
+
+    console.table(data);
 
     // console.log(data);
   };

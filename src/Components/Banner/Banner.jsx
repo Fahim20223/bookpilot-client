@@ -1,147 +1,381 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  Users,
+  Star,
+} from "lucide-react";
 
 const Banner = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0);
+
   const slides = [
     {
       id: 1,
-      title: "The Midnight Library",
+      title: "Norwegian Wood",
+      author: "Haruki Murakami",
       description:
-        "Between life and death, there is a library. When Nora Seed finds herself in the Midnight Library, she has a chance to make things right. Experience infinite possibilities and discover what makes life worth living.",
+        "A huge collection of online books to boost your curiosity. To reach peoples heart and desire. With an affordable price and just few clicks away.",
+      price: "$20.00",
       image:
-        "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
-      gradient: "from-blue-900 via-blue-800 to-blue-700",
+        "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&h=1000&fit=crop",
+      rating: 4.8,
+      reviews: "10K+",
+      bgColor: "from-amber-50 to-orange-100",
+      accentColor: "bg-indigo-900",
     },
     {
       id: 2,
-      title: "Atomic Habits",
+      title: "The Midnight Library",
+      author: "Matt Haig",
       description:
-        "Tiny changes, remarkable results. Transform your life with proven strategies to build good habits and break bad ones. Learn why small habits make a big difference in achieving your goals.",
+        "Between life and death there is a library. A place of infinite possibilities. Discover your perfect life in this inspiring tale of hope and second chances.",
+      price: "$24.99",
       image:
-        "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&h=600&fit=crop",
-      gradient: "from-teal-900 via-teal-700 to-green-600",
+        "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=800&h=1000&fit=crop",
+      rating: 4.9,
+      reviews: "15K+",
+      bgColor: "from-blue-50 to-indigo-100",
+      accentColor: "bg-blue-900",
     },
     {
       id: 3,
-      title: "Project Hail Mary",
+      title: "Atomic Habits",
+      author: "James Clear",
       description:
-        "A lone astronaut must save the earth from disaster in this unforgettable and propulsive new science fiction thriller. From the bestselling author of The Martian comes an adventure you won't forget.",
+        "Transform your life with tiny changes. An easy and proven way to build good habits and break bad ones. Start your journey to success today.",
+      price: "$18.50",
       image:
-        "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=600&fit=crop",
-      gradient: "from-orange-600 via-red-500 to-yellow-500",
+        "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&h=1000&fit=crop",
+      rating: 5.0,
+      reviews: "25K+",
+      bgColor: "from-green-50 to-emerald-100",
+      accentColor: "bg-emerald-900",
+    },
+    {
+      id: 4,
+      title: "The Silent Patient",
+      author: "Alex Michaelides",
+      description:
+        "A psychological thriller that will keep you on the edge of your seat. Unravel the mystery behind a woman's silence and discover shocking truths.",
+      price: "$22.00",
+      image:
+        "https://images.unsplash.com/photo-1491841651911-c44c30c34548?w=800&h=1000&fit=crop",
+      rating: 4.7,
+      reviews: "12K+",
+      bgColor: "from-purple-50 to-violet-100",
+      accentColor: "bg-purple-900",
     },
   ];
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
+
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  const paginate = (newDirection) => {
+    setDirection(newDirection);
+    setCurrentSlide((prev) => {
+      let next = prev + newDirection;
+      if (next < 0) next = slides.length - 1;
+      if (next >= slides.length) next = 0;
+      return next;
+    });
+  };
+
   return (
-    <div className="my-13">
-      <div className="relative w-[90%] max-w-7xl mx-auto">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay, EffectFade]}
-          spaceBetween={0}
-          slidesPerView={1}
-          navigation={{
-            prevEl: ".swiper-button-prev-custom",
-            nextEl: ".swiper-button-next-custom",
+    <div className="relative w-full min-h-screen overflow-hidden">
+      <AnimatePresence initial={false} custom={direction}>
+        <motion.div
+          key={currentSlide}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
           }}
-          pagination={{
-            clickable: true,
-            el: ".swiper-pagination-custom",
-          }}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          effect="fade"
-          fadeEffect={{
-            crossFade: true,
-          }}
-          speed={800}
-          loop={true}
-          className="rounded-2xl shadow-2xl h-[400px] sm:h-[500px] lg:h-[600px]"
-        >
-          {slides.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <div
-                className={`w-full h-full bg-linear-to-br ${slide.gradient} flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-12`}
-              >
-                {/* Content */}
-                <div className="flex-1 text-white pr-0 md:pr-8 max-w-2xl text-center md:text-left">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 drop-shadow-lg">
-                    {slide.title}
-                  </h2>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 opacity-95 leading-relaxed">
-                    {slide.description}
-                  </p>
-                  <a
-                    href="#all-books"
-                    className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-800 font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
-                  >
-                    Explore All Books
-                  </a>
-                </div>
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={1}
+          onDragEnd={(e, { offset, velocity }) => {
+            const swipe = swipePower(offset.x, velocity.x);
 
-                {/* Book Image */}
-                <div className="hidden md:block flex-shrink-0 w-48 h-64 lg:w-72 lg:h-96 mt-6 md:mt-0">
-                  <img
-                    src={slide.image}
-                    alt={slide.title}
-                    className="w-full h-full object-cover rounded-xl shadow-2xl hover:scale-105 hover:-translate-y-2 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        {/* Custom Navigation Arrows */}
-        <button
-          className="swiper-button-prev-custom absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft size={24} className="sm:w-7 sm:h-7" />
-        </button>
-        <button
-          className="swiper-button-next-custom absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
-          aria-label="Next slide"
-        >
-          <ChevronRight size={24} className="sm:w-7 sm:h-7" />
-        </button>
-
-        {/* Custom Pagination Dots */}
-        <div className="swiper-pagination-custom absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10"></div>
-
-        {/* Custom Pagination Styles */}
-        <style>{`
-          :global(.swiper-pagination-custom .swiper-pagination-bullet) {
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 1;
-            transition: all 0.3s;
-          }
-          :global(.swiper-pagination-custom .swiper-pagination-bullet-active) {
-            background: white;
-            transform: scale(1.25);
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-          }
-          @media (min-width: 640px) {
-            :global(.swiper-pagination-custom .swiper-pagination-bullet) {
-              width: 12px;
-              height: 12px;
+            if (swipe < -swipeConfidenceThreshold) {
+              paginate(1);
+            } else if (swipe > swipeConfidenceThreshold) {
+              paginate(-1);
             }
-          }
-        `}</style>
+          }}
+          className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgColor}`}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-12 lg:py-0">
+              {/* Left Content */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="space-y-6 order-2 lg:order-1"
+              >
+                {/* Badge */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.4, type: "spring" }}
+                  className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg"
+                >
+                  <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                  <span className="text-sm font-semibold text-gray-700">
+                    {slides[currentSlide].rating} Rating
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    ({slides[currentSlide].reviews} reviews)
+                  </span>
+                </motion.div>
+
+                {/* Main Heading */}
+                <div className="space-y-3">
+                  <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight"
+                  >
+                    Where every page begins a{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                      journey...
+                    </span>
+                  </motion.h1>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl"
+                  >
+                    {slides[currentSlide].description}
+                  </motion.p>
+                </div>
+
+                {/* CTA Button */}
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`${slides[currentSlide].accentColor} text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 group`}
+                >
+                  Get a book
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+
+                {/* Customer Stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 }}
+                  className="flex items-center gap-4 pt-6"
+                >
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3, 4].map((i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.9 + i * 0.1 }}
+                        className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                      >
+                        {String.fromCharCode(65 + i)}
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 text-lg">
+                      {slides[currentSlide].reviews}
+                    </div>
+                    <div className="text-sm text-gray-600">Happy Customers</div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Right Content - Book Display */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="relative order-1 lg:order-2 flex items-center justify-center"
+              >
+                {/* Decorative Elements */}
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute w-96 h-96 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"
+                />
+
+                {/* Book Card */}
+                <motion.div
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  whileHover={{ y: -10 }}
+                  className="relative bg-white rounded-3xl shadow-2xl p-6 max-w-sm w-full z-10"
+                >
+                  {/* Book Image */}
+                  <div className="relative mb-6 group">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="relative"
+                    >
+                      <img
+                        src={slides[currentSlide].image}
+                        alt={slides[currentSlide].title}
+                        className="w-full h-80 object-cover rounded-2xl shadow-xl"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </motion.div>
+
+                    {/* Floating Price Tag */}
+                    <motion.div
+                      initial={{ scale: 0, rotate: -12 }}
+                      animate={{ scale: 1, rotate: -12 }}
+                      transition={{ delay: 0.8, type: "spring" }}
+                      className="absolute -top-4 -right-4 bg-red-500 text-white px-6 py-3 rounded-full font-bold text-xl shadow-xl"
+                    >
+                      {slides[currentSlide].price}
+                    </motion.div>
+                  </div>
+
+                  {/* Book Info */}
+                  <div className="space-y-3">
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      {slides[currentSlide].title}
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {slides[currentSlide].author}
+                    </p>
+                    <p className="text-gray-500 text-sm line-clamp-2">
+                      {slides[currentSlide].description}
+                    </p>
+
+                    {/* Rating */}
+                    <div className="flex items-center gap-2 pt-2">
+                      <div className="flex gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-4 h-4 ${
+                              i < Math.floor(slides[currentSlide].rating)
+                                ? "text-amber-500 fill-amber-500"
+                                : "text-gray-300"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-600 font-medium">
+                        {slides[currentSlide].rating}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Arrows */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
+        {/* Prev Button */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => paginate(-1)}
+          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+        >
+          <ChevronLeft className="w-6 h-6 text-gray-900" />
+        </motion.button>
+
+        {/* Dots Indicator */}
+        <div className="flex gap-2">
+          {slides.map((_, index) => (
+            <motion.button
+              key={index}
+              onClick={() => {
+                setDirection(index > currentSlide ? 1 : -1);
+                setCurrentSlide(index);
+              }}
+              whileHover={{ scale: 1.2 }}
+              className={`transition-all duration-300 rounded-full ${
+                index === currentSlide
+                  ? "w-10 h-3 bg-gray-900"
+                  : "w-3 h-3 bg-gray-400 hover:bg-gray-600"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Next Button */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => paginate(1)}
+          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+        >
+          <ChevronRight className="w-6 h-6 text-gray-900" />
+        </motion.button>
       </div>
+
+      {/* Slide Counter */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="absolute top-8 right-8 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg font-semibold text-gray-900 z-20"
+      >
+        {currentSlide + 1} / {slides.length}
+      </motion.div>
     </div>
   );
 };
-
 export default Banner;
