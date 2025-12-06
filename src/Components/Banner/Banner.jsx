@@ -1,10 +1,15 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const Banner = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 
+const Banner = () => {
   const slides = [
     {
       id: 1,
@@ -35,131 +40,108 @@ const Banner = () => {
     },
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="relative w-full h-[500px] overflow-hidden rounded-2xl shadow-2xl max-w-7xl mx-auto">
-      {/* Slides Container */}
-      <div
-        className="flex h-full transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-      >
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`min-w-full h-full bg-linear-to-br ${slide.gradient} flex items-center justify-between px-8 md:px-20 py-12`}
-          >
-            {/* Content */}
-            <div className="flex-1 text-white pr-8 max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 drop-shadow-lg animate-fade-in">
-                {slide.title}
-              </h2>
-              <p className="text-lg md:text-xl mb-8 opacity-95 leading-relaxed animate-fade-in-delay">
-                {slide.description}
-              </p>
-              <a
-                href="#all-books"
-                className="inline-block px-8 py-4 bg-white text-gray-800 font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fade-in-delay-2"
+    <div className="my-13">
+      <div className="relative w-[90%] max-w-7xl mx-auto">
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay, EffectFade]}
+          spaceBetween={0}
+          slidesPerView={1}
+          navigation={{
+            prevEl: ".swiper-button-prev-custom",
+            nextEl: ".swiper-button-next-custom",
+          }}
+          pagination={{
+            clickable: true,
+            el: ".swiper-pagination-custom",
+          }}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          effect="fade"
+          fadeEffect={{
+            crossFade: true,
+          }}
+          speed={800}
+          loop={true}
+          className="rounded-2xl shadow-2xl h-[400px] sm:h-[500px] lg:h-[600px]"
+        >
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              <div
+                className={`w-full h-full bg-linear-to-br ${slide.gradient} flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-12`}
               >
-                Explore All Books
-              </a>
-            </div>
+                {/* Content */}
+                <div className="flex-1 text-white pr-0 md:pr-8 max-w-2xl text-center md:text-left">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 drop-shadow-lg">
+                    {slide.title}
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 opacity-95 leading-relaxed">
+                    {slide.description}
+                  </p>
+                  <a
+                    href="#all-books"
+                    className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-800 font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+                  >
+                    Explore All Books
+                  </a>
+                </div>
 
-            {/* Book Image */}
-            <div className="hidden md:block flex-shrink-0 w-72 h-96 animate-fade-in-right">
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover rounded-xl shadow-2xl hover:scale-105 hover:-translate-y-2 transition-transform duration-300"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+                {/* Book Image */}
+                <div className="hidden md:block flex-shrink-0 w-48 h-64 lg:w-72 lg:h-96 mt-6 md:mt-0">
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-full h-full object-cover rounded-xl shadow-2xl hover:scale-105 hover:-translate-y-2 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft size={28} />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
-        aria-label="Next slide"
-      >
-        <ChevronRight size={28} />
-      </button>
+        {/* Custom Navigation Arrows */}
+        <button
+          className="swiper-button-prev-custom absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={24} className="sm:w-7 sm:h-7" />
+        </button>
+        <button
+          className="swiper-button-next-custom absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 z-10"
+          aria-label="Next slide"
+        >
+          <ChevronRight size={24} className="sm:w-7 sm:h-7" />
+        </button>
 
-      {/* Dots Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index
-                ? "bg-white scale-125 ring-2 ring-white/50"
-                : "bg-white/50 hover:bg-white/75"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+        {/* Custom Pagination Dots */}
+        <div className="swiper-pagination-custom absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10"></div>
 
-      {/* Custom Animations */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
+        {/* Custom Pagination Styles */}
+        <style jsx>{`
+          :global(.swiper-pagination-custom .swiper-pagination-bullet) {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
             opacity: 1;
-            transform: translateY(0);
+            transition: all 0.3s;
           }
-        }
-        @keyframes fadeInRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
+          :global(.swiper-pagination-custom .swiper-pagination-bullet-active) {
+            background: white;
+            transform: scale(1.25);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
           }
-          to {
-            opacity: 1;
-            transform: translateX(0);
+          @media (min-width: 640px) {
+            :global(.swiper-pagination-custom .swiper-pagination-bullet) {
+              width: 12px;
+              height: 12px;
+            }
           }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.8s ease-out;
-        }
-        .animate-fade-in-delay {
-          animation: fadeIn 0.8s ease-out 0.2s backwards;
-        }
-        .animate-fade-in-delay-2 {
-          animation: fadeIn 0.8s ease-out 0.4s backwards;
-        }
-        .animate-fade-in-right {
-          animation: fadeInRight 0.8s ease-out 0.3s backwards;
-        }
-      `}</style>
+        `}</style>
+      </div>
     </div>
   );
 };
+
 export default Banner;
