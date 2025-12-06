@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router";
 
 const Login = () => {
   const {
@@ -66,10 +67,7 @@ const Login = () => {
 
           <p className="text-center mt-3">
             New to our website?{" "}
-            <Link
-              href="/pages/register"
-              className="text-blue-500 hover:text-blue-800"
-            >
+            <Link to="/register" className="text-blue-500 hover:text-blue-800">
               Register
             </Link>
           </p>

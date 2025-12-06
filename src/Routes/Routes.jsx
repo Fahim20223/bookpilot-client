@@ -14,20 +14,20 @@ export const router = createBrowserRouter([
         index: true,
         Component: Home,
       },
+    ],
+  },
 
+  {
+    path: "/",
+    Component: AuthLayouts,
+    children: [
       {
-        path: "/",
-        Component: AuthLayouts,
-        children: [
-          {
-            path: "/login",
-            Component: Login,
-          },
-          {
-            path: "/register",
-            Component: Register,
-          },
-        ],
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
       },
     ],
   },

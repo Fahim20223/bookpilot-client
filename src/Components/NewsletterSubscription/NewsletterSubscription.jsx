@@ -17,7 +17,7 @@ const NewsletterSubscription = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-slate-100 via-purple-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="pb-7 flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

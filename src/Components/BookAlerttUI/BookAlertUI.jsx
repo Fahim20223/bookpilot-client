@@ -100,8 +100,8 @@ const BookAlertUI = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-4 sm:p-6 lg:p-8">
+    <div className="max-w-7xl mx-auto pb-8">
+      <div className="bg-linear-to-br from-orange-50 via-amber-50 to-yellow-50 p-4 sm:p-6 lg:p-8 rounded-xl">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content Section */}
