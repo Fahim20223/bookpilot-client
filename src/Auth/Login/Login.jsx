@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const {
@@ -11,16 +12,44 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const { signInUser, signInWithGoogle } = useAuth();
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
+  console.log("in the login page", location);
+
+  const handleLogin = (data) => {
+    console.log("form data", data);
+    signInUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log(result);
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center">
       <div className="card bg-base-100 w-full max-w-sm shadow-2xl border border-gray-200">
         <div className="card-body">
           <h1 className="text-3xl font-bold text-center">Login</h1>
 
-          <form
-
-          //   onSubmit={handleSubmit(handleLogin)}
-          >
+          <form onSubmit={handleSubmit(handleLogin)}>
             <fieldset className="fieldset">
               <label className="label">Email</label>
               <input
@@ -59,7 +88,7 @@ const Login = () => {
           </form>
 
           <button
-            // onClick={handleGoogleSignIn}
+            onClick={handleGoogleSignIn}
             className="btn bg-white rounded-full text-black border-[#e5e5e5] mt-3 w-full flex items-center justify-center gap-2"
           >
             <FcGoogle /> Login with Google

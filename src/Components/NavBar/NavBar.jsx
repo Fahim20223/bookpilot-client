@@ -61,7 +61,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 backdrop-blur-sm bg-base-100/95">
+    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 backdrop-blur-sm max-w-7xl mx-auto rounded-xl my-3">
       <div className="navbar-start">
         {/* Mobile Hamburger Menu */}
         <div className="dropdown">
@@ -145,7 +145,7 @@ const NavBar = () => {
               <li>
                 <a
                   onClick={() => logOut()}
-                  className="text-error font-semibold"
+                  className="text-secondary font-bold"
                 >
                   Logout
                 </a>
@@ -157,13 +157,13 @@ const NavBar = () => {
           <div className="flex gap-1 sm:gap-2">
             <NavLink
               to="/login"
-              className="btn btn-ghost btn-sm sm:btn-md text-xs sm:text-sm"
+              className="btn btn-primary btn-sm text-xs sm:text-sm"
             >
               Login
             </NavLink>
             <NavLink
               to="/register"
-              className="btn btn-primary btn-sm sm:btn-md text-white text-xs sm:text-sm"
+              className="btn  btn-primary btn-sm text-white text-xs sm:text-sm"
             >
               Register
             </NavLink>
