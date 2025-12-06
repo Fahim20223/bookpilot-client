@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import { imageUpload } from "../../../utils";
 
 const AddPlantForm = () => {
   const {
@@ -11,13 +12,44 @@ const AddPlantForm = () => {
 
   const { user } = useAuth();
 
-  const onSubmit = (data) => {
-    const profileImg = data.photoURL[0];
+  const onSubmit = async (data) => {
+    const {
+      name,
+      status,
+      description,
+      price,
+      quantity,
+      image,
+      author,
+      rating,
+    } = data;
+    // const profileImg = data.photoURL[0];
+    const imageFile = image[0];
+
+    const imageUrl = await imageUpload(imageFile);
+    const bookData = {
+      image: imageUrl,
+      name,
+      status,
+      description,
+      price: Number(price),
+      quantity: Number(quantity),
+      author,
+      rating,
+      seller: {
+        image: user?.photoURL,
+        name: user?.displayName,
+        email: user?.email,
+      },
+    };
+    console.table(bookData);
+
+    // console.log(data);
   };
 
   return (
     <div>
-      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
+      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-6">
@@ -53,7 +85,7 @@ const AddPlantForm = () => {
                 </label>
                 <select
                   required
-                  className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                  className="w-full px-4 py-3 border-lime-300 focus:outline-lime-500 rounded-md bg-white border"
                   name="status"
                   {...register("status", {
                     required: "Status is required",
@@ -166,16 +198,71 @@ const AddPlantForm = () => {
                 </div>
               </div>
 
+              {/* Author */}
+              <div className="space-y-1 text-sm">
+                <label htmlFor="author" className="block text-gray-600">
+                  Author
+                </label>
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                  id="author"
+                  type="text"
+                  placeholder="Book Author"
+                  {...register("author", {
+                    required: "Author is required",
+                    maxLength: {
+                      value: 30,
+                      message: "Author name cannot be too long",
+                    },
+                  })}
+                />
+
+                {errors.author && (
+                  <p className="text-xs text-red-500 mt-1">
+                    {errors.author.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Rating */}
+              <div className="space-y-1 text-sm">
+                <label htmlFor="rating" className="block text-gray-600">
+                  Rating (1–5)
+                </label>
+
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
+                  id="rating"
+                  type="number"
+                  placeholder="Rate 1 to 5"
+                  min="1"
+                  max="5"
+                  step="0.1"
+                  {...register("rating", {
+                    required: "Rating is required",
+                    min: { value: 1, message: "Minimum rating is 1" },
+                    max: { value: 5, message: "Maximum rating is 5" },
+                  })}
+                />
+
+                {errors.rating && (
+                  <p className="text-xs text-red-500 mt-1">
+                    {errors.rating.message}
+                  </p>
+                )}
+              </div>
+
               {/* Submit Button */}
               <button
                 type="submit"
                 className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-lime-500 "
               >
-                {isPending ? (
+                {/* {isPending ? (
                   <TbFidgetSpinner className="animate-spin m-auto" />
                 ) : (
                   "Save & Continue"
-                )}
+                )} */}
+                Submit
               </button>
             </div>
           </div>

@@ -119,7 +119,7 @@ const Banner = () => {
         <div className="swiper-pagination-custom absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10"></div>
 
         {/* Custom Pagination Styles */}
-        <style jsx>{`
+        <style>{`
           :global(.swiper-pagination-custom .swiper-pagination-bullet) {
             width: 10px;
             height: 10px;

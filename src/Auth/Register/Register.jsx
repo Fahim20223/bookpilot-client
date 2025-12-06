@@ -12,7 +12,8 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser, updateUserProfile, signInWithGoogle } = useAuth();
+  const { registerUser, updateUserProfile, signInWithGoogle, setUser } =
+    useAuth();
 
   const location = useLocation();
 
@@ -49,6 +50,12 @@ const Register = () => {
           updateUserProfile(userProfile)
             .then(() => {
               console.log("user profile updated done");
+              // Force refresh the user state
+              setUser({
+                ...result.user,
+                displayName: data.name,
+                photoURL: res.data.data.url,
+              });
               navigate(location.state || "/");
             })
             .catch((error) => console.log(error));
@@ -62,11 +69,13 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result);
+        console.log("Google Sign-In Result:", result);
+        console.log("Google User Photo:", result.user.photoURL);
+        console.log("Google User Name:", result.user.displayName);
         navigate(location?.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Google Sign-In Error:", error);
       });
   };
 

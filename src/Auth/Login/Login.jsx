@@ -8,7 +8,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    reset,
+
     formState: { errors },
   } = useForm();
 
@@ -35,11 +35,14 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result);
+        // console.log("Google Sign-In Result:", result);
+        // console.log("Google User Photo:", result.user.photoURL);
+        // console.log("Google User Name:", result.user.displayName);
+        setUser;
         navigate(location?.state || "/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log("Google Sign-In Error:", error);
       });
   };
 

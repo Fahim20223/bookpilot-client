@@ -34,11 +34,12 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log("Auth state changed:", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
     return () => {
-      unSubscribe;
+      unSubscribe();
     };
   }, []);
 
@@ -48,7 +49,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUserProfile = (profile) => {
-    return updateProfile(auth.currentUser, profile);
+    return updateProfile(auth.currentUser, profile).then(() => {
+      // Manually update the user state after profile update
+      setUser({ ...auth.currentUser });
+    });
   };
 
   const authInfo = {

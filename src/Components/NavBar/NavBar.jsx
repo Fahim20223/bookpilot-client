@@ -11,6 +11,12 @@ const NavBar = () => {
   const { user, logOut } = useAuth();
   const isLoggedIn = !!user;
 
+  // Debug: Log user data
+  console.log("NavBar - User:", user);
+  console.log("NavBar - isLoggedIn:", isLoggedIn);
+  console.log("NavBar - photoURL:", user?.photoURL);
+  console.log("NavBar - displayName:", user?.displayName);
+
   useEffect(() => {
     // Get theme from localStorage
     const savedTheme = localStorage.getItem("theme") || "light";
