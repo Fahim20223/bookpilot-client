@@ -332,7 +332,7 @@ const Banner = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => paginate(-1)}
-          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
         >
           <ChevronLeft className="w-6 h-6 text-gray-900" />
         </motion.button>
@@ -361,7 +361,7 @@ const Banner = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => paginate(1)}
-          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
         >
           <ChevronRight className="w-6 h-6 text-gray-900" />
         </motion.button>

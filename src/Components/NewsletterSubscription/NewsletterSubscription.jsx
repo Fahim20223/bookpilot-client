@@ -22,7 +22,7 @@ export default function NewsletterSubscription() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-4xl bg-linear-to-br from-purple-400 via-purple-300 to-indigo-400 rounded-3xl shadow-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden"
+        className="w-full max-w-7xl bg-linear-to-br from-purple-400 via-purple-300 to-indigo-400 rounded-3xl shadow-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden"
       >
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />

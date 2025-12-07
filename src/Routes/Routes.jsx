@@ -6,6 +6,10 @@ import Register from "../Auth/Register/Register";
 import AuthLayouts from "../Pages/AuthLayouts/AuthLayouts";
 // import AddBooksForm from "../Pages/Dashboard/Librarian/AddPlantForm";
 import AddBooksForm from "../Pages/Dashboard/Librarian/AddBooksForm";
+import PrivateRouter from "./PrivateRouter";
+import DashboardLayouts from "../Pages/DashboardLayouts/DashboardLayouts";
+import Books from "../Components/Books/Books";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +18,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/books",
+        Component: Books,
       },
     ],
   },
@@ -30,8 +38,19 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+    ],
+  },
+
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRouter>
+        <DashboardLayouts></DashboardLayouts>
+      </PrivateRouter>
+    ),
+    children: [
       {
-        path: "/addBooksForm",
+        path: "addBooksForm",
         Component: AddBooksForm,
       },
     ],
