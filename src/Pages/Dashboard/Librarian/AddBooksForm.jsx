@@ -3,11 +3,43 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../utils";
 import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
+import { toast } from "react-toastify";
+import { TbFidgetSpinner } from "react-icons/tb";
 
-const AddPlantForm = () => {
+const AddBooksForm = () => {
+  const {
+    isPending,
+    isError,
+    mutateAsync,
+    reset: mutationRest,
+  } = useMutation({
+    mutationFn: async (payload) =>
+      await axios.post(`${import.meta.env.VITE_API_URL}/books`, payload),
+    onSuccess: (data) => {
+      console.log(data);
+      //show toast
+      toast.success("Books Added Successfully");
+      mutationRest();
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+    onMutate: (payload) => {
+      console.log("I will post this data---->", payload);
+    },
+    onSettled: (data, error) => {
+      console.log("I am from onSettled---->", data);
+      if (error) console.log(error);
+    },
+    retry: 3,
+  });
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -44,18 +76,24 @@ const AddPlantForm = () => {
           email: user?.email,
         },
       };
+      await mutateAsync(bookData);
+      reset();
 
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_API_URL}/books`,
-        bookData
-      );
-      console.log(data);
+      // const { data } = await axios.post(
+      //   `${import.meta.env.VITE_API_URL}/books`,
+      //   bookData
+      // );
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
 
     // console.log(data);
   };
+
+  if (isPending) return <LoadingSpinner></LoadingSpinner>;
+
+  // if(isError) return
 
   return (
     <div>
@@ -267,12 +305,11 @@ const AddPlantForm = () => {
                 type="submit"
                 className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-lime-500 "
               >
-                {/* {isPending ? (
+                {isPending ? (
                   <TbFidgetSpinner className="animate-spin m-auto" />
                 ) : (
                   "Save & Continue"
-                )} */}
-                Submit
+                )}
               </button>
             </div>
           </div>
@@ -282,4 +319,4 @@ const AddPlantForm = () => {
   );
 };
 
-export default AddPlantForm;
+export default AddBooksForm;
