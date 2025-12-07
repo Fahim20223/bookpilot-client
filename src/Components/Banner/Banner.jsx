@@ -138,7 +138,7 @@ const Banner = () => {
               paginate(-1);
             }
           }}
-          className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgColor}`}
+          className={`absolute inset-0 bg-linear-to-br ${slides[currentSlide].bgColor}`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-12 lg:py-0">
@@ -174,7 +174,7 @@ const Banner = () => {
                     className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight"
                   >
                     Where every page begins a{" "}
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">
                       journey...
                     </span>
                   </motion.h1>
@@ -219,7 +219,7 @@ const Banner = () => {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.9 + i * 0.1 }}
-                        className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                        className="w-10 h-10 rounded-full border-2 border-white bg-linear-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm shadow-lg"
                       >
                         {String.fromCharCode(65 + i)}
                       </motion.div>
@@ -251,7 +251,7 @@ const Banner = () => {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute w-96 h-96 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"
+                  className="absolute w-96 h-96 bg-linear-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"
                 />
 
                 {/* Book Card */}

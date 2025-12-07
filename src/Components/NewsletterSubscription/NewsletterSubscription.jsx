@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Mail, Check } from "lucide-react";
 import { motion } from "framer-motion";
 
-const NewsletterSubscription = () => {
+export default function NewsletterSubscription() {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -17,12 +17,12 @@ const NewsletterSubscription = () => {
   };
 
   return (
-    <div className="pb-7 flex items-center justify-center p-4">
+    <div className="bg-linear-to-br from-slate-100 via-purple-50 to-indigo-100 flex items-center justify-center p-4 py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-7xl bg-gradient-to-br from-purple-400 via-purple-300 to-indigo-400 rounded-3xl shadow-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden"
+        className="w-full max-w-4xl bg-linear-to-br from-purple-400 via-purple-300 to-indigo-400 rounded-3xl shadow-2xl p-8 md:p-12 lg:p-16 relative overflow-hidden"
       >
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
@@ -155,5 +155,4 @@ const NewsletterSubscription = () => {
       </motion.div>
     </div>
   );
-};
-export default NewsletterSubscription;
+}

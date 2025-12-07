@@ -27,29 +27,32 @@ const AddPlantForm = () => {
     // const profileImg = data.photoURL[0];
     const imageFile = image[0];
 
-    const imageUrl = await imageUpload(imageFile);
-    const bookData = {
-      image: imageUrl,
-      name,
-      status,
-      description,
-      price: Number(price),
-      quantity: Number(quantity),
-      author,
-      rating,
-      seller: {
-        image: user?.photoURL,
-        name: user?.displayName,
-        email: user?.email,
-      },
-    };
+    try {
+      const imageUrl = await imageUpload(imageFile);
+      const bookData = {
+        image: imageUrl,
+        name,
+        status,
+        description,
+        price: Number(price),
+        quantity: Number(quantity),
+        author,
+        rating,
+        seller: {
+          image: user?.photoURL,
+          name: user?.displayName,
+          email: user?.email,
+        },
+      };
 
-    // const { data } = await axios.post(
-    //   `${import.meta.env.VITE_API_URL}/books`,
-    //   bookData
-    // );
-
-    console.table(data);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/books`,
+        bookData
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
 
     // console.log(data);
   };
