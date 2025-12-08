@@ -47,7 +47,7 @@ const Card = ({ card, index = 0 }) => {
       whileHover={{ y: -10, transition: { duration: 0.3 } }}
       className="group cursor-pointer h-full"
     >
-      <Link to={`/book/${_id}`} className="block h-full">
+      <Link to={`/books/${_id}`} className="block h-full">
         <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
           {/* Image Section */}
           <div className="relative overflow-hidden aspect-4/4 bg-gray-100">
