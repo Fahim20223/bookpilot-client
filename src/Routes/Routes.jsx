@@ -9,6 +9,7 @@ import AddBooksForm from "../Pages/Dashboard/Librarian/AddBooksForm";
 import PrivateRouter from "./PrivateRouter";
 import DashboardLayouts from "../Pages/DashboardLayouts/DashboardLayouts";
 import Books from "../Components/Books/Books";
+import BookDetails from "../Home/BookDetails/BookDetails";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/books",
         Component: Books,
+      },
+      {
+        path: "/books/:id",
+        element: <BookDetails></BookDetails>,
       },
     ],
   },

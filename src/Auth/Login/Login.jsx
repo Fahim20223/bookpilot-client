@@ -34,11 +34,11 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-      .then((result) => {
+      .then(() => {
         // console.log("Google Sign-In Result:", result);
         // console.log("Google User Photo:", result.user.photoURL);
         // console.log("Google User Name:", result.user.displayName);
-        setUser;
+        // setUser;
         navigate(location?.state || "/");
       })
       .catch((error) => {
