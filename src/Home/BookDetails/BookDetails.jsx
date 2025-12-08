@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import Heading from "../Heading/Heading";
 import Button from "../Button/Button";
+import LoadingSpinner from "../../Components/LoadingSpinner";
+import PurchaseModal from "../../Modal/PurchaseModal";
 
 const BookDetails = () => {
-  const { isOpen, setIsOpen } = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
   const {
     data: book = {},
@@ -24,13 +26,15 @@ const BookDetails = () => {
     setIsOpen(false);
   };
 
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+
   const { image, name, status, description, price, seller, quantity } = book;
 
   return (
     <div className="min-h-[63vh]">
       <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
         <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
-          <div className="mx-auto flex flex-col lg:flex-row justify-between w-full gap-12 p-6 md:p-8">
+          <div className="mx-auto flex flex-col md:flex-row justify-between w-full gap-12 p-6 md:p-8">
             {/* LEFT IMAGE */}
             <div className="flex-1">
               <img
@@ -42,7 +46,7 @@ const BookDetails = () => {
 
             {/* RIGHT INFO */}
             <div className="flex flex-col gap-6 flex-1">
-              <Heading title={name} subtitle={`Category: ${status}`} />
+              <Heading title={name} subtitle={`Status: ${status}`} />
 
               <div className="text-lg text-neutral-600">{description}</div>
 
@@ -51,7 +55,8 @@ const BookDetails = () => {
                 <img
                   className="w-10 h-10 rounded-full object-cover"
                   src={seller?.image}
-                  alt=""
+                  alt="Avatar"
+                  referrerPolicy="no-referrer"
                 />
               </div>
 
@@ -65,6 +70,11 @@ const BookDetails = () => {
               </p>
               <Button onClick={() => setIsOpen(true)} label="Purchase" />
               {/* </div> */}
+              <PurchaseModal
+                book={book}
+                closeModal={closeModal}
+                isOpen={isOpen}
+              />
             </div>
           </div>
         </div>

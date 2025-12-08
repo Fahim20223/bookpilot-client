@@ -139,8 +139,8 @@ const AddBooksForm = () => {
                     required: "Status is required",
                   })}
                 >
-                  <option value="Indoor">published</option>
-                  <option value="Outdoor">unpublished</option>
+                  <option value="published">published</option>
+                  <option value="unpublished">unpublished</option>
                 </select>
                 {errors.status && (
                   <p className="text-xs text-red-500 mt-1">

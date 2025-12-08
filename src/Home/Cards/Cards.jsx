@@ -41,7 +41,7 @@ const Cards = () => {
   return (
     <div className="max-w-7xl mx-auto py-10">
       {cards && cards.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 ">
           {cards.map((card) => (
             <Card key={card._id} card={card} />
           ))}

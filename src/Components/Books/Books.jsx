@@ -7,6 +7,7 @@ const Books = () => {
       <h2 className="text-center font-bold md:text-4xl py-6 text-2xl ">
         All Books
       </h2>
+
       <Cards></Cards>
     </div>
   );
