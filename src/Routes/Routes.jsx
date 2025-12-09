@@ -10,6 +10,10 @@ import PrivateRouter from "./PrivateRouter";
 import DashboardLayouts from "../Pages/DashboardLayouts/DashboardLayouts";
 import Books from "../Components/Books/Books";
 import BookDetails from "../Home/BookDetails/BookDetails";
+import PaymentSuccess from "../Payment/PaymentSuccess";
+import Statistics from "../Pages/Dashboard/Common/Statistics/Statistics";
+import AddBooks from "../Pages/Dashboard/Librarian/AddBooks";
+import MyInventory from "../Pages/Dashboard/Librarian/MyInventory";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/books/:id",
         element: <BookDetails></BookDetails>,
+      },
+      {
+        path: "/payment-success",
+        element: <PaymentSuccess></PaymentSuccess>,
       },
     ],
   },
@@ -54,6 +62,19 @@ export const router = createBrowserRouter([
       </PrivateRouter>
     ),
     children: [
+      {
+        index: true,
+        element: <Statistics></Statistics>,
+      },
+      {
+        path: "add-book",
+        element: <AddBooks></AddBooks>,
+      },
+      {
+        path: "my-inventory",
+        element: <MyInventory></MyInventory>,
+      },
+
       {
         path: "addBooksForm",
         Component: AddBooksForm,

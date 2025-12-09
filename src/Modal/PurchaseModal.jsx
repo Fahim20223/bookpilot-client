@@ -1,5 +1,5 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-// import useAuth from "../../hooks/useAuth";
+
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 
@@ -23,10 +23,16 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
         image: user?.photoURL,
       },
     };
+
     const { data } = await axios.post(
       `${import.meta.env.VITE_API_URL}/create-checkout-session`,
       paymentInfo
     );
+
+    // const { data } = await axios.post(
+    //   `${import.meta.env.VITE_API_URL}/create-checkout-session`,
+    //   paymentInfo
+    // );
     window.location.href = data.url;
   };
 

@@ -1,5 +1,5 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import UpdatePlantForm from "../Form/UpdatePlantForm";
+import UpdateBookForm from "../Form/UpdateBookForm";
 
 const UpdateBookModal = ({ setIsEditModalOpen, isOpen }) => {
   return (
@@ -30,7 +30,8 @@ const UpdateBookModal = ({ setIsEditModalOpen, isOpen }) => {
               Update Plant Info
             </DialogTitle>
             <div className="mt-2 w-full">
-              <UpdatePlantForm />
+              {/* <UpdatePlantForm /> */}
+              <UpdateBookForm />
             </div>
           </DialogPanel>
         </div>
