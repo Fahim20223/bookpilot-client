@@ -29,9 +29,9 @@ const CustomerOrderDataRow = ({ order }) => {
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900">{name}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900">{category}</p>
-      </td>
+      {/* <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+        <p className="text-gray-900">{status}</p>
+      </td> */}
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900">${price}</p>
       </td>

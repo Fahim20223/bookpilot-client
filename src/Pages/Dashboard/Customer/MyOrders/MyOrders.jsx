@@ -1,9 +1,3 @@
-// import { useQuery } from '@tanstack/react-query'
-// import CustomerOrderDataRow from '../../../components/Dashboard/TableRows/CustomerOrderDataRow'
-// import axios from 'axios'
-// import useAuth from '../../../hooks/useAuth'
-// import LoadingSpinner from '../../../components/Shared/LoadingSpinner'
-
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import axios from "axios";
@@ -12,7 +6,11 @@ import CustomerOrderDataRow from "../../TableRows/CustomerOrderDataRow/CustomerO
 
 const MyOrders = () => {
   const { user } = useAuth();
-  const { data: orders = [], isLoading } = useQuery({
+  const {
+    data: orders = [],
+    isLoading,
+    // isError,
+  } = useQuery({
     queryKey: ["orders", user?.email],
     queryFn: async () => {
       const result = await axios(
@@ -21,9 +19,12 @@ const MyOrders = () => {
       return result.data;
     },
   });
+
   console.log(orders);
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) {
+    return <LoadingSpinner></LoadingSpinner>;
+  }
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8">
@@ -45,12 +46,12 @@ const MyOrders = () => {
                     >
                       Name
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"
                     >
                       Category
-                    </th>
+                    </th> */}
                     <th
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal"

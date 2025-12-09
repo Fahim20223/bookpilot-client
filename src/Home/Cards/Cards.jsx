@@ -17,7 +17,7 @@ const Cards = () => {
     },
   });
 
-  console.log("Books data:", cards);
+  // console.log("Books data:", cards);
   //   console.log("Loading:", isLoading);
   //   console.log("Error:", isError);
 
