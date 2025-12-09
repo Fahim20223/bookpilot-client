@@ -14,6 +14,10 @@ import PaymentSuccess from "../Payment/PaymentSuccess";
 import Statistics from "../Pages/Dashboard/Common/Statistics/Statistics";
 import AddBooks from "../Pages/Dashboard/Librarian/AddBooks";
 import MyInventory from "../Pages/Dashboard/Librarian/MyInventory";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
+import Profile from "../Pages/Dashboard/Common/Profile/Profile";
+import MyOrders from "../Pages/Dashboard/Customer/MyOrders/MyOrders";
+import ManageOrders from "../Pages/Dashboard/Customer/ManageOrders/ManageOrders";
 
 export const router = createBrowserRouter([
   {
@@ -74,10 +78,21 @@ export const router = createBrowserRouter([
         path: "my-inventory",
         element: <MyInventory></MyInventory>,
       },
-
       {
-        path: "addBooksForm",
-        Component: AddBooksForm,
+        path: "manage-users",
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "my-orders",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "manage-orders",
+        element: <ManageOrders></ManageOrders>,
       },
     ],
   },
