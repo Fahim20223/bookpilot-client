@@ -9,7 +9,7 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
 
   const handlePayment = async () => {
     const paymentInfo = {
-      plantId: _id,
+      bookId: _id,
       name,
       status,
       price,
@@ -56,7 +56,7 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
               Review Info Before Purchase
             </DialogTitle>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">Plant: {name}</p>
+              <p className="text-sm text-gray-500">Book: {name}</p>
             </div>
             <div className="mt-2">
               <p className="text-sm text-gray-500">Status: {status}</p>

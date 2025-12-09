@@ -110,7 +110,7 @@ const AddBooksForm = () => {
                   className="w-full px-4 py-3 text-gray-800 border border-lime-300 focus:outline-lime-500 rounded-md bg-white"
                   id="name"
                   type="text"
-                  placeholder="Plant Name"
+                  placeholder="Book Name"
                   {...register("name", {
                     required: "Name is required",
                     maxLength: {
@@ -156,7 +156,7 @@ const AddBooksForm = () => {
 
                 <textarea
                   id="description"
-                  placeholder="Write plant description here..."
+                  placeholder="Write book description here..."
                   className="block rounded-md focus:lime-300 w-full h-32 px-4 py-3 text-gray-800  border border-lime-300 bg-white focus:outline-lime-500 "
                   name="description"
                   {...register("description", {
