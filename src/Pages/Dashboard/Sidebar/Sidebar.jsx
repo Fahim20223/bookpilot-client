@@ -1,6 +1,19 @@
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import logo from "../../../assets/logo.png";
+import { Link } from "react-router";
+
+//icons
+import { BsGraphUp } from "react-icons/bs";
+import { FcSettings } from "react-icons/fc";
+import { AiOutlineBars } from "react-icons/ai";
+import { GrLogout } from "react-icons/gr";
+
+//user menu
+import MenuItem from "./Menu/MenuItem/MenuItem";
+import CustomerMenu from "./Menu/CustomerMenu/CustomerMenu";
+import LibrarianMenu from "./Menu/LibrarianMenu/LibrarianMenu";
+import AdminMenu from "./Menu/AdminMenu/AdminMenu";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -58,9 +71,10 @@ const Sidebar = () => {
                 label="Statistics"
                 address="/dashboard"
               />
+
               {/* Role-Based Menu */}
               <CustomerMenu />
-              <SellerMenu />
+              <LibrarianMenu />
               <AdminMenu />
             </nav>
           </div>

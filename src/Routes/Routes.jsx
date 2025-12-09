@@ -71,7 +71,7 @@ export const router = createBrowserRouter([
         element: <Statistics></Statistics>,
       },
       {
-        path: "add-book",
+        path: "add-books",
         element: <AddBooks></AddBooks>,
       },
       {
