@@ -2,7 +2,7 @@ import React from "react";
 import { FaUserAlt, FaDollarSign } from "react-icons/fa";
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from "react-icons/bs";
 
-const CustomerStatistics = () => {
+const SellerStatistics = () => {
   return (
     <div>
       <div className="mt-12">
@@ -17,7 +17,7 @@ const CustomerStatistics = () => {
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total Expenses
+                Total Revenue
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
                 $120
@@ -33,7 +33,7 @@ const CustomerStatistics = () => {
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total Products
+                Total Orders
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
                 120
@@ -89,4 +89,4 @@ const CustomerStatistics = () => {
   );
 };
 
-export default CustomerStatistics;
+export default SellerStatistics;
