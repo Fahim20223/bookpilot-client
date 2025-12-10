@@ -14,15 +14,20 @@ import MenuItem from "./Menu/MenuItem/MenuItem";
 import CustomerMenu from "./Menu/CustomerMenu/CustomerMenu";
 import LibrarianMenu from "./Menu/LibrarianMenu/LibrarianMenu";
 import AdminMenu from "./Menu/AdminMenu/AdminMenu";
+import useRole from "../../../hooks/useRole";
+import LoadingSpinner from "../../../Components/LoadingSpinner";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
+  const [role, isRoleLoading] = useRole();
   const [isActive, setActive] = useState(false);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  if (isRoleLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <>
@@ -73,9 +78,12 @@ const Sidebar = () => {
               />
 
               {/* Role-Based Menu */}
-              <CustomerMenu />
-              <LibrarianMenu />
-              <AdminMenu />
+              {role === "customer" && <CustomerMenu />}
+              {/* <CustomerMenu /> */}
+              {role === "seller" && <LibrarianMenu />}
+              {/* <LibrarianMenu /> */}
+              {role === "admin" && <AdminMenu />}
+              {/* <AdminMenu /> */}
             </nav>
           </div>
 
