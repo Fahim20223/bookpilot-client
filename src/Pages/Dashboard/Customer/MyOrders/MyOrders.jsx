@@ -3,9 +3,11 @@ import useAuth from "../../../../hooks/useAuth";
 import axios from "axios";
 import LoadingSpinner from "../../../../Components/LoadingSpinner";
 import CustomerOrderDataRow from "../../TableRows/CustomerOrderDataRow/CustomerOrderDataRow";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyOrders = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const {
     data: orders = [],
     isLoading,
@@ -13,9 +15,7 @@ const MyOrders = () => {
   } = useQuery({
     queryKey: ["orders", user?.email],
     queryFn: async () => {
-      const result = await axios(
-        `${import.meta.env.VITE_API_URL}/my-orders/${user?.email}`
-      );
+      const result = await axiosSecure(`/my-orders`);
       return result.data;
     },
   });
