@@ -4,6 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import { imageUpload, saveOrUpdateUser } from "../../utils";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const {
@@ -20,63 +22,100 @@ const Register = () => {
   console.log("in register", location);
 
   const navigate = useNavigate();
+  const from = location.state || "/";
 
-  const handleRegistration = (data) => {
-    console.log("after register", data.photoURL[0]);
-    const profileImg = data.photoURL[0];
+  const handleRegistration = async (data) => {
+    const { name, photoURL, email, password } = data;
+    const imageFile = photoURL[0];
 
-    registerUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
-        //store the image in form data
+    try {
+      const imageURL = await imageUpload(imageFile);
 
-        const formData = new FormData();
+      const result = await registerUser(email, password);
 
-        formData.append("image", profileImg);
+      await saveOrUpdateUser({ name, email, image: imageURL });
 
-        //send the photo to store and get the url
-        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
-          import.meta.env.VITE_IMAGE_HOST_KEY
-        }`;
+      await updateUserProfile(name, imageURL);
 
-        axios.post(image_API_URL, formData).then((res) => {
-          console.log("after image upload", res.data.data.url);
+      navigate(from, { replace: true });
+      toast.success("Register Successful");
 
-          //update user profile to firebase
-          const userProfile = {
-            displayName: data.name,
-            photoURL: res.data.data.url,
-          };
-          updateUserProfile(userProfile)
-            .then(() => {
-              console.log("user profile updated done");
-              // Force refresh the user state
-              setUser({
-                ...result.user,
-                displayName: data.name,
-                photoURL: res.data.data.url,
-              });
-              navigate(location.state || "/");
-            })
-            .catch((error) => console.log(error));
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
   };
+  // console.log("after register", data.photoURL[0]);
+  //   const profileImg = data.photoURL[0];
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        console.log("Google Sign-In Result:", result);
-        console.log("Google User Photo:", result.user.photoURL);
-        console.log("Google User Name:", result.user.displayName);
-        navigate(location?.state || "/");
-      })
-      .catch((error) => {
-        console.log("Google Sign-In Error:", error);
+  //   registerUser(data.email, data.password)
+  //     .then((result) => {
+  //       console.log(result.user);
+  //       //store the image in form data
+
+  //       const formData = new FormData();
+
+  //       formData.append("image", profileImg);
+
+  //       //send the photo to store and get the url
+  //       const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+  //         import.meta.env.VITE_IMAGE_HOST_KEY
+  //       }`;
+
+  //       axios.post(image_API_URL, formData).then((res) => {
+  //         console.log("after image upload", res.data.data.url);
+
+  //         //update user profile to firebase
+  //         const userProfile = {
+  //           displayName: data.name,
+  //           photoURL: res.data.data.url,
+  //         };
+  //         updateUserProfile(userProfile)
+  //           .then(() => {
+  //             console.log("user profile updated done");
+  //             // Force refresh the user state
+  //             setUser({
+  //               ...result.user,
+  //               displayName: data.name,
+  //               photoURL: res.data.data.url,
+  //             });
+  //             navigate(location.state || "/");
+  //           })
+  //           .catch((error) => console.log(error));
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const { user } = await signInWithGoogle();
+
+      await saveOrUpdateUser({
+        name: user?.name,
+        email: user?.email,
+        image: user?.photoURL,
       });
+      navigate(from, { replace: true });
+      toast.success("Register Successful");
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
+
+    // signInWithGoogle()
+    //   .then((result) => {
+    //     console.log("Google Sign-In Result:", result);
+    //     console.log("Google User Photo:", result.user.photoURL);
+    //     console.log("Google User Name:", result.user.displayName);
+    //     navigate(location?.state || "/");
+    //   })
+    //   .catch((error) => {
+    //     console.log("Google Sign-In Error:", error);
+    //   });
   };
 
   return (

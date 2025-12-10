@@ -48,10 +48,17 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUserProfile = (profile) => {
-    return updateProfile(auth.currentUser, profile).then(() => {
-      // Manually update the user state after profile update
-      setUser({ ...auth.currentUser });
+  // const updateUserProfile = (profile) => {
+  //   return updateProfile(auth.currentUser, profile).then(() => {
+  //     // Manually update the user state after profile update
+  //     setUser({ ...auth.currentUser });
+  //   });
+  // };
+
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
     });
   };
 

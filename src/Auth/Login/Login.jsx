@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
+import { saveOrUpdateUser } from "../../utils";
 
 const Login = () => {
   const {
@@ -12,38 +14,81 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { signInUser, signInWithGoogle } = useAuth();
+  const { signInUser, signInWithGoogle, setUser } = useAuth();
 
   const location = useLocation();
 
   const navigate = useNavigate();
 
+  const from = location.state || "/";
+
   console.log("in the login page", location);
 
-  const handleLogin = (data) => {
-    console.log("form data", data);
-    signInUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
-        navigate(location?.state || "/");
-      })
-      .catch((error) => {
-        console.log(error);
+  const handleLogin = async (data) => {
+    try {
+      const result = await signInUser(data.email, data.password);
+
+      //save/update user in backend
+      await saveOrUpdateUser({
+        name: result.user.displayName || "null",
+        email: result.user.email,
+        image: result.user.photoURL || "",
       });
+      setUser({ ...result.user });
+
+      navigate(from, { replace: true });
+      toast.success("Login Successful");
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then(() => {
-        // console.log("Google Sign-In Result:", result);
-        // console.log("Google User Photo:", result.user.photoURL);
-        // console.log("Google User Name:", result.user.displayName);
-        // setUser;
-        navigate(location?.state || "/");
-      })
-      .catch((error) => {
-        console.log("Google Sign-In Error:", error);
+  //   console.log("form data", data);
+  //   signInUser(data.email, data.password)
+  //     .then((result) => {
+  //       console.log(result.user);
+  //       navigate(location?.state || "/");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  // const handleGoogleSignIn = () => {
+  //   signInWithGoogle()
+  //     .then(() => {
+  //       // console.log("Google Sign-In Result:", result);
+  //       // console.log("Google User Photo:", result.user.photoURL);
+  //       // console.log("Google User Name:", result.user.displayName);
+  //       // setUser;
+  //       navigate(location?.state || "/");
+  //     })
+  //     .catch((error) => {
+  //       console.log("Google Sign-In Error:", error);
+  //     });
+  // };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const { user } = await signInWithGoogle();
+
+      // Save or update user in DB
+      await saveOrUpdateUser({
+        name: user.displayName || "No Name",
+        email: user.email,
+        image: user.photoURL || "",
       });
+
+      // Update frontend user state
+      setUser({ ...user });
+
+      navigate(from, { replace: true });
+      toast.success("Login Successful");
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.message);
+    }
   };
 
   return (
