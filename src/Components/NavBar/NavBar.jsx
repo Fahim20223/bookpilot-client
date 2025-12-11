@@ -20,15 +20,30 @@ const NavBar = () => {
   useEffect(() => {
     // Get theme from localStorage
     const savedTheme = localStorage.getItem("theme") || "light";
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
+
+    // Apply dark class for custom colors
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+
+    // Set both DaisyUI theme and custom dark class
     document.documentElement.setAttribute("data-theme", newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   };
 
   const links = (
@@ -36,9 +51,9 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/"
-          className={({ isActive }) =>
-            isActive ? "font-semibold text-primary" : ""
-          }
+          // className={({ isActive }) =>
+          //   isActive ? "font-semibold text-primary" : ""
+          // }
         >
           Home
         </NavLink>
@@ -46,9 +61,9 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/books"
-          className={({ isActive }) =>
-            isActive ? "font-semibold text-primary" : ""
-          }
+          // className={({ isActive }) =>
+          //   isActive ? "font-semibold text-primary" : ""
+          // }
         >
           Books
         </NavLink>
@@ -56,9 +71,9 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/dashboard"
-          className={({ isActive }) =>
-            isActive ? "font-semibold text-primary" : ""
-          }
+          // className={({ isActive }) =>
+          //   isActive ? "font-semibold text-primary" : ""
+          // }
         >
           Dashboard
         </NavLink>
@@ -67,7 +82,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3">
+    <div className="navbar bg-custom-navbar shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary ">
       <div className="navbar-start">
         {/* Mobile Hamburger Menu */}
         <div className="dropdown">
@@ -163,13 +178,13 @@ const NavBar = () => {
           <div className="flex gap-1 sm:gap-2">
             <NavLink
               to="/login"
-              className="btn btn-primary btn-sm text-xs sm:text-sm"
+              className="btn btn-primary dark:btn-secondary btn-sm text-xs sm:text-sm"
             >
               Login
             </NavLink>
             <NavLink
               to="/register"
-              className="btn  btn-primary btn-sm text-white text-xs sm:text-sm"
+              className="btn btn-primary dark:btn-secondary btn-sm text-white text-xs sm:text-sm"
             >
               Register
             </NavLink>
