@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { Moon, Sun } from "lucide-react";
 import logo from "../../assets/logo.png";
 import useAuth from "../../hooks/useAuth";
+// import "./NavBar.css";
 
 const NavBar = () => {
   const [theme, setTheme] = useState("light");
@@ -51,9 +52,11 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/"
-          // className={({ isActive }) =>
-          //   isActive ? "font-semibold text-primary" : ""
-          // }
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold bg-primary text-white dark:bg-orange-500"
+              : ""
+          }
         >
           Home
         </NavLink>
@@ -61,9 +64,11 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/books"
-          // className={({ isActive }) =>
-          //   isActive ? "font-semibold text-primary" : ""
-          // }
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+              : ""
+          }
         >
           Books
         </NavLink>
@@ -71,9 +76,11 @@ const NavBar = () => {
       <li>
         <NavLink
           to="/dashboard"
-          // className={({ isActive }) =>
-          //   isActive ? "font-semibold text-primary" : ""
-          // }
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+              : ""
+          }
         >
           Dashboard
         </NavLink>
@@ -104,14 +111,14 @@ const NavBar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-\[1]\ mt-3 w-52 p-2 shadow-lg"
           >
             {links}
           </ul>
         </div>
 
         {/* Logo */}
-        <NavLink to="/" className="flex items-center gap-2 ml-2 lg:ml-4">
+        <Link to="/" className="flex items-center gap-2 ml-2 lg:ml-4">
           <img
             className="w-10 h-10 sm:w-12 sm:h-12"
             src={logo}
@@ -120,7 +127,7 @@ const NavBar = () => {
           <span className="font-bold text-lg sm:text-xl hidden sm:inline">
             BookPilot
           </span>
-        </NavLink>
+        </Link>
       </div>
 
       {/* Desktop Menu */}
@@ -176,18 +183,18 @@ const NavBar = () => {
         ) : (
           // Login/Register Buttons
           <div className="flex gap-1 sm:gap-2">
-            <NavLink
+            <Link
               to="/login"
-              className="btn btn-primary dark:btn-secondary btn-sm text-xs sm:text-sm"
+              className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-xs sm:text-sm"
             >
               Login
-            </NavLink>
-            <NavLink
+            </Link>
+            <Link
               to="/register"
-              className="btn btn-primary dark:btn-secondary btn-sm text-white text-xs sm:text-sm"
+              className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-white text-xs sm:text-sm"
             >
               Register
-            </NavLink>
+            </Link>
           </div>
         )}
       </div>

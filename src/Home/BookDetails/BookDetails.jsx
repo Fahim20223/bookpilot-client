@@ -48,7 +48,9 @@ const BookDetails = () => {
             <div className="flex flex-col gap-6 flex-1">
               <Heading title={name} subtitle={`Status: ${status}`} />
 
-              <div className="text-lg text-neutral-600">{description}</div>
+              <div className="text-lg text-neutral-600 dark:text-white">
+                {description}
+              </div>
 
               <div className="flex items-center gap-3 text-xl font-semibold">
                 <div>Seller: {seller?.name}</div>

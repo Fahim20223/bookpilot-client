@@ -100,7 +100,7 @@ const BookAlertUI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-linear-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-amber-950 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content Section */}
@@ -115,13 +115,13 @@ const BookAlertUI = () => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
+              className="inline-flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md dark:shadow-slate-900/50"
             >
-              <Bell className="w-4 h-4 text-amber-600 animate-pulse" />
-              <span className="text-sm font-medium text-gray-700">
+              <Bell className="w-4 h-4 text-amber-600 dark:text-amber-400 animate-pulse" />
+              <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
                 New Releases Coming
               </span>
-              <Sparkles className="w-4 h-4 text-amber-600" />
+              <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             </motion.div>
 
             {/* Main Heading */}
@@ -130,7 +130,7 @@ const BookAlertUI = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-slate-50 leading-tight"
               >
                 Upcoming Book Alert...
               </motion.h1>
@@ -139,10 +139,10 @@ const BookAlertUI = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="flex items-center gap-2 text-amber-600"
+                className="flex items-center gap-2 text-amber-600 dark:text-amber-400"
               >
                 <BookOpen className="w-6 h-6" />
-                <div className="h-1 w-24 bg-gradient-to-r from-amber-600 to-orange-500 rounded-full" />
+                <div className="h-1 w-24 bg-linear-to-r from-amber-600 to-orange-500 dark:from-amber-400 dark:to-orange-400 rounded-full" />
               </motion.div>
             </div>
 
@@ -151,7 +151,7 @@ const BookAlertUI = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
-              className="text-lg sm:text-xl text-gray-600 leading-relaxed"
+              className="text-lg sm:text-xl text-gray-600 dark:text-slate-300 leading-relaxed"
             >
               Get 30% off by just booking a book before release
             </motion.p>
@@ -166,7 +166,7 @@ const BookAlertUI = () => {
                 boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="btn bg-gradient-to-r from-indigo-900 to-blue-900 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
+              className="btn bg-linear-to-r from-indigo-900 to-blue-900 dark:from-cyan-600 dark:to-blue-600 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
             >
               Notify Me
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -180,16 +180,28 @@ const BookAlertUI = () => {
               className="flex flex-wrap gap-6 pt-4"
             >
               <div className="space-y-1">
-                <div className="text-3xl font-bold text-gray-900">250+</div>
-                <div className="text-sm text-gray-600">Upcoming Books</div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-slate-50">
+                  250+
+                </div>
+                <div className="text-sm text-gray-600 dark:text-slate-400">
+                  Upcoming Books
+                </div>
               </div>
               <div className="space-y-1">
-                <div className="text-3xl font-bold text-gray-900">50K+</div>
-                <div className="text-sm text-gray-600">Pre-orders</div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-slate-50">
+                  50K+
+                </div>
+                <div className="text-sm text-gray-600 dark:text-slate-400">
+                  Pre-orders
+                </div>
               </div>
               <div className="space-y-1">
-                <div className="text-3xl font-bold text-amber-600">30%</div>
-                <div className="text-sm text-gray-600">Early Bird Discount</div>
+                <div className="text-3xl font-bold text-amber-600 dark:text-amber-400">
+                  30%
+                </div>
+                <div className="text-sm text-gray-600 dark:text-slate-400">
+                  Early Bird Discount
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -202,8 +214,8 @@ const BookAlertUI = () => {
             className="relative"
           >
             {/* Decorative blur circles */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-300 rounded-full blur-3xl opacity-30 pointer-events-none" />
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-300 rounded-full blur-3xl opacity-30 pointer-events-none" />
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-300 dark:bg-amber-500/30 rounded-full blur-3xl opacity-30 pointer-events-none" />
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-300 dark:bg-blue-500/30 rounded-full blur-3xl opacity-30 pointer-events-none" />
 
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 relative pb-8 pr-8">
               {books.map((book, index) => (
@@ -214,7 +226,7 @@ const BookAlertUI = () => {
                     scale: 1.05,
                     rotate: Math.random() * 4 - 2,
                   }}
-                  className="rounded-lg shadow-lg aspect-[2/3] cursor-pointer relative overflow-hidden group"
+                  className="rounded-lg shadow-lg dark:shadow-slate-900/50 aspect-[2/3] cursor-pointer relative overflow-hidden group border border-transparent dark:border-slate-700/30"
                 >
                   {/* Book Image */}
                   <img
@@ -224,7 +236,7 @@ const BookAlertUI = () => {
                   />
 
                   {/* Gradient overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   {/* Book title on hover */}
                   <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-xs sm:text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
@@ -232,20 +244,10 @@ const BookAlertUI = () => {
                   </div>
 
                   {/* Shimmer effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 dark:via-cyan-400/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 </motion.div>
               ))}
             </div>
-
-            {/* Floating badge */}
-            {/* <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.5, type: "spring" }}
-              className="absolute -bottom-2 -right-2 sm:bottom-0 sm:right-0 bg-red-500 text-white px-5 py-3 rounded-full shadow-2xl font-bold text-base sm:text-lg transform rotate-12 z-50 border-4 border-white"
-            >
-              30% OFF
-            </motion.div> */}
           </motion.div>
         </div>
 
@@ -272,11 +274,15 @@ const BookAlertUI = () => {
             <motion.div
               key={index}
               whileHover={{ y: -5 }}
-              className="bg-white/60 backdrop-blur-sm p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
+              className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-md dark:shadow-slate-900/50 hover:shadow-xl dark:hover:shadow-cyan-900/30 transition-all duration-300 border border-transparent dark:border-slate-700/50"
             >
-              <feature.icon className="w-8 h-8 text-amber-600 mb-3" />
-              <h3 className="font-bold text-gray-900 mb-1">{feature.title}</h3>
-              <p className="text-sm text-gray-600">{feature.desc}</p>
+              <feature.icon className="w-8 h-8 text-amber-600 dark:text-amber-400 mb-3" />
+              <h3 className="font-bold text-gray-900 dark:text-slate-50 mb-1">
+                {feature.title}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-slate-300">
+                {feature.desc}
+              </p>
             </motion.div>
           ))}
         </motion.div>

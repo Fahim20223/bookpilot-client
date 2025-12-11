@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-  Users,
-  Star,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight, Star } from "lucide-react";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -24,8 +18,9 @@ const Banner = () => {
         "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&h=1000&fit=crop",
       rating: 4.8,
       reviews: "10K+",
-      bgColor: "from-amber-50 to-orange-100",
-      accentColor: "bg-indigo-900",
+      bgColorLight: "from-amber-50 to-orange-100",
+      bgColorDark: "dark:from-slate-900 dark:to-amber-950",
+      accentColor: "bg-indigo-900 dark:bg-indigo-600",
     },
     {
       id: 2,
@@ -38,8 +33,9 @@ const Banner = () => {
         "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=800&h=1000&fit=crop",
       rating: 4.9,
       reviews: "15K+",
-      bgColor: "from-blue-50 to-indigo-100",
-      accentColor: "bg-blue-900",
+      bgColorLight: "from-blue-50 to-indigo-100",
+      bgColorDark: "dark:from-slate-900 dark:to-blue-950",
+      accentColor: "bg-blue-900 dark:bg-blue-600",
     },
     {
       id: 3,
@@ -52,8 +48,9 @@ const Banner = () => {
         "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&h=1000&fit=crop",
       rating: 5.0,
       reviews: "25K+",
-      bgColor: "from-green-50 to-emerald-100",
-      accentColor: "bg-emerald-900",
+      bgColorLight: "from-green-50 to-emerald-100",
+      bgColorDark: "dark:from-slate-900 dark:to-emerald-950",
+      accentColor: "bg-emerald-900 dark:bg-emerald-600",
     },
     {
       id: 4,
@@ -66,8 +63,9 @@ const Banner = () => {
         "https://images.unsplash.com/photo-1491841651911-c44c30c34548?w=800&h=1000&fit=crop",
       rating: 4.7,
       reviews: "12K+",
-      bgColor: "from-purple-50 to-violet-100",
-      accentColor: "bg-purple-900",
+      bgColorLight: "from-purple-50 to-violet-100",
+      bgColorDark: "dark:from-slate-900 dark:to-purple-950",
+      accentColor: "bg-purple-900 dark:bg-purple-600",
     },
   ];
 
@@ -138,7 +136,7 @@ const Banner = () => {
               paginate(-1);
             }
           }}
-          className={`absolute inset-0 bg-linear-to-br ${slides[currentSlide].bgColor}`}
+          className={`absolute inset-0 bg-linear-to-br ${slides[currentSlide].bgColorLight} ${slides[currentSlide].bgColorDark}`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-12 lg:py-0">
@@ -154,13 +152,13 @@ const Banner = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.4, type: "spring" }}
-                  className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg"
+                  className="inline-flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg dark:shadow-slate-900/50"
                 >
                   <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-                  <span className="text-sm font-semibold text-gray-700">
+                  <span className="text-sm font-semibold text-gray-700 dark:text-slate-200">
                     {slides[currentSlide].rating} Rating
                   </span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-500 dark:text-slate-400">
                     ({slides[currentSlide].reviews} reviews)
                   </span>
                 </motion.div>
@@ -171,10 +169,10 @@ const Banner = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight"
+                    className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-slate-50 leading-tight"
                   >
                     Where every page begins a{" "}
-                    <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">
+                    <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-indigo-400">
                       journey...
                     </span>
                   </motion.h1>
@@ -183,7 +181,7 @@ const Banner = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
-                    className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl"
+                    className="text-base sm:text-lg text-gray-600 dark:text-slate-300 leading-relaxed max-w-xl"
                   >
                     {slides[currentSlide].description}
                   </motion.p>
@@ -219,17 +217,19 @@ const Banner = () => {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.9 + i * 0.1 }}
-                        className="w-10 h-10 rounded-full border-2 border-white bg-linear-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                        className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-700 bg-linear-to-br from-blue-400 to-purple-500 dark:from-cyan-400 dark:to-indigo-500 flex items-center justify-center text-white font-bold text-sm shadow-lg"
                       >
                         {String.fromCharCode(65 + i)}
                       </motion.div>
                     ))}
                   </div>
                   <div>
-                    <div className="font-bold text-gray-900 text-lg">
+                    <div className="font-bold text-gray-900 dark:text-slate-50 text-lg">
                       {slides[currentSlide].reviews}
                     </div>
-                    <div className="text-sm text-gray-600">Happy Customers</div>
+                    <div className="text-sm text-gray-600 dark:text-slate-400">
+                      Happy Customers
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -251,7 +251,7 @@ const Banner = () => {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute w-96 h-96 bg-linear-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"
+                  className="absolute w-96 h-96 bg-linear-to-r from-blue-200/30 to-purple-200/30 dark:from-blue-500/20 dark:to-purple-500/20 rounded-full blur-3xl"
                 />
 
                 {/* Book Card */}
@@ -260,7 +260,7 @@ const Banner = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
                   whileHover={{ y: -10 }}
-                  className="relative bg-white rounded-3xl shadow-2xl p-6 max-w-sm w-full z-10"
+                  className="relative bg-white dark:bg-slate-800 rounded-3xl shadow-2xl dark:shadow-slate-900/50 p-6 max-w-sm w-full z-10 border border-transparent dark:border-slate-700/50"
                 >
                   {/* Book Image */}
                   <div className="relative mb-6 group">
@@ -273,7 +273,7 @@ const Banner = () => {
                         alt={slides[currentSlide].title}
                         className="w-full h-80 object-cover rounded-2xl shadow-xl"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </motion.div>
 
                     {/* Floating Price Tag */}
@@ -281,7 +281,7 @@ const Banner = () => {
                       initial={{ scale: 0, rotate: -12 }}
                       animate={{ scale: 1, rotate: -12 }}
                       transition={{ delay: 0.8, type: "spring" }}
-                      className="absolute -top-4 -right-4 bg-red-500 text-white px-6 py-3 rounded-full font-bold text-xl shadow-xl"
+                      className="absolute -top-4 -right-4 bg-red-500 dark:bg-red-600 text-white px-6 py-3 rounded-full font-bold text-xl shadow-xl"
                     >
                       {slides[currentSlide].price}
                     </motion.div>
@@ -289,13 +289,13 @@ const Banner = () => {
 
                   {/* Book Info */}
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-bold text-gray-900">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-slate-50">
                       {slides[currentSlide].title}
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 dark:text-slate-400 text-sm">
                       {slides[currentSlide].author}
                     </p>
-                    <p className="text-gray-500 text-sm line-clamp-2">
+                    <p className="text-gray-500 dark:text-slate-400 text-sm line-clamp-2">
                       {slides[currentSlide].description}
                     </p>
 
@@ -308,12 +308,12 @@ const Banner = () => {
                             className={`w-4 h-4 ${
                               i < Math.floor(slides[currentSlide].rating)
                                 ? "text-amber-500 fill-amber-500"
-                                : "text-gray-300"
+                                : "text-gray-300 dark:text-slate-600"
                             }`}
                           />
                         ))}
                       </div>
-                      <span className="text-sm text-gray-600 font-medium">
+                      <span className="text-sm text-gray-600 dark:text-slate-300 font-medium">
                         {slides[currentSlide].rating}
                       </span>
                     </div>
@@ -332,9 +332,9 @@ const Banner = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => paginate(-1)}
-          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+          className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-700 p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-transparent dark:border-slate-700"
         >
-          <ChevronLeft className="w-6 h-6 text-gray-900" />
+          <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-slate-200" />
         </motion.button>
 
         {/* Dots Indicator */}
@@ -349,8 +349,8 @@ const Banner = () => {
               whileHover={{ scale: 1.2 }}
               className={`transition-all duration-300 rounded-full ${
                 index === currentSlide
-                  ? "w-10 h-3 bg-gray-900"
-                  : "w-3 h-3 bg-gray-400 hover:bg-gray-600"
+                  ? "w-10 h-3 bg-gray-900 dark:bg-slate-200"
+                  : "w-3 h-3 bg-gray-400 dark:bg-slate-600 hover:bg-gray-600 dark:hover:bg-slate-400"
               }`}
             />
           ))}
@@ -361,9 +361,9 @@ const Banner = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => paginate(1)}
-          className="bg-white/90 backdrop-blur-sm hover:bg-white p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
+          className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm hover:bg-white dark:hover:bg-slate-700 p-3 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-transparent dark:border-slate-700"
         >
-          <ChevronRight className="w-6 h-6 text-gray-900" />
+          <ChevronRight className="w-6 h-6 text-gray-900 dark:text-slate-200" />
         </motion.button>
       </div>
 
@@ -371,7 +371,7 @@ const Banner = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="absolute top-8 right-8 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg font-semibold text-gray-900 z-20"
+        className="absolute top-8 right-8 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg font-semibold text-gray-900 dark:text-slate-200 z-20 border border-transparent dark:border-slate-700"
       >
         {currentSlide + 1} / {slides.length}
       </motion.div>

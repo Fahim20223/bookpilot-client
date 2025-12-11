@@ -48,7 +48,7 @@ const Card = ({ card, index = 0 }) => {
       className="group cursor-pointer h-full"
     >
       <Link to={`/books/${_id}`} className="block h-full">
-        <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+        <div className="bg-white dark:bg-black rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
           {/* Image Section */}
           <div className="relative overflow-hidden aspect-4/4 bg-gray-100">
             {/* Book Image */}
@@ -148,7 +148,7 @@ const Card = ({ card, index = 0 }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-sm text-gray-500 mb-1"
+              className="text-sm text-gray-500 mb-1 dark:text-white"
             >
               {author || "Unknown Author"}
             </motion.p>
@@ -158,7 +158,7 @@ const Card = ({ card, index = 0 }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors"
+              className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors dark:text-white"
             >
               {name || "Untitled Book"}
             </motion.h3>
@@ -169,7 +169,7 @@ const Card = ({ card, index = 0 }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="text-sm text-gray-600 line-clamp-2 mb-3 flex-1"
+                className="text-sm text-gray-600 line-clamp-2 mb-3 flex-1 dark:text-white"
               >
                 {description}
               </motion.p>
@@ -192,7 +192,7 @@ const Card = ({ card, index = 0 }) => {
                   }`}
                 />
               ))}
-              <span className="text-sm text-gray-600 ml-1 font-medium">
+              <span className="text-sm text-gray-600 ml-1 font-medium dark:text-white">
                 {Number(rating) ? Number(rating).toFixed(1) : "N/A"}
               </span>
             </motion.div>

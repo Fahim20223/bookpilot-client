@@ -4,6 +4,8 @@ import BookAlertUI from "../BookAlerttUI/BookAlertUI";
 import NewsletterSubscription from "../NewsletterSubscription/NewsletterSubscription";
 import AuthorsOfMonth from "../AuthorsOfMonth/AuthorsOfMonth";
 import Coverage from "../Coverage/Coverage";
+import LatestBooks from "../LatestBooks/LatestBooks";
+import WhyChooseBookPilot from "../WhyChooseBookPilot/WhyChooseBookPilot";
 
 const Home = () => {
   return (
@@ -12,7 +14,9 @@ const Home = () => {
       <BookAlertUI></BookAlertUI>
 
       <AuthorsOfMonth />
+      <LatestBooks />
       <Coverage></Coverage>
+      <WhyChooseBookPilot></WhyChooseBookPilot>
       <NewsletterSubscription></NewsletterSubscription>
     </div>
   );

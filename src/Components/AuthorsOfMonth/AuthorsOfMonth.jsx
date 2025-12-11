@@ -61,7 +61,7 @@ const AuthorsOfMonth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -70,10 +70,10 @@ const AuthorsOfMonth = () => {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-2">
+          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-slate-50 mb-2">
             Authors of this Month
           </h2>
-          <div className="h-1 w-24 bg-blue-600 rounded-full"></div>
+          <div className="h-1 w-24 bg-blue-600 dark:bg-cyan-500 rounded-full"></div>
         </motion.div>
 
         {/* Authors Grid */}
@@ -91,7 +91,7 @@ const AuthorsOfMonth = () => {
               className="group cursor-pointer"
             >
               {/* Card Container */}
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl dark:shadow-slate-900/50 dark:hover:shadow-cyan-900/30 transition-all duration-300 border border-transparent dark:border-slate-700/50">
                 {/* Image Section */}
                 <div className="relative overflow-hidden aspect-square">
                   <motion.img
@@ -109,22 +109,22 @@ const AuthorsOfMonth = () => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
-                    className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-lg"
+                    className="absolute top-4 right-4 bg-white dark:bg-slate-800 px-3 py-1 rounded-full shadow-lg dark:shadow-slate-900/50 border border-transparent dark:border-slate-700"
                   >
-                    <span className="text-sm font-bold text-gray-900">
+                    <span className="text-sm font-bold text-gray-900 dark:text-slate-100">
                       {author.books} Books
                     </span>
                   </motion.div>
                 </div>
 
                 {/* Info Section */}
-                <div className="bg-gradient-to-br from-yellow-100 to-yellow-200 p-5">
+                <div className="bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-slate-700 dark:to-slate-600 p-5">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-bold text-gray-900 mb-1 truncate">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-slate-50 mb-1 truncate">
                         {author.name}
                       </h3>
-                      <div className="flex items-center gap-1 text-gray-600">
+                      <div className="flex items-center gap-1 text-gray-600 dark:text-slate-300">
                         <MapPin className="w-4 h-4 flex-shrink-0" />
                         <p className="text-sm truncate">{author.location}</p>
                       </div>
@@ -134,7 +134,7 @@ const AuthorsOfMonth = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-1 whitespace-nowrap"
+                      className="bg-blue-600 hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-1 whitespace-nowrap"
                     >
                       Follow
                       <ArrowRight className="w-4 h-4" />
@@ -159,7 +159,7 @@ const AuthorsOfMonth = () => {
               boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 shadow-xl transition-all duration-300 group"
+            className="bg-gray-900 hover:bg-gray-800 dark:bg-slate-700 dark:hover:bg-slate-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 shadow-xl transition-all duration-300 group border border-transparent dark:border-slate-600"
           >
             View All Authors
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -184,12 +184,12 @@ const AuthorsOfMonth = () => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 1.3 + index * 0.1, type: "spring" }}
-              className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-xl transition-shadow duration-300"
+              className="bg-white dark:bg-slate-800 rounded-xl shadow-md dark:shadow-slate-900/50 p-6 text-center hover:shadow-xl dark:hover:shadow-cyan-900/30 transition-shadow duration-300 border border-transparent dark:border-slate-700/50"
             >
-              <div className="text-3xl font-bold text-blue-600 mb-2">
+              <div className="text-3xl font-bold text-blue-600 dark:text-cyan-400 mb-2">
                 {stat.value}
               </div>
-              <div className="text-sm text-gray-600 font-medium">
+              <div className="text-sm text-gray-600 dark:text-slate-300 font-medium">
                 {stat.label}
               </div>
             </motion.div>
