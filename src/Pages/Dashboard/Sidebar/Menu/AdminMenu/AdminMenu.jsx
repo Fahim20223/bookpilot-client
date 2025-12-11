@@ -11,7 +11,7 @@ const AdminMenu = () => {
       ></MenuItem>
       <MenuItem
         icon={FaUserTag}
-        label="Seller Request"
+        label="Librarian Request"
         address={"seller-request"}
       ></MenuItem>
     </>

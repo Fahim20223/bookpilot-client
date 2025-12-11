@@ -32,9 +32,10 @@ const UserDataRow = ({ refetch, user }) => {
         </span>
         {/* Modal */}
         <UpdateUserRoleModal
+          user={user}
+          refetch={refetch}
           isOpen={isOpen}
           closeModal={closeModal}
-          role="customer"
         />
       </td>
     </tr>

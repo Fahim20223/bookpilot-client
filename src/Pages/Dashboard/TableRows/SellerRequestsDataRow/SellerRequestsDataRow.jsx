@@ -11,7 +11,7 @@ const SellerRequestsDataRow = ({ req, refetch }) => {
     try {
       await axiosSecure.patch("/update-role", {
         email: req?.email,
-        role: "seller",
+        role: "librarian",
       });
       toast.success("Role Updated!");
       refetch();
@@ -42,7 +42,7 @@ const SellerRequestsDataRow = ({ req, refetch }) => {
             aria-hidden="true"
             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
           ></span>
-          <span className="relative">Make Seller</span>
+          <span className="relative">Make Librarian</span>
         </span>
         {/* Modal
         <UpdateUserRoleModal

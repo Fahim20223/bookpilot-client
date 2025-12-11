@@ -12,7 +12,7 @@ const Statistics = () => {
     <div>
       {role === "admin" && <AdminStatistics></AdminStatistics>}
       {role === "customer" && <CustomerStatistics></CustomerStatistics>}
-      {role === "seller" && <SellerStatistics></SellerStatistics>}
+      {role === "librarian" && <SellerStatistics></SellerStatistics>}
     </div>
   );
 };

@@ -18,6 +18,8 @@ import Profile from "../Pages/Dashboard/Common/Profile/Profile";
 import MyOrders from "../Pages/Dashboard/Customer/MyOrders/MyOrders";
 import ManageOrders from "../Pages/Dashboard/Customer/ManageOrders/ManageOrders";
 import SellerRequests from "../Pages/Dashboard/Admin/SellerRequests";
+import SellerRoutes from "./SellerRoutes";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -72,19 +74,43 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-books",
-        element: <AddBooks></AddBooks>,
+        element: (
+          <PrivateRouter>
+            <SellerRoutes>
+              <AddBooks></AddBooks>
+            </SellerRoutes>
+          </PrivateRouter>
+        ),
       },
       {
         path: "my-inventory",
-        element: <MyInventory></MyInventory>,
+        element: (
+          <PrivateRouter>
+            <SellerRoutes>
+              <MyInventory></MyInventory>
+            </SellerRoutes>
+          </PrivateRouter>
+        ),
       },
       {
         path: "manage-users",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <PrivateRouter>
+            <AdminRoute>
+              <ManageUsers></ManageUsers>
+            </AdminRoute>
+          </PrivateRouter>
+        ),
       },
       {
         path: "seller-request",
-        element: <SellerRequests />,
+        element: (
+          <PrivateRouter>
+            <AdminRoute>
+              <SellerRequests />
+            </AdminRoute>
+          </PrivateRouter>
+        ),
       },
       {
         path: "profile",
@@ -96,7 +122,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-orders",
-        element: <ManageOrders></ManageOrders>,
+        element: (
+          <PrivateRouter>
+            <SellerRoutes>
+              <ManageOrders></ManageOrders>
+            </SellerRoutes>
+          </PrivateRouter>
+        ),
       },
     ],
   },
