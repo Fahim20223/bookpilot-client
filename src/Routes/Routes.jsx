@@ -17,6 +17,7 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import Profile from "../Pages/Dashboard/Common/Profile/Profile";
 import MyOrders from "../Pages/Dashboard/Customer/MyOrders/MyOrders";
 import ManageOrders from "../Pages/Dashboard/Customer/ManageOrders/ManageOrders";
+import SellerRequests from "../Pages/Dashboard/Admin/SellerRequests";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "seller-request",
+        element: <SellerRequests />,
       },
       {
         path: "profile",

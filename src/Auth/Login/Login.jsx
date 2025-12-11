@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { saveOrUpdateUser } from "../../utils";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -35,9 +36,8 @@ const Login = () => {
         image: result.user.photoURL || "",
       });
       setUser({ ...result.user });
-
-      navigate(from, { replace: true });
       toast.success("Login Successful");
+      navigate(from, { replace: true });
     } catch (error) {
       console.log(error);
       toast.error(error?.message);
