@@ -2,8 +2,14 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import { useForm } from "react-hook-form";
 
 const PurchaseModal = ({ closeModal, isOpen, book }) => {
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
+
   const { user } = useAuth();
   const { _id, name, status, price, description, image, seller } = book || {};
 
@@ -65,6 +71,32 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
               <p className="text-sm text-gray-500">
                 Customer: {user?.displayName}
               </p>
+              <p className="text-sm text-gray-500">Email: {user?.email}</p>
+            </div>
+            <div className="mt-2 mb-2">
+              <label className="label mr-3">Address</label>
+              <br />
+              <input
+                type="text"
+                {...register("address", { required: true })}
+                className="input rounded-full focus:border-0 focus:outline-gray-200"
+                placeholder="address"
+              />
+
+              {errors.address?.type === "required" && (
+                <p className="text-red-500">Address is required</p>
+              )}
+              <label className="label mr-3">Phone Number</label>
+              <input
+                type="number"
+                {...register("number", { required: true })}
+                className="input rounded-full focus:border-0 focus:outline-gray-200"
+                placeholder="+880 XXXXXXXXX"
+              />
+
+              {errors.number?.type === "required" && (
+                <p className="text-red-500">Phone number is required</p>
+              )}
             </div>
 
             <div className="mt-2">

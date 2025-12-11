@@ -68,7 +68,7 @@ const BookDetails = () => {
               <p className="font-bold text-3xl text-gray-500">
                 Price: {price}$
               </p>
-              <Button onClick={() => setIsOpen(true)} label="Purchase" />
+              <Button onClick={() => setIsOpen(true)} label="Order Now" />
               {/* </div> */}
               <PurchaseModal
                 book={book}
