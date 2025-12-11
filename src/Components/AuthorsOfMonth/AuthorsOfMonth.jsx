@@ -61,7 +61,7 @@ const AuthorsOfMonth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-slate-950 dark:to-slate-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -102,7 +102,7 @@ const AuthorsOfMonth = () => {
                     transition={{ duration: 0.4 }}
                   />
                   {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                   {/* Books count badge */}
                   <motion.div
@@ -118,7 +118,7 @@ const AuthorsOfMonth = () => {
                 </div>
 
                 {/* Info Section */}
-                <div className="bg-gradient-to-br from-yellow-100 to-yellow-200 dark:from-slate-700 dark:to-slate-600 p-5">
+                <div className="bg-linear-to-br from-yellow-100 to-yellow-200 dark:from-slate-700 dark:to-slate-600 p-5">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       <h3 className="text-lg font-bold text-gray-900 dark:text-slate-50 mb-1 truncate">
