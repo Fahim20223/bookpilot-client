@@ -114,11 +114,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile></Profile>,
+        element: (
+          <PrivateRouter>
+            <Profile></Profile>
+          </PrivateRouter>
+        ),
       },
       {
         path: "my-orders",
-        element: <MyOrders></MyOrders>,
+        element: (
+          <PrivateRouter>
+            <MyOrders></MyOrders>
+          </PrivateRouter>
+        ),
       },
       {
         path: "manage-orders",

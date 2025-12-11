@@ -2,21 +2,23 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../utils";
-import axios from "axios";
+// import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import LoadingSpinner from "../../../Components/LoadingSpinner";
 import { toast } from "react-toastify";
 import { TbFidgetSpinner } from "react-icons/tb";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AddBooksForm = () => {
+  const axiosSecure = useAxiosSecure();
+
   const {
     isPending,
     isError,
     mutateAsync,
     reset: mutationRest,
   } = useMutation({
-    mutationFn: async (payload) =>
-      await axios.post(`${import.meta.env.VITE_API_URL}/books`, payload),
+    mutationFn: async (payload) => await axiosSecure.post(`/books`, payload),
     onSuccess: (data) => {
       console.log(data);
       //show toast
