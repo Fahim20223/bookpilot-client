@@ -13,7 +13,7 @@ const BookDetails = () => {
   const {
     data: book = {},
     isLoading,
-    refetch,
+    // refetch,
   } = useQuery({
     queryKey: ["book", id],
     queryFn: async () => {
