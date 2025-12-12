@@ -2,13 +2,32 @@
 
 import { useState } from "react";
 import DeleteModal from "../../../../Modal/DeleteModal";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 // import DeleteModal from "../../Modal/DeleteModal";
-const LibrarianOrderDataRow = ({ order }) => {
+const LibrarianOrderDataRow = ({ order, refetch }) => {
+  const axiosSecure = useAxiosSecure();
+
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
 
   const { name, price, quantity, status, customer } = order || {};
+
+  const cancelOrder = async () => {
+    try {
+      const result = await axiosSecure.delete(`manage-orders/${order._id}`);
+      if (result.data.deletedCount > 0) {
+        toast.success("Order cancelled successfully");
+        refetch();
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Cancel order failed");
+    } finally {
+      closeModal();
+    }
+  };
 
   return (
     <tr>
@@ -52,7 +71,11 @@ const LibrarianOrderDataRow = ({ order }) => {
             <span className="relative">Cancel</span>
           </button>
         </div>
-        <DeleteModal isOpen={isOpen} closeModal={closeModal} />
+        <DeleteModal
+          cancelOrder={cancelOrder}
+          isOpen={isOpen}
+          closeModal={closeModal}
+        />
       </td>
     </tr>
   );

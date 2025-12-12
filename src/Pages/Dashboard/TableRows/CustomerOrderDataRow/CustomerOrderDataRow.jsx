@@ -2,13 +2,31 @@
 
 import { useState } from "react";
 import DeleteModal from "../../../../Modal/DeleteModal";
+// import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+// import { toast } from "react-toastify";
 
 // import DeleteModal from '../../Modal/DeleteModal'
 const CustomerOrderDataRow = ({ order }) => {
+  // const axiosSecure = useAxiosSecure();
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   //category
   const { image, name, price, quantity, status } = order || {};
+
+  // const cancelOrder = async () => {
+  //   try {
+  //     const result = await axiosSecure.delete(`/orders/${order._id}`);
+  //     if (result.data.deletedCount > 0) {
+  //       toast.success("Order cancelled successfully");
+  //       refetch();
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("Cancel order failed");
+  //   } finally {
+  //     closeModal();
+  //   }
+  // };
 
   return (
     <tr>

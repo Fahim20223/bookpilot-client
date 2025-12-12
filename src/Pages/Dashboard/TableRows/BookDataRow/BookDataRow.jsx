@@ -69,7 +69,7 @@ const BookDataRow = ({ book }) => {
             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
           ></span>
           <Link to={`/dashboard/update-book/${book._id}`} className="relative">
-            Update
+            Edit
           </Link>
         </span>
         {/* <UpdateBookModal
