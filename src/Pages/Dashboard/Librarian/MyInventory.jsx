@@ -14,6 +14,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const MyInventory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
   const { data: books = [], isLoading } = useQuery({
     queryKey: ["inventory", user?.email],
     queryFn: async () => {

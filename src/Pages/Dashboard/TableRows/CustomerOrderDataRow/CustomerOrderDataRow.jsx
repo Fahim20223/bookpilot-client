@@ -7,8 +7,8 @@ import DeleteModal from "../../../../Modal/DeleteModal";
 const CustomerOrderDataRow = ({ order }) => {
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
-
-  const { image, name, category, price, quantity, status } = order || {};
+  //category
+  const { image, name, price, quantity, status } = order || {};
 
   return (
     <tr>

@@ -5,6 +5,7 @@
 import { useState } from "react";
 import UpdateBookModal from "../../../../Modal/UpdateBookModal";
 import DeleteModal from "../../../../Modal/DeleteModal";
+import { Link } from "react-router";
 
 const BookDataRow = ({ book }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ const BookDataRow = ({ book }) => {
   function closeModal() {
     setIsOpen(false);
   }
-  const { image, name, category, quantity, price } = book;
+  const { image, name, status, quantity, price } = book;
   return (
     <tr>
       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -54,7 +55,7 @@ const BookDataRow = ({ book }) => {
             aria-hidden="true"
             className="absolute inset-0 bg-red-200 opacity-50 rounded-full"
           ></span>
-          <span className="relative">Delete</span>
+          <span className="relative">{status}</span>
         </span>
         <DeleteModal isOpen={isOpen} closeModal={closeModal} />
       </td>
@@ -67,12 +68,14 @@ const BookDataRow = ({ book }) => {
             aria-hidden="true"
             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
           ></span>
-          <span className="relative">Update</span>
+          <Link to={`/dashboard/update-book/${book._id}`} className="relative">
+            Update
+          </Link>
         </span>
-        <UpdateBookModal
+        {/* <UpdateBookModal
           isOpen={isEditModalOpen}
           setIsEditModalOpen={setIsEditModalOpen}
-        />
+        /> */}
       </td>
     </tr>
   );

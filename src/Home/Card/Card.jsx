@@ -206,7 +206,7 @@ const Card = ({ card, index = 0 }) => {
             >
               <div>
                 <div className="text-2xl font-bold text-blue-600">
-                  ${price ? price.toFixed(2) : "0.00"}
+                  ${price ? Number(price).toFixed(2) : "0.00"}
                 </div>
                 {quantity > 0 && quantity < 5 && (
                   <div className="text-xs text-orange-600 font-medium">

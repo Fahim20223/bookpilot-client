@@ -20,6 +20,9 @@ import ManageOrders from "../Pages/Dashboard/Customer/ManageOrders/ManageOrders"
 import SellerRequests from "../Pages/Dashboard/Admin/SellerRequests";
 import SellerRoutes from "./SellerRoutes";
 import AdminRoute from "./AdminRoute";
+import PaymentCancel from "../Payment/PaymentCancel";
+import UpdateBookForm from "../Form/UpdateBookForm";
+import UpdateBookPage from "../Form/UpdateBookPage";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/payment-success",
         element: <PaymentSuccess></PaymentSuccess>,
+      },
+      {
+        path: "/payment-cancelled",
+        element: <PaymentCancel></PaymentCancel>,
       },
     ],
   },
@@ -135,6 +142,14 @@ export const router = createBrowserRouter([
             <SellerRoutes>
               <ManageOrders></ManageOrders>
             </SellerRoutes>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "update-book/:id",
+        element: (
+          <PrivateRouter>
+            <UpdateBookPage />
           </PrivateRouter>
         ),
       },
