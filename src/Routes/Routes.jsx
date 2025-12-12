@@ -149,7 +149,9 @@ export const router = createBrowserRouter([
         path: "update-book/:id",
         element: (
           <PrivateRouter>
-            <UpdateBookPage />
+            <SellerRoutes>
+              <UpdateBookPage />
+            </SellerRoutes>
           </PrivateRouter>
         ),
       },

@@ -3,18 +3,58 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const PurchaseModal = ({ closeModal, isOpen, book }) => {
+  const axiosSecure = useAxiosSecure();
   const {
     register,
+    watch,
     formState: { errors },
   } = useForm();
 
   const { user } = useAuth();
   const { _id, name, status, price, description, image, seller } = book || {};
 
-  const handlePayment = async () => {
-    const paymentInfo = {
+  // const handlePayment = async () => {
+  //   const paymentInfo = {
+  //     bookId: _id,
+  //     name,
+  //     status,
+  //     price,
+  //     description,
+  //     image,
+  //     quantity: 1,
+  //     seller,
+  //     customer: {
+  //       name: user?.displayName,
+  //       email: user?.email,
+  //       image: user?.photoURL,
+  //     },
+  //     address: watch("address"),
+  //     phone: watch("number"),
+  //   };
+
+  //   const { data } = await axios.post(
+  //     `${import.meta.env.VITE_API_URL}/create-checkout-session`,
+  //     paymentInfo
+  //   );
+
+  //   // const { data } = await axios.post(
+  //   //   `${import.meta.env.VITE_API_URL}/create-checkout-session`,
+  //   //   paymentInfo
+  //   // );
+  //   window.location.href = data.url;
+  // };
+
+  // const handlePmt = data =>{
+  //   console.log(data)
+
+  // }
+
+  const handleOrderSubmit = async () => {
+    const orderInfo = {
       bookId: _id,
       name,
       status,
@@ -28,18 +68,19 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
         email: user?.email,
         image: user?.photoURL,
       },
+      address: watch("address"),
+      phone: watch("number"),
+      orderStatus: "pending", // initial status
     };
 
-    const { data } = await axios.post(
-      `${import.meta.env.VITE_API_URL}/create-checkout-session`,
-      paymentInfo
-    );
-
-    // const { data } = await axios.post(
-    //   `${import.meta.env.VITE_API_URL}/create-checkout-session`,
-    //   paymentInfo
-    // );
-    window.location.href = data.url;
+    try {
+      await axiosSecure.post(`/orders`, orderInfo);
+      toast.success("Order created successfully!");
+      closeModal();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to create order!");
+    }
   };
 
   return (
@@ -105,7 +146,7 @@ const PurchaseModal = ({ closeModal, isOpen, book }) => {
 
             <div className="flex mt-2 justify-around">
               <button
-                onClick={handlePayment}
+                onClick={handleOrderSubmit}
                 type="button"
                 className="cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
               >
