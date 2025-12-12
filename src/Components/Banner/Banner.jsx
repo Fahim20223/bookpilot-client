@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight, Star } from "lucide-react";
+import { Link } from "react-router";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -188,20 +189,22 @@ const Banner = () => {
                 </div>
 
                 {/* CTA Button */}
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`${slides[currentSlide].accentColor} text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 group`}
-                >
-                  Get a book
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                <Link to={"/books"}>
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`${slides[currentSlide].accentColor} text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 group`}
+                  >
+                    Get a book
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </Link>
 
                 {/* Customer Stats */}
                 <motion.div
