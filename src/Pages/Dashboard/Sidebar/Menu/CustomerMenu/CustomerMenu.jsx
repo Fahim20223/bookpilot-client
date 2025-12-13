@@ -8,8 +8,9 @@ import { BsFingerprint } from "react-icons/bs";
 import BecomeLibrarianModal from "../../../../../Modal/BecomeLibrarianModal";
 import MenuItem from "../MenuItem/MenuItem";
 import { GrUserAdmin } from "react-icons/gr";
-import WishlistItem from "../MenuItem/WishlistItem";
+
 import { TbBrandWish } from "react-icons/tb";
+import { Link } from "react-router";
 
 // import BecomeSellerModal from '../../../Modal/BecomeSellerModal'
 const CustomerMenu = () => {
@@ -34,11 +35,13 @@ const CustomerMenu = () => {
 
       <BecomeLibrarianModal closeModal={closeModal} isOpen={isOpen} />
 
-      {/* <WishlistItem
-        icon={TbBrandWish}
-        label="My Wishlists"
-        address="my-wishlists"
-      ></WishlistItem> */}
+      <Link
+        to={"/dashboard/my-wishlists"}
+        className="flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-gray-600  hover:bg-gray-300   hover:text-gray-700 cursor-pointer"
+      >
+        <TbBrandWish />
+        <span className="mx-4 font-medium">My Wishlists</span>
+      </Link>
     </>
   );
 };

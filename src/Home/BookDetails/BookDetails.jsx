@@ -6,8 +6,11 @@ import Heading from "../Heading/Heading";
 import Button from "../Button/Button";
 import LoadingSpinner from "../../Components/LoadingSpinner";
 import PurchaseModal from "../../Modal/PurchaseModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const BookDetails = () => {
+  const axiosSecure = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
   const {
@@ -28,14 +31,42 @@ const BookDetails = () => {
 
   if (isLoading) return <LoadingSpinner></LoadingSpinner>;
 
-  const { image, name, status, description, price, seller, quantity } = book;
+  const {
+    image,
+    name,
+    status,
+    description,
+    price,
+    seller,
+    quantity,
+    author,
+    rating,
+  } = book;
 
-  const handleWishlists = () => {
-    const finalData = {
-      image: image,
-      name: name,
-      status: "",
-    };
+  const handleWishlists = async () => {
+    try {
+      const wishlistData = {
+        bookId: id,
+        image,
+        name,
+        author,
+        description,
+        rating,
+        price,
+      };
+
+      const res = await axiosSecure.post(`/wishlists/${id}`, wishlistData);
+
+      if (res.data.insertedId) {
+        toast.success("Added to wishlist ❤️");
+      }
+    } catch (error) {
+      if (error.response?.status === 409) {
+        toast.error("Already added to wishlist");
+      } else {
+        toast.error("Failed to add wishlist");
+      }
+    }
   };
 
   return (
@@ -69,7 +100,10 @@ const BookDetails = () => {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <button className="w-1/2 btn btn-outline rounded-full border-gray-300 hover:border-purple-500 hover:text-purple-600">
+              <button
+                onClick={handleWishlists}
+                className="w-1/2 btn btn-outline rounded-full border-gray-300 hover:border-purple-500 hover:text-purple-600"
+              >
                 Add to Favorites
               </button>
 

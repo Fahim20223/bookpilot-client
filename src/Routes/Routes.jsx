@@ -23,6 +23,7 @@ import AdminRoute from "./AdminRoute";
 import PaymentCancel from "../Payment/PaymentCancel";
 import UpdateBookForm from "../Form/UpdateBookForm";
 import UpdateBookPage from "../Form/UpdateBookPage";
+import WishlistItem from "../Pages/Dashboard/Sidebar/Menu/MenuItem/WishlistItem";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Statistics></Statistics>,
+      },
+      {
+        path: "my-wishlists",
+        element: <WishlistItem></WishlistItem>,
       },
       {
         path: "add-books",
