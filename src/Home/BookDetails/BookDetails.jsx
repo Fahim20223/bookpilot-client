@@ -30,6 +30,14 @@ const BookDetails = () => {
 
   const { image, name, status, description, price, seller, quantity } = book;
 
+  const handleWishlists = () => {
+    const finalData = {
+      image: image,
+      name: name,
+      status: "",
+    };
+  };
+
   return (
     <div className="min-h-[63vh]">
       <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
@@ -61,6 +69,9 @@ const BookDetails = () => {
                   referrerPolicy="no-referrer"
                 />
               </div>
+              <button className="w-1/2 btn btn-outline rounded-full border-gray-300 hover:border-purple-500 hover:text-purple-600">
+                Add to Favorites
+              </button>
 
               <p className="text-neutral-500">
                 Quantity: {quantity} Units Left Only!

@@ -36,7 +36,7 @@ const Sidebar = () => {
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
-              <img src={logo} alt="logo" width="100" height="100" />
+              <img src={logo} alt="logo" width="50" height="50" />
             </Link>
           </div>
         </div>
@@ -48,7 +48,6 @@ const Sidebar = () => {
           <AiOutlineBars className="h-5 w-5" />
         </button>
       </div>
-
       {/* Sidebar */}
       <div
         className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
@@ -61,7 +60,7 @@ const Sidebar = () => {
             {/* Logo */}
             <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
               <Link to="/">
-                <img src={logo} alt="logo" width="100" height="100" />
+                <img src={logo} alt="logo" width="50" height="50" />
               </Link>
             </div>
           </div>

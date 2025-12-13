@@ -15,8 +15,8 @@ const Button = ({ label, onClick, disabled, outline, small, icon: Icon }) => {
           w-full
           dark:bg-orange-400
           dark:border-0
-          ${outline ? "bg-white" : "bg-blue-500"}
-          ${outline ? "border-black" : "border-blue-500"}
+          ${outline ? "bg-white" : "bg-purple-500"}
+          ${outline ? "border-black" : "border-purple-500"}
           ${outline ? "text-black" : "text-white"}
           ${small ? "text-sm" : "text-md"}
           ${small ? "py-1" : "py-3"}

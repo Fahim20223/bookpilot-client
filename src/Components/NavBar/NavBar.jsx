@@ -89,114 +89,116 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar bg-custom-navbar shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary ">
-      <div className="navbar-start">
-        {/* Mobile Hamburger Menu */}
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-\[1]\ mt-3 w-52 p-2 shadow-lg"
-          >
-            {links}
-          </ul>
-        </div>
-
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 ml-2 lg:ml-4">
-          <img
-            className="w-10 h-10 sm:w-12 sm:h-12"
-            src={logo}
-            alt="BookPilot Logo"
-          />
-          <span className="font-bold text-lg sm:text-xl hidden sm:inline">
-            BookPilot
-          </span>
-        </Link>
-      </div>
-
-      {/* Desktop Menu */}
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
-      </div>
-
-      {/* Right Side Actions */}
-      <div className="navbar-end gap-2 pr-2 sm:pr-4">
-        {/* Theme Toggle */}
-        <button
-          onClick={toggleTheme}
-          className="btn btn-ghost btn-circle"
-          aria-label="Toggle theme"
-        >
-          {theme === "light" ? (
-            <Moon className="w-5 h-5" />
-          ) : (
-            <Sun className="w-5 h-5" />
-          )}
-        </button>
-
-        {/* Conditional Rendering: Login/Register OR User Profile */}
-        {isLoggedIn ? (
-          // User Profile Picture with Logout Dropdown
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-9 sm:w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                <img
-                  src={user?.photoURL || "https://i.pravatar.cc/150?img=12"}
-                  alt={user?.displayName || "User"}
+    <div className=" bg-custom-navbar shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary">
+      <div className="navbar max-w-7xl mx-auto">
+        <div className="navbar-start">
+          {/* Mobile Hamburger Menu */}
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
                 />
-              </div>
+              </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-\[1]\ mt-3 w-40 p-2 shadow-lg"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-\[1]\ mt-3 w-52 p-2 shadow-lg"
             >
-              <li>
-                <a
-                  onClick={() => logOut()}
-                  className="text-secondary font-bold"
-                >
-                  Logout
-                </a>
-              </li>
+              {links}
             </ul>
           </div>
-        ) : (
-          // Login/Register Buttons
-          <div className="flex gap-1 sm:gap-2">
-            <Link
-              to="/login"
-              className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-xs sm:text-sm"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-white text-xs sm:text-sm"
-            >
-              Register
-            </Link>
-          </div>
-        )}
+
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 ml-2 lg:ml-4">
+            <img
+              className="w-10 h-10 sm:w-12 sm:h-12"
+              src={logo}
+              alt="BookPilot Logo"
+            />
+            <span className="font-bold text-lg sm:text-xl hidden sm:inline">
+              BookPilot
+            </span>
+          </Link>
+        </div>
+
+        {/* Desktop Menu */}
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
+        </div>
+
+        {/* Right Side Actions */}
+        <div className="navbar-end gap-2 pr-2 sm:pr-4">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="btn btn-ghost btn-circle"
+            aria-label="Toggle theme"
+          >
+            {theme === "light" ? (
+              <Moon className="w-5 h-5" />
+            ) : (
+              <Sun className="w-5 h-5" />
+            )}
+          </button>
+
+          {/* Conditional Rendering: Login/Register OR User Profile */}
+          {isLoggedIn ? (
+            // User Profile Picture with Logout Dropdown
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-9 sm:w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img
+                    src={user?.photoURL || "https://i.pravatar.cc/150?img=12"}
+                    alt={user?.displayName || "User"}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-\[1]\ mt-3 w-40 p-2 shadow-lg"
+              >
+                <li>
+                  <a
+                    onClick={() => logOut()}
+                    className="text-secondary font-bold"
+                  >
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            // Login/Register Buttons
+            <div className="flex gap-1 sm:gap-2">
+              <Link
+                to="/login"
+                className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-xs sm:text-sm"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-white text-xs sm:text-sm"
+              >
+                Register
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

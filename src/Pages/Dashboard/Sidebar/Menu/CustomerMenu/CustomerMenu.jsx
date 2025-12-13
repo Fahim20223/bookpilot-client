@@ -8,6 +8,8 @@ import { BsFingerprint } from "react-icons/bs";
 import BecomeLibrarianModal from "../../../../../Modal/BecomeLibrarianModal";
 import MenuItem from "../MenuItem/MenuItem";
 import { GrUserAdmin } from "react-icons/gr";
+import WishlistItem from "../MenuItem/WishlistItem";
+import { TbBrandWish } from "react-icons/tb";
 
 // import BecomeSellerModal from '../../../Modal/BecomeSellerModal'
 const CustomerMenu = () => {
@@ -31,6 +33,12 @@ const CustomerMenu = () => {
       </div>
 
       <BecomeLibrarianModal closeModal={closeModal} isOpen={isOpen} />
+
+      {/* <WishlistItem
+        icon={TbBrandWish}
+        label="My Wishlists"
+        address="my-wishlists"
+      ></WishlistItem> */}
     </>
   );
 };

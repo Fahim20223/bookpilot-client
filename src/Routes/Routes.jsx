@@ -136,6 +136,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "my-wishlists",
+        element: (
+          <PrivateRouter>
+            <MyOrders></MyOrders>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "manage-orders",
         element: (
           <PrivateRouter>

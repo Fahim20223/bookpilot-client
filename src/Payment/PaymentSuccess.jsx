@@ -1,16 +1,40 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useSearchParams } from "react-router";
 import { IoBagCheckOutline } from "react-icons/io5";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { AuthContext } from "../Context/AuthContext";
 
 const PaymentSuccess = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { user } = useContext(AuthContext);
+  const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
+
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axios.post(`${import.meta.env.VITE_API_URL}/payment-success`, {
-      sessionId,
-    });
-  }, [sessionId]);
+    if (!sessionId || !user) return; // safety check
+    const verifyPayment = async () => {
+      console.log(sessionId);
+      try {
+        const { data } = await axiosSecure.post(
+          `/payment-success`,
+          { sessionId: sessionId } // match backend key},
+          // { withCredentials: true } // if your backend needs cookies/JWT
+        );
+
+        if (data.success) {
+          console.log("Payment verified:", data);
+        } else {
+          console.log("Payment verification failed:", data.message);
+        }
+      } catch (err) {
+        console.error("Payment verification error:", err);
+      }
+    };
+
+    verifyPayment();
+  }, [sessionId, user]);
+
   return (
     <div className="py-9 min-h-[63vh]">
       <div className="flex flex-col items-center justify-center">

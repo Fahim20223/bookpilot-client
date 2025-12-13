@@ -7,11 +7,12 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const MyOrders = () => {
   const { user } = useAuth();
+
   const axiosSecure = useAxiosSecure();
   const {
     data: orders = [],
     isLoading,
-
+    refetch,
     // isError,
   } = useQuery({
     queryKey: ["orders", user?.email],
@@ -76,7 +77,7 @@ const MyOrders = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800 text-sm uppercase font-normal"
                     >
-                      Action
+                      {/* Action */}
                     </th>
                     <th
                       scope="col"
@@ -88,13 +89,17 @@ const MyOrders = () => {
                       scope="col"
                       className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800 text-sm uppercase font-normal"
                     >
-                      payment
+                      {/* Payment */}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {orders.map((order) => (
-                    <CustomerOrderDataRow key={order._id} order={order} />
+                    <CustomerOrderDataRow
+                      refetch={refetch}
+                      key={order._id}
+                      order={order}
+                    />
                   ))}
                 </tbody>
               </table>

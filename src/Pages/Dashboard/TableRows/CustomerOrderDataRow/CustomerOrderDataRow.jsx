@@ -15,11 +15,11 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   //category
-  const { _id, image, name, price, quantity, status } = order || {};
+  const { image, name, price, quantity, status } = order || {};
 
   const cancelOrder = async () => {
     try {
-      const result = await axiosSecure.delete(`/order-cancel/${order._id}`);
+      const result = await axiosSecure.patch(`/order-cancel/${order._id}`);
       if (result.data.modifiedCount > 0) {
         toast.success("Order cancelled successfully");
         refetch();
@@ -35,7 +35,7 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
   const payOrder = async () => {
     try {
       const { data } = await axiosSecure.post(`/create-checkout-session`, {
-        bookId: order._id,
+        bookId: order.bookId,
         name: order.name,
         description: order.description,
         image: order.image,
@@ -51,13 +51,36 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
       window.location.href = data.url;
 
       // OPTIONAL: If you want immediate UI update without waiting for page reload:
-      await axiosSecure.patch(`/orders/${order._id}/paid`);
+      // await axiosSecure.patch(`/orders/${order._id}/paid`);
       // setPaid(true); // update local state so button changes to "Paid"
     } catch (error) {
       console.log(error);
       toast.error("Payment failed!");
     }
   };
+
+  // const payOrder = async () => {
+  //   try {
+  //     const { data } = await axiosSecure.post(`/create-checkout-session`, {
+  //       bookId: order._id,
+  //       name: order.name,
+  //       description: order.description,
+  //       image: order.image,
+  //       price: order.price,
+  //       quantity: order.quantity,
+  //       customer: {
+  //         name: order.customer?.name,
+  //         email: order.customer?.email,
+  //       },
+  //     });
+
+  //     // Redirect user to Stripe
+  //     window.location.href = data.url;
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error("Payment failed!");
+  //   }
+  // };
 
   return (
     <tr>
@@ -94,18 +117,10 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
       {/* Pay Button */}
       <td className="px-5 py-5 border-b border-gray-200 text-sm text-center">
         {status === "pending" && paymentStatus === "unpaid" ? (
-          <button
-            onClick={payOrder}
-            className="bg-red-500 text-white px-3 py-1 rounded"
-          >
-            Cancel
-          </button>
-        ) : (
           <>
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-red-200 text-black px-3 py-1 rounded cursor-not-allowed"
-              disabled
+              className="bg-red-500 text-white px-3 py-1 rounded"
             >
               Cancel
             </button>
@@ -115,6 +130,15 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
               closeModal={closeModal}
             />
           </>
+        ) : (
+          ""
+          // <button
+          //   onClick={() => setIsOpen(true)}
+          //   className="bg-red-200 text-black px-3 py-1 rounded cursor-not-allowed"
+          //   disabled
+          // >
+          //   Cancel
+          // </button>
         )}
       </td>
 
@@ -149,19 +173,17 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
       {/* Pay Button */}
       <td className="text-center border-b border-gray-200">
         {status === "pending" && paymentStatus === "unpaid" ? (
-          <button
-            onClick={payOrder}
-            className="bg-blue-600 text-white px-3 py-1 rounded"
-          >
-            Pay Now
+          <button onClick={payOrder} className="btn-primary btn btn-sm">
+            Pay
           </button>
         ) : (
-          <button
-            className="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed"
-            disabled
-          >
-            Pay Now
-          </button>
+          // <button
+          //   className="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed"
+          //   disabled
+          // >
+          //   Pay Now
+          // </button>
+          ""
         )}
       </td>
     </tr>
