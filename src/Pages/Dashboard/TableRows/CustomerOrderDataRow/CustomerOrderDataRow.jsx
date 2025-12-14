@@ -83,7 +83,7 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
   // };
 
   return (
-    <tr>
+    <tr className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-200 dark:border-gray-700">
       <td className="px-5 py-5 border-b border-gray-200 text-sm">
         <div className="flex items-center">
           <div className="shrink-">

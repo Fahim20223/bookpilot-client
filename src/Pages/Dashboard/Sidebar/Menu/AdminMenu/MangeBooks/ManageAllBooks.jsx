@@ -2,9 +2,9 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Star, ShoppingBag, Eye, Heart, Trash2 } from "lucide-react";
 
-const MyWishlists = ({ card, index = 0 }) => {
+const ManageAllBooks = ({ book, index = 0 }) => {
   const { _id, name, image, quantity, description, price, author, rating } =
-    card;
+    book;
 
   const rowRef = useRef(null);
   const isInView = useInView(rowRef, { once: true, margin: "-50px" });
@@ -131,4 +131,4 @@ const MyWishlists = ({ card, index = 0 }) => {
   );
 };
 
-export default MyWishlists;
+export default ManageAllBooks;

@@ -70,6 +70,7 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Common Menu */}
+
               <MenuItem
                 icon={BsGraphUp}
                 label="Statistics"

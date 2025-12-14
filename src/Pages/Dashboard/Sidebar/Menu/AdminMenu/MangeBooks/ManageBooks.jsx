@@ -1,15 +1,18 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../../../../Components/LoadingSpinner";
-import MyWishlists from "../../../Customer/MyWishlists/MyWishlists";
+import useAxiosSecure from "../../../../../../hooks/useAxiosSecure";
+import LoadingSpinner from "../../../../../../Components/LoadingSpinner";
+import ManageAllBooks from "./ManageAllBooks";
+// import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
+// import LoadingSpinner from "../../../../../Components/LoadingSpinner";
+// import MyWishlists from "../../../Customer/MyWishlists/MyWishlists";
 
-const WishlistItem = () => {
+const ManageBooks = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: cards = [], isLoading } = useQuery({
-    queryKey: ["my-wishlists"],
+  const { data: books = [], isLoading } = useQuery({
+    queryKey: ["manage-books"],
     queryFn: async () => {
-      const result = await axiosSecure(`/my-wishlists`);
+      const result = await axiosSecure(`/manage-books`);
       return result.data;
     },
   });
@@ -22,14 +25,14 @@ const WishlistItem = () => {
     <div className="max-w-7xl mx-auto py-10 px-4">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-          My Wishlist
+          All the books added by the librarians
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mt-1">
-          {cards.length} items in your wishlist
+          {books.length} books total
         </p>
       </div>
 
-      {cards && cards.length > 0 ? (
+      {books && books.length > 0 ? (
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -56,8 +59,8 @@ const WishlistItem = () => {
                 </tr>
               </thead>
               <tbody>
-                {cards.map((card, index) => (
-                  <MyWishlists key={card._id} card={card} index={index} />
+                {books.map((book, index) => (
+                  <ManageAllBooks key={book._id} book={book} index={index} />
                 ))}
               </tbody>
             </table>
@@ -66,7 +69,7 @@ const WishlistItem = () => {
       ) : (
         <div className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-md">
           <p className="text-gray-600 dark:text-gray-400">
-            Your wishlist is empty
+            There is no book added by the librarian
           </p>
         </div>
       )}
@@ -74,4 +77,4 @@ const WishlistItem = () => {
   );
 };
 
-export default WishlistItem;
+export default ManageBooks;

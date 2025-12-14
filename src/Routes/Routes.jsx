@@ -24,6 +24,7 @@ import PaymentCancel from "../Payment/PaymentCancel";
 import UpdateBookForm from "../Form/UpdateBookForm";
 import UpdateBookPage from "../Form/UpdateBookPage";
 import WishlistItem from "../Pages/Dashboard/Sidebar/Menu/MenuItem/WishlistItem";
+import ManageBooks from "../Pages/Dashboard/Sidebar/Menu/AdminMenu/MangeBooks/ManageBooks";
 
 export const router = createBrowserRouter([
   {
@@ -82,7 +83,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-wishlists",
-        element: <WishlistItem></WishlistItem>,
+        element: (
+          <PrivateRouter>
+            <WishlistItem></WishlistItem>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "manage-books",
+        element: <ManageBooks></ManageBooks>,
       },
       {
         path: "add-books",

@@ -102,7 +102,7 @@ const AddBooksForm = () => {
     <div>
       <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl ">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 border border-gray-200 p-8 rounded-2xl">
             <div className="space-y-6">
               {/* Name */}
               <div className="space-y-1 text-sm">
@@ -110,7 +110,7 @@ const AddBooksForm = () => {
                   Name
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+                  className="w-full px-4 py-3 text-gray-800 border border-purple-300 focus:outline-purple-500 rounded-md bg-white"
                   id="name"
                   type="text"
                   placeholder="Book Name"
@@ -136,7 +136,7 @@ const AddBooksForm = () => {
                 </label>
                 <select
                   required
-                  className="w-full px-4 py-3 border-blue-300 focus:outline-blue-500 rounded-md bg-white border"
+                  className="w-full px-4 py-3 border-purple-300 focus:outline-purple-500 rounded-md bg-white border"
                   name="status"
                   {...register("status", {
                     required: "Status is required",
@@ -160,7 +160,7 @@ const AddBooksForm = () => {
                 <textarea
                   id="description"
                   placeholder="Write book description here..."
-                  className="block rounded-md focus:blue-300 w-full h-32 px-4 py-3 text-gray-800  border border-blue-300 bg-white focus:outline-blue-500 "
+                  className="block rounded-md focus:purple-300 w-full h-32 px-4 py-3 text-gray-800  border border-purple-300 bg-white focus:outline-purple-500 "
                   name="description"
                   {...register("description", {
                     required: "Description is required",
@@ -182,7 +182,7 @@ const AddBooksForm = () => {
                     Price
                   </label>
                   <input
-                    className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+                    className="w-full px-4 py-3 text-gray-800 border border-purple-300 focus:outline-purple-500 rounded-md bg-white"
                     id="price"
                     type="number"
                     placeholder="Price per unit"
@@ -204,7 +204,7 @@ const AddBooksForm = () => {
                     Quantity
                   </label>
                   <input
-                    className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+                    className="w-full px-4 py-3 text-gray-800 border border-purple-300 focus:outline-purple-500 rounded-md bg-white"
                     id="quantity"
                     type="number"
                     placeholder="Available quantity"
@@ -241,7 +241,7 @@ const AddBooksForm = () => {
                           {errors.image.message}
                         </p>
                       )}
-                      <div className="bg-blue-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-blue-500">
+                      <div className="bg-purple-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-purple-500">
                         Upload
                       </div>
                     </label>
@@ -255,7 +255,7 @@ const AddBooksForm = () => {
                   Author
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+                  className="w-full px-4 py-3 text-gray-800 border border-purple-300 focus:outline-purple-500 rounded-md bg-white"
                   id="author"
                   type="text"
                   placeholder="Book Author"
@@ -282,7 +282,7 @@ const AddBooksForm = () => {
                 </label>
 
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md bg-white"
+                  className="w-full px-4 py-3 text-gray-800 border border-purple-300 focus:outline-purple-500 rounded-md bg-white"
                   id="rating"
                   type="number"
                   placeholder="Rate 1 to 5"
@@ -306,7 +306,7 @@ const AddBooksForm = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-blue-500 "
+                className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-purple-500 "
               >
                 {isPending ? (
                   <TbFidgetSpinner className="animate-spin m-auto" />
