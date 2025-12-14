@@ -25,6 +25,7 @@ import UpdateBookForm from "../Form/UpdateBookForm";
 import UpdateBookPage from "../Form/UpdateBookPage";
 import WishlistItem from "../Pages/Dashboard/Sidebar/Menu/MenuItem/WishlistItem";
 import ManageBooks from "../Pages/Dashboard/Sidebar/Menu/AdminMenu/MangeBooks/ManageBooks";
+import MyInvoices from "../Pages/Dashboard/Customer/MyInvoices/MyInvoices";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,14 @@ export const router = createBrowserRouter([
         element: <Statistics></Statistics>,
       },
       {
+        path: "my-invoices",
+        element: (
+          <PrivateRouter>
+            <MyInvoices></MyInvoices>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "my-wishlists",
         element: (
           <PrivateRouter>
@@ -91,7 +100,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-books",
-        element: <ManageBooks></ManageBooks>,
+        element: (
+          <PrivateRouter>
+            <AdminRoute>
+              <ManageBooks></ManageBooks>
+            </AdminRoute>
+          </PrivateRouter>
+        ),
       },
       {
         path: "add-books",
@@ -143,14 +158,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-orders",
-        element: (
-          <PrivateRouter>
-            <MyOrders></MyOrders>
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "my-wishlists",
         element: (
           <PrivateRouter>
             <MyOrders></MyOrders>

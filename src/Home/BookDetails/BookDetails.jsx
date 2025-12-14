@@ -104,7 +104,7 @@ const BookDetails = () => {
                 onClick={handleWishlists}
                 className="w-1/2 btn btn-outline rounded-full border-gray-300 hover:border-purple-500 hover:text-purple-600"
               >
-                Add to Favorites
+                Add to Wishlists
               </button>
 
               <p className="text-neutral-500">

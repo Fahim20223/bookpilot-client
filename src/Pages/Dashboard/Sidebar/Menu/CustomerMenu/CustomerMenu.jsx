@@ -9,7 +9,7 @@ import BecomeLibrarianModal from "../../../../../Modal/BecomeLibrarianModal";
 import MenuItem from "../MenuItem/MenuItem";
 import { GrUserAdmin } from "react-icons/gr";
 
-import { TbBrandWish } from "react-icons/tb";
+import { TbBrandWish, TbFileInvoice } from "react-icons/tb";
 import { Link } from "react-router";
 
 // import BecomeSellerModal from '../../../Modal/BecomeSellerModal'
@@ -41,6 +41,13 @@ const CustomerMenu = () => {
       >
         <TbBrandWish />
         <span className="mx-4 font-medium">My Wishlists</span>
+      </Link>
+      <Link
+        to={"/dashboard/my-invoices"}
+        className="flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-gray-600  hover:bg-gray-300   hover:text-gray-700 cursor-pointer"
+      >
+        <TbFileInvoice />
+        <span className="mx-4 font-medium">My Invoices</span>
       </Link>
     </>
   );
