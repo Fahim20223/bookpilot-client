@@ -3,13 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../../../../Components/LoadingSpinner";
 import ManageAllBooks from "./ManageAllBooks";
-// import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
-// import LoadingSpinner from "../../../../../Components/LoadingSpinner";
-// import MyWishlists from "../../../Customer/MyWishlists/MyWishlists";
 
 const ManageBooks = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: books = [], isLoading } = useQuery({
+  const {
+    data: books = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["manage-books"],
     queryFn: async () => {
       const result = await axiosSecure(`/manage-books`);
@@ -60,7 +61,12 @@ const ManageBooks = () => {
               </thead>
               <tbody>
                 {books.map((book, index) => (
-                  <ManageAllBooks key={book._id} book={book} index={index} />
+                  <ManageAllBooks
+                    refetch={refetch}
+                    key={book._id}
+                    book={book}
+                    index={index}
+                  />
                 ))}
               </tbody>
             </table>
