@@ -4,7 +4,7 @@ import Cards from "../../Home/Cards/Cards";
 const Books = () => {
   return (
     <div className="max-w-7xl mx-auto">
-      <h2 className="text-center font-bold md:text-4xl py-6 text-2xl ">
+      <h2 className="text-center font-bold md:text-4xl py-6 text-3xl">
         All Books
       </h2>
 

@@ -1,7 +1,48 @@
 import { FaUserAlt, FaDollarSign } from "react-icons/fa";
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from "react-icons/bs";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+} from "recharts";
 
 const AdminStatistics = () => {
+  const axiosSecure = useAxiosSecure();
+  const [stats, setStats] = useState({
+    revenue: 0,
+    orders: 0,
+    books: 0,
+    users: 0,
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await axiosSecure.get("/admin-statistics");
+        setStats(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchStats();
+  }, [axiosSecure]);
+
+  const chartData = [
+    { name: "Revenue", value: stats.revenue },
+    { name: "Orders", value: stats.orders },
+    { name: "Books", value: stats.books },
+    { name: "Users", value: stats.users },
+  ];
+
   return (
     <div>
       <div className="mt-12">
@@ -19,7 +60,7 @@ const AdminStatistics = () => {
                 Total Revenue
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                $120
+                ${stats.revenue}
               </h4>
             </div>
           </div>
@@ -35,7 +76,7 @@ const AdminStatistics = () => {
                 Total Orders
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                120
+                {stats.orders}
               </h4>
             </div>
           </div>
@@ -51,7 +92,7 @@ const AdminStatistics = () => {
                 Total Books
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                120
+                {stats.books}
               </h4>
             </div>
           </div>
@@ -67,7 +108,7 @@ const AdminStatistics = () => {
                 Total User
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                10
+                {stats.users}
               </h4>
             </div>
           </div>
@@ -81,6 +122,45 @@ const AdminStatistics = () => {
           {/* Calender */}
           <div className=" relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
             {/* Calender */}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          {/* Bar Chart */}
+          <div className="bg-white p-6 rounded-xl shadow-md xl:col-span-2">
+            <h3 className="text-lg font-semibold mb-4">Overview</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData}>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="value" fill="#4ade80" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Line Chart (optional, trends over time) */}
+          <div className="bg-white p-6 rounded-xl shadow-md xl:col-span-2">
+            <h3 className="text-lg font-semibold mb-4">Revenue Trend</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart
+                data={chartData} // You can replace this with a daily/monthly revenue array
+                margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
+              >
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#4ade80"
+                  strokeWidth={3}
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
