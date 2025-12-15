@@ -3,7 +3,7 @@ import useRole from "../../../../hooks/useRole";
 import coverImg from "../../../../assets/cover.png";
 
 const Profile = () => {
-  const { user } = useAuth();
+  const { user, updateUserProfile, setUser } = useAuth();
   const [role, isRoleLoading] = useRole();
   console.log(role, isRoleLoading);
 

@@ -83,7 +83,7 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
   // };
 
   return (
-    <tr className="dark:bg-gray-700 transition-colors border-b border-gray-400 dark:border-gray-700">
+    <tr className="dark:bg-gray-700 transition-colors border-b border-gray-400 dark:border-gray-700 overflow-auto">
       <td className="px-5 py-5 border-b border-gray-200 text-sm">
         <div className="flex items-center">
           <div className="shrink-">
@@ -173,7 +173,7 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
       {/* Pay Button */}
       <td className="text-center border-b border-gray-200">
         {status === "pending" && paymentStatus === "unpaid" ? (
-          <button onClick={payOrder} className="btn-primary btn btn-sm">
+          <button onClick={payOrder} className="btn-primary btn btn-sm mr-3">
             Pay
           </button>
         ) : (

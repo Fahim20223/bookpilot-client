@@ -5,11 +5,11 @@ import Sidebar from "../Dashboard/Sidebar/Sidebar";
 
 const DashboardLayouts = () => {
   return (
-    <div className="relative min-h-screen md:flex bg-gray-100 dark:bg-black">
+    <div className="relative min-h-screen md:flex ">
       {/* Left Side: Sidebar Component */}
       <Sidebar />
       {/* Right Side: Dashboard Dynamic Content */}
-      <div className="flex-1  md:ml-64">
+      <div className="flex-1  md:ml-64 bg-orange-50 dark:bg-black">
         <div className="p-5">
           {/* Outlet for dynamic contents */}
           <Outlet />
