@@ -26,6 +26,8 @@ import UpdateBookPage from "../Form/UpdateBookPage";
 import WishlistItem from "../Pages/Dashboard/Sidebar/Menu/MenuItem/WishlistItem";
 import ManageBooks from "../Pages/Dashboard/Sidebar/Menu/AdminMenu/MangeBooks/ManageBooks";
 import MyInvoices from "../Pages/Dashboard/Customer/MyInvoices/MyInvoices";
+import ContactUs from "../Components/ContactUs/ContactUs";
+import AboutUs from "../Components/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ export const router = createBrowserRouter([
       {
         path: "/books",
         Component: Books,
+      },
+      {
+        path: "/contact",
+        Component: ContactUs,
+      },
+      {
+        path: "/about",
+        Component: AboutUs,
       },
       {
         path: "/books/:id",

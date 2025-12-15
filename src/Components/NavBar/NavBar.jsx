@@ -12,12 +12,6 @@ const NavBar = () => {
   const { user, logOut } = useAuth();
   const isLoggedIn = !!user;
 
-  // Debug: Log user data
-  console.log("NavBar - User:", user);
-  console.log("NavBar - isLoggedIn:", isLoggedIn);
-  console.log("NavBar - photoURL:", user?.photoURL);
-  console.log("NavBar - displayName:", user?.displayName);
-
   useEffect(() => {
     // Get theme from localStorage
     const savedTheme = localStorage.getItem("theme") || "light";
@@ -73,18 +67,48 @@ const NavBar = () => {
           Books
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) =>
-            isActive
-              ? "font-semibold bg-primary dark:bg-orange-500 text-white"
-              : ""
-          }
-        >
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+                : ""
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      {!user && (
+        <>
+          <li>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+                  : ""
+              }
+            >
+              About-Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+                  : ""
+              }
+            >
+              Contact-Us
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 

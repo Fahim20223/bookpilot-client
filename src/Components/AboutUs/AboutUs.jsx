@@ -53,7 +53,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-gray-900 dark:text-white transition-colors duration-300">
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         {/* Hero Section */}
         <div className="text-center mb-20">
@@ -93,12 +93,14 @@ const AboutUs = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className="order-2 lg:order-1">
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-indigo-400 dark:from-blue-600 dark:to-indigo-600 rounded-3xl opacity-20 blur-2xl"></div>
-              <div className="relative p-8 rounded-2xl bg-white dark:bg-slate-800 shadow-xl shadow-gray-200/50 dark:shadow-slate-900/50">
-                <div className="flex items-center justify-center h-96 text-8xl">
-                  📚
-                </div>
-              </div>
+              <div className="absolute -inset-4 bg-lin-to-r from-blue-400 to-indigo-400 dark:from-blue-600 dark:to-indigo-600 rounded-3xl opacity-20 blur-2xl"></div>
+
+              <img
+                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=600&fit=crop"
+                alt="Book delivery service"
+                className="w-full h-96 lg:h-full object-cover rounded-2xl"
+                style={{ minHeight: "500px" }}
+              />
             </div>
           </div>
 
