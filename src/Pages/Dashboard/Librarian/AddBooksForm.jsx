@@ -106,7 +106,10 @@ const AddBooksForm = () => {
             <div className="space-y-6">
               {/* Name */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="name" className="block text-gray-600">
+                <label
+                  htmlFor="name"
+                  className="block text-gray-600 dark:text-white"
+                >
                   Name
                 </label>
                 <input
@@ -131,7 +134,10 @@ const AddBooksForm = () => {
               </div>
               {/* Status */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="status" className="block text-gray-600 ">
+                <label
+                  htmlFor="status"
+                  className="block text-gray-600 dark:text-white "
+                >
                   Status
                 </label>
                 <select
@@ -153,7 +159,10 @@ const AddBooksForm = () => {
               </div>
               {/* Description */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="description" className="block text-gray-600">
+                <label
+                  htmlFor="description"
+                  className="block text-gray-600 dark:text-white"
+                >
                   Description
                 </label>
 
@@ -178,7 +187,10 @@ const AddBooksForm = () => {
               <div className="flex justify-between gap-2">
                 {/* Price */}
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="price" className="block text-gray-600 ">
+                  <label
+                    htmlFor="price"
+                    className="block text-gray-600 dark:text-white"
+                  >
                     Price
                   </label>
                   <input
@@ -200,7 +212,10 @@ const AddBooksForm = () => {
 
                 {/* Quantity */}
                 <div className="space-y-1 text-sm">
-                  <label htmlFor="quantity" className="block text-gray-600">
+                  <label
+                    htmlFor="quantity"
+                    className="block text-gray-600 dark:text-white"
+                  >
                     Quantity
                   </label>
                   <input
@@ -241,7 +256,7 @@ const AddBooksForm = () => {
                           {errors.image.message}
                         </p>
                       )}
-                      <div className="bg-purple-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-purple-500">
+                      <div className="bg-purple-500 dark:bg-amber-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-purple-500">
                         Upload
                       </div>
                     </label>
@@ -251,7 +266,10 @@ const AddBooksForm = () => {
 
               {/* Author */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="author" className="block text-gray-600">
+                <label
+                  htmlFor="author"
+                  className="block text-gray-600 dark:text-white"
+                >
                   Author
                 </label>
                 <input
@@ -277,7 +295,10 @@ const AddBooksForm = () => {
 
               {/* Rating */}
               <div className="space-y-1 text-sm">
-                <label htmlFor="rating" className="block text-gray-600">
+                <label
+                  htmlFor="rating"
+                  className="block text-gray-600 dark:text-white"
+                >
                   Rating (1–5)
                 </label>
 
@@ -306,7 +327,7 @@ const AddBooksForm = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-purple-500 "
+                className="w-full cursor-pointer p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-purple-500 dark:bg-amber-500"
               >
                 {isPending ? (
                   <TbFidgetSpinner className="animate-spin m-auto" />

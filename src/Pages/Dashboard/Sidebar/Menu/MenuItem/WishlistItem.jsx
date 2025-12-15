@@ -6,7 +6,11 @@ import MyWishlists from "../../../Customer/MyWishlists/MyWishlists";
 
 const WishlistItem = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: cards = [], isLoading } = useQuery({
+  const {
+    data: cards = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["my-wishlists"],
     queryFn: async () => {
       const result = await axiosSecure(`/my-wishlists`);
@@ -57,7 +61,12 @@ const WishlistItem = () => {
               </thead>
               <tbody>
                 {cards.map((card, index) => (
-                  <MyWishlists key={card._id} card={card} index={index} />
+                  <MyWishlists
+                    refetch={refetch}
+                    key={card._id}
+                    card={card}
+                    index={index}
+                  />
                 ))}
               </tbody>
             </table>

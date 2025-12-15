@@ -1,8 +1,12 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Star, ShoppingBag, Eye, Heart, Trash2 } from "lucide-react";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const MyWishlists = ({ card, index = 0 }) => {
+const MyWishlists = ({ card, index = 0, refetch }) => {
+  const axiosSecure = useAxiosSecure();
+
   const { _id, name, image, quantity, description, price, author, rating } =
     card;
 
@@ -24,6 +28,43 @@ const MyWishlists = ({ card, index = 0 }) => {
         ease: "easeOut",
       },
     },
+  };
+
+  const handleDelete = async () => {
+    const swalResult = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (!swalResult.isConfirmed) return;
+
+    try {
+      const res = await axiosSecure.delete(`/wishlists/${_id}`);
+      refetch();
+      if (res.data.deletedCount > 0) {
+        await Swal.fire({
+          title: "Deleted!",
+          text: "Book has been deleted successfully.",
+          icon: "success",
+        });
+
+        // 🔁 refetch data from parent
+        // pass refetch as prop
+        // refetch();
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to delete the book.",
+        icon: "error",
+      });
+    }
   };
 
   return (
@@ -117,14 +158,16 @@ const MyWishlists = ({ card, index = 0 }) => {
           >
             <Eye className="w-4 h-4" />
           </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-200"
-            title="Remove from Wishlist"
-          >
-            <Trash2 className="w-4 h-4" />
-          </motion.button>
+          <div onClick={handleDelete}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition-colors dark:bg-red-900 dark:text-red-200"
+              title="Remove from Wishlist"
+            >
+              <Trash2 className="w-4 h-4" />
+            </motion.button>
+          </div>
         </div>
       </td>
     </motion.tr>

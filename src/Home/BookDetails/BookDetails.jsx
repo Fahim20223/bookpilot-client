@@ -15,11 +15,8 @@ const BookDetails = () => {
   const axiosSecure = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
-  const {
-    data: book = {},
-    isLoading,
-    // refetch,
-  } = useQuery({
+
+  const { data: book = {}, isLoading } = useQuery({
     queryKey: ["book", id],
     queryFn: async () => {
       const result = await axios(`${import.meta.env.VITE_API_URL}/books/${id}`);
@@ -27,11 +24,9 @@ const BookDetails = () => {
     },
   });
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  const closeModal = () => setIsOpen(false);
 
-  if (isLoading) return <LoadingSpinner></LoadingSpinner>;
+  if (isLoading) return <LoadingSpinner />;
 
   const {
     image,
@@ -56,84 +51,89 @@ const BookDetails = () => {
         rating,
         price,
       };
-
       const res = await axiosSecure.post(`/wishlists/${id}`, wishlistData);
 
-      if (res.data.insertedId) {
-        toast.success("Added to wishlist ❤️");
-      }
+      if (res.data.insertedId) toast.success("Added to wishlist ❤️");
     } catch (error) {
-      if (error.response?.status === 409) {
+      if (error.response?.status === 409)
         toast.error("Already added to wishlist");
-      } else {
-        toast.error("Failed to add wishlist");
-      }
+      else toast.error("Failed to add wishlist");
     }
   };
 
   return (
-    <div className="min-h-[63vh]">
-      <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
-        <div className="card bg-base-100 shadow-xl border border-gray-200 rounded-2xl overflow-hidden">
-          <div className="mx-auto flex flex-col md:flex-row justify-between w-full gap-12 p-6 md:p-8">
-            {/* LEFT IMAGE */}
-            <div className="flex-1">
+    <div className="min-h-[65vh] bg-gray-50 dark:bg-gray-900 py-8">
+      <div className="max-w-6xl mx-auto p-4">
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* LEFT IMAGE */}
+          <div className="md:col-span-1 flex justify-center">
+            <div className="relative group">
               <img
                 src={image}
                 alt={name}
-                className="w-full object-cover rounded-xl shadow-md"
+                className="w-full rounded-xl shadow-lg transform transition-transform duration-300 group-hover:scale-105"
               />
+              <span className="absolute top-2 left-2 bg-purple-600 text-white px-3 py-1 rounded-full text-sm">
+                {status}
+              </span>
+            </div>
+          </div>
+
+          {/* RIGHT INFO */}
+          <div className="md:col-span-2 flex flex-col gap-6">
+            <Heading title={name} subtitle={`by ${author}`} />
+
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              {description}
+            </p>
+
+            <div className="flex items-center gap-4">
+              <img
+                className="w-12 h-12 rounded-full object-cover border-2 border-purple-400"
+                src={seller?.image}
+                alt={seller?.name}
+                referrerPolicy="no-referrer"
+              />
+              <div>
+                <p className="text-gray-900 dark:text-white font-medium">
+                  {seller?.name}
+                </p>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  Seller
+                </p>
+              </div>
             </div>
 
-            {/* RIGHT INFO */}
-            <div className="flex flex-col gap-6 flex-1">
-              <Heading title={name} subtitle={`Status: ${status}`} />
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <p className="text-lg font-semibold text-gray-600 dark:text-gray-200">
+                Quantity: <span className="text-purple-600">{quantity}</span>{" "}
+                units left
+              </p>
 
-              <div className="text-lg text-neutral-600 dark:text-white">
-                {description}
-              </div>
-
-              <div className="flex items-center gap-3 text-xl font-semibold">
-                <div>Seller: {seller?.name}</div>
-                <img
-                  className="w-10 h-10 rounded-full object-cover"
-                  src={seller?.image}
-                  alt="Avatar"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
               {user && (
                 <button
                   onClick={handleWishlists}
-                  className="w-1/2 btn btn-outline rounded-full border-gray-300 hover:border-purple-500 hover:text-purple-600"
+                  className="btn btn-purple-outline w-full sm:w-auto"
                 >
-                  Add to Wishlists
+                  Add to Wishlist
                 </button>
               )}
+            </div>
 
-              <p className="text-neutral-500">
-                Quantity: {quantity} Units Left Only!
-              </p>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4">
+              <p className="text-2xl font-bold text-purple-700">${price}</p>
 
-              {/* <div className="flex justify-between items-center mt-4"> */}
-              <p className="font-bold text-3xl text-gray-500">
-                Price: {price}$
-              </p>
               {user ? (
                 <Button onClick={() => setIsOpen(true)} label="Order Now" />
               ) : (
-                <Button label="Please Login to buy the book" />
+                <Button label="Login to Buy" />
               )}
-              {/* </div> */}
-              <PurchaseModal
-                book={book}
-                closeModal={closeModal}
-                isOpen={isOpen}
-              />
             </div>
           </div>
         </div>
       </div>
+
+      <PurchaseModal book={book} closeModal={closeModal} isOpen={isOpen} />
     </div>
   );
 };
