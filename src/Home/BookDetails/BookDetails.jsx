@@ -8,8 +8,10 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 import PurchaseModal from "../../Modal/PurchaseModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const BookDetails = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
@@ -100,12 +102,14 @@ const BookDetails = () => {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <button
-                onClick={handleWishlists}
-                className="w-1/2 btn btn-outline rounded-full border-gray-300 hover:border-purple-500 hover:text-purple-600"
-              >
-                Add to Wishlists
-              </button>
+              {user && (
+                <button
+                  onClick={handleWishlists}
+                  className="w-1/2 btn btn-outline rounded-full border-gray-300 hover:border-purple-500 hover:text-purple-600"
+                >
+                  Add to Wishlists
+                </button>
+              )}
 
               <p className="text-neutral-500">
                 Quantity: {quantity} Units Left Only!
@@ -115,7 +119,11 @@ const BookDetails = () => {
               <p className="font-bold text-3xl text-gray-500">
                 Price: {price}$
               </p>
-              <Button onClick={() => setIsOpen(true)} label="Order Now" />
+              {user ? (
+                <Button onClick={() => setIsOpen(true)} label="Order Now" />
+              ) : (
+                <Button label="Please Login to buy the book" />
+              )}
               {/* </div> */}
               <PurchaseModal
                 book={book}

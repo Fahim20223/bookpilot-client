@@ -125,43 +125,42 @@ const AdminStatistics = () => {
           </div>
         </div>
       </div>
-      <div>
-        <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {/* Bar Chart */}
-          <div className="bg-white p-6 rounded-xl shadow-md xl:col-span-2">
-            <h3 className="text-lg font-semibold mb-4">Overview</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="value" fill="#4ade80" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+      <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-2">
+        {/* Bar Chart */}
+        <div className="bg-white rounded-xl shadow-md p-4">
+          <h4 className="text-lg font-semibold mb-2">
+            Customer Statistics (Bar)
+          </h4>
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={chartData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="value" fill="#8884d8" barSize={50} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-          {/* Line Chart (optional, trends over time) */}
-          <div className="bg-white p-6 rounded-xl shadow-md xl:col-span-2">
-            <h3 className="text-lg font-semibold mb-4">Revenue Trend</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart
-                data={chartData} // You can replace this with a daily/monthly revenue array
-                margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
-              >
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#4ade80"
-                  strokeWidth={3}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+        {/* Line Chart */}
+        <div className="bg-white rounded-xl shadow-md p-4">
+          <h4 className="text-lg font-semibold mb-2">
+            Customer Statistics (Line)
+          </h4>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={chartData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#82ca9d"
+                strokeWidth={3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>

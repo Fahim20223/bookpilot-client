@@ -1,8 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserAlt, FaDollarSign } from "react-icons/fa";
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from "react-icons/bs";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+} from "recharts";
 
 const CustomerStatistics = () => {
+  const axiosSecure = useAxiosSecure();
+  const [stats, setStats] = useState({
+    expenses: 0,
+    books: 0,
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await axiosSecure.get("/customer-statistics");
+        setStats(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchStats();
+  }, [axiosSecure]);
+
+  const chartData = [
+    { name: "Expenses", value: stats.expenses },
+    { name: "Books", value: stats.books },
+  ];
   return (
     <div>
       <div className="mt-12">
@@ -20,7 +55,7 @@ const CustomerStatistics = () => {
                 Total Expenses
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                $120
+                ${stats.expenses}
               </h4>
             </div>
           </div>
@@ -33,15 +68,15 @@ const CustomerStatistics = () => {
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total Products
+                Total Books Buy
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                120
+                {stats.books}
               </h4>
             </div>
           </div>
           {/* Total Books */}
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+          {/* <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
             >
@@ -55,9 +90,9 @@ const CustomerStatistics = () => {
                 120
               </h4>
             </div>
-          </div>
+          </div> */}
           {/* Users Card */}
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
+          {/* <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
             >
@@ -71,18 +106,57 @@ const CustomerStatistics = () => {
                 10
               </h4>
             </div>
-          </div>
+          </div> */}
         </div>
 
-        <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        {/* <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {/*Sales Bar Chart */}
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2">
-            {/* Chart goes here.. */}
-          </div>
+        <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2">
+          {/* Chart goes here.. */}
+        </div>
+        {/* Calender */}
+        <div className=" relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
           {/* Calender */}
-          <div className=" relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
-            {/* Calender */}
-          </div>
+        </div>
+        {/* </div> */}
+      </div>
+      {/* Charts */}
+      <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-2">
+        {/* Bar Chart */}
+        <div className="bg-white rounded-xl shadow-md p-4">
+          <h4 className="text-lg font-semibold mb-2">
+            Customer Statistics (Bar)
+          </h4>
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={chartData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="value" fill="#8884d8" barSize={50} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Line Chart */}
+        <div className="bg-white rounded-xl shadow-md p-4">
+          <h4 className="text-lg font-semibold mb-2">
+            Customer Statistics (Line)
+          </h4>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={chartData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#82ca9d"
+                strokeWidth={3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
