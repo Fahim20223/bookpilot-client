@@ -32,18 +32,21 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar, only visible till md breakpoint */}
-      <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+      <div className="bg-gray-100 dark:bg-black text-gray-800 dark:text-white flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
             <Link to="/">
-              <img src={logo} alt="logo" width="50" height="50" />
+              <div className="flex items-center">
+                <img src={logo} alt="logo" width="50" height="50" />
+                <span className="text-purple-600 text-lg">BookPilot</span>
+              </div>
             </Link>
           </div>
         </div>
 
         <button
           onClick={handleToggle}
-          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
+          className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200 dark:focus:bg-black"
         >
           <AiOutlineBars className="h-5 w-5" />
         </button>
@@ -58,9 +61,14 @@ const Sidebar = () => {
           {/* Top Content */}
           <div>
             {/* Logo */}
-            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto">
+            <div className="w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-orange-100  mx-auto">
               <Link to="/">
-                <img src={logo} alt="logo" width="50" height="50" />
+                <div className="flex items-center">
+                  <img src={logo} alt="logo" width="50" height="50" />
+                  <span className="text-purple-600 font-bold text-xl">
+                    BookPilot
+                  </span>
+                </div>
               </Link>
             </div>
           </div>

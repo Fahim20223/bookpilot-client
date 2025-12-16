@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 // import DeleteModal from '../../Modal/DeleteModal'
 const CustomerOrderDataRow = ({ order, refetch }) => {
-  const [paymentStatus, setPaymentStatus] = useState(order.paymentStatus); // ✅ declare paymentStatus state
+  const [paymentStatus, setPaymentStatus] = useState(order.paymentStatus); // declare paymentStatus state
 
   const axiosSecure = useAxiosSecure();
   let [isOpen, setIsOpen] = useState(false);
@@ -114,13 +114,41 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
         <p className="text-gray-900 dark:text-white">{status}</p>
       </td>
 
+      {/* <td className="px-5 py-5 border-b border-gray-200 text-sm text-center">
+        <button
+          onClick={() => setIsOpen(true)}
+          className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 dark:text-white leading-tight"
+        >
+          <span className="absolute cursor-pointer inset-0 bg-red-200 opacity-50 rounded-full dark:bg-secondary"></span>
+          <span className="relative cursor-pointer">Cancel</span>
+        </button>
+
+        <DeleteModal
+          cancelOrder={cancelOrder}
+          isOpen={isOpen}
+          closeModal={closeModal}
+        />
+      </td> */}
+      {/* Payment Status */}
+      <td className="text-center border-b border-gray-200">
+        <span
+          className={`px-2 py-1 rounded ${
+            paymentStatus === "paid"
+              ? "bg-green-400 dark:bg-blue-500  rounded-xl text-white"
+              : "bg-orange-200 text-black"
+          }`}
+        >
+          {paymentStatus === "paid" ? "Paid" : "Unpaid"}
+        </span>
+      </td>
+
       {/* Pay Button */}
       <td className="px-5 py-5 border-b border-gray-200 text-sm text-center">
         {status === "pending" && paymentStatus === "unpaid" ? (
           <>
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-red-500 text-white px-3 py-1 rounded"
+              className="bg-red-500 text-white px-3 py-1 rounded-3xl"
             >
               Cancel
             </button>
@@ -142,39 +170,14 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
         )}
       </td>
 
-      {/* <td className="px-5 py-5 border-b border-gray-200 text-sm text-center">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-lime-900 dark:text-white leading-tight"
-        >
-          <span className="absolute cursor-pointer inset-0 bg-red-200 opacity-50 rounded-full dark:bg-secondary"></span>
-          <span className="relative cursor-pointer">Cancel</span>
-        </button>
-
-        <DeleteModal
-          cancelOrder={cancelOrder}
-          isOpen={isOpen}
-          closeModal={closeModal}
-        />
-      </td> */}
-      {/* Payment Status */}
-      <td className="text-center border-b border-gray-200">
-        <span
-          className={`px-2 py-1 rounded ${
-            paymentStatus === "paid"
-              ? "bg-green-400 text-white"
-              : "bg-orange-200 text-black"
-          }`}
-        >
-          {paymentStatus === "paid" ? "Paid" : "Unpaid"}
-        </span>
-      </td>
-
       {/* Pay Button */}
       <td className="text-center border-b border-gray-200">
         {status === "pending" && paymentStatus === "unpaid" ? (
-          <button onClick={payOrder} className="btn-primary btn btn-sm mr-3">
-            Pay
+          <button
+            onClick={payOrder}
+            className="btn-primary btn btn-sm mr-3 btn-outline rounded-2xl"
+          >
+            Pay Now
           </button>
         ) : (
           // <button

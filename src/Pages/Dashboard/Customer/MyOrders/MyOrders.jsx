@@ -76,16 +76,18 @@ const MyOrders = () => {
 
                       <th
                         scope="col"
-                        className="px-5 py-3   border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
-                      >
-                        {/* Action */}
-                      </th>
-                      <th
-                        scope="col"
                         className="px-5 py-3  border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
                       >
                         payment-status
                       </th>
+
+                      <th
+                        scope="col"
+                        className="px-5 py-3   border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
+                      >
+                        {/* Action */}
+                      </th>
+
                       <th
                         scope="col"
                         className="px-5 py-3  border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
