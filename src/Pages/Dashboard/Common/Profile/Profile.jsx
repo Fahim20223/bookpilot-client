@@ -1,11 +1,14 @@
 import useAuth from "../../../../hooks/useAuth";
 import useRole from "../../../../hooks/useRole";
 import coverImg from "../../../../assets/cover.png";
+import { useState } from "react";
+import UpdateProfileModal from "../../../../Modal/UpdateProfileModal";
 
 const Profile = () => {
-  const { user, updateUserProfile, setUser } = useAuth();
+  const { user } = useAuth();
   const [role, isRoleLoading] = useRole();
   console.log(role, isRoleLoading);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-linear-to-br bg-gray-100 p-4 dark:bg-black">
@@ -52,12 +55,19 @@ const Profile = () => {
 
           {/* Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-8 rounded-xl shadow-lg transition transform hover:-translate-y-1 dark:bg-amber-500">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-8 rounded-xl shadow-lg transition transform hover:-translate-y-1 dark:bg-amber-500"
+            >
               Update Profile
             </button>
-            <button className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-8 rounded-xl shadow-lg transition transform hover:-translate-y-1 dark:bg-amber-500">
+            <UpdateProfileModal
+              isOpen={isOpen}
+              closeModal={() => setIsOpen(false)}
+            ></UpdateProfileModal>
+            {/* <button className="bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-8 rounded-xl shadow-lg transition transform hover:-translate-y-1 dark:bg-amber-500">
               Change Password
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

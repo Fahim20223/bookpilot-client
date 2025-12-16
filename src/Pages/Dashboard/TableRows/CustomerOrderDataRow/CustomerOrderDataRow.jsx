@@ -59,29 +59,6 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
     }
   };
 
-  // const payOrder = async () => {
-  //   try {
-  //     const { data } = await axiosSecure.post(`/create-checkout-session`, {
-  //       bookId: order._id,
-  //       name: order.name,
-  //       description: order.description,
-  //       image: order.image,
-  //       price: order.price,
-  //       quantity: order.quantity,
-  //       customer: {
-  //         name: order.customer?.name,
-  //         email: order.customer?.email,
-  //       },
-  //     });
-
-  //     // Redirect user to Stripe
-  //     window.location.href = data.url;
-  //   } catch (err) {
-  //     console.log(err);
-  //     toast.error("Payment failed!");
-  //   }
-  // };
-
   return (
     <tr className="dark:bg-gray-700 transition-colors border-b border-gray-200 dark:border-gray-700 overflow-auto">
       <td className="px-5 py-5 border-b border-gray-200 text-sm">

@@ -22,9 +22,9 @@ const SellerRequestsDataRow = ({ req, refetch }) => {
   };
 
   return (
-    <tr>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{req?.email}</p>
+    <tr className="dark:bg-gray-700 transaction-colors border-b border-gray-200 dark:border-gray-700 overflow-hidden caret-transparent">
+      <td className="px-5 py-5 border-b border-gray-200 text-sm">
+        <p>{req?.email}</p>
       </td>
       {/* <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p className="text-gray-900 ">Customer</p>
@@ -33,14 +33,14 @@ const SellerRequestsDataRow = ({ req, refetch }) => {
         <p className="">Unavailable</p>
       </td> */}
 
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-gray-200 text-sm">
         <span
           onClick={handleRoleUpdate}
-          className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+          className="relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 dark:text-green-400 leading-tight"
         >
           <span
             aria-hidden="true"
-            className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+            className="absolute inset-0 bg-green-200 dark:text-green-800 opacity-50 rounded-full"
           ></span>
           <span className="relative">Make Librarian</span>
         </span>
