@@ -1,6 +1,6 @@
 import { FaUserCog, FaUserTag } from "react-icons/fa";
 import MenuItem from "../MenuItem/MenuItem";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { SiManageiq } from "react-icons/si";
 
 const AdminMenu = () => {
@@ -17,13 +17,19 @@ const AdminMenu = () => {
         label="Librarian Request"
         address={"seller-request"}
       ></MenuItem>
-      <Link
-        className="flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform text-gray-600  hover:bg-gray-300   hover:text-gray-700 cursor-pointer"
+      <NavLink
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 my-5 text-gray-800 transition-colors duration-300 transform dark:hover:bg-orange-500  hover:bg-purple-500 hover:text-white ${
+            isActive
+              ? "bg-purple-600 dark:bg-orange-400 text-white font-bold"
+              : "dark:text-gray-300 font-bold"
+          }`
+        }
         to={"/dashboard/manage-books"}
       >
         <SiManageiq />
         <span className="mx-4 font-medium">Manage Books</span>
-      </Link>
+      </NavLink>
     </>
   );
 };

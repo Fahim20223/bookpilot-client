@@ -70,7 +70,7 @@ const WhyChooseBookPilot = () => {
           <h2 className="text-5xl font-bold text-gray-900 dark:text-slate-50 mb-4">
             Why Choose{" "}
             <span className="bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-cyan-400 dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
-              Book Courier
+              BookPilot
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">

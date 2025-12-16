@@ -30,25 +30,25 @@ const LibrarianOrderDataRow = ({ order, refetch }) => {
   };
 
   return (
-    <tr>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{name}</p>
+    <tr className="caret-transparent hover:bg-gray-50 dark:hover:bg-gray-700 dark:bg-gray-800 transition-colors border-b border-gray-200 dark:border-gray-700 bg-white">
+      <td className="px-5 py-5 border-b border-gray-200 text-gray-700 dark:text-gray-300 text-sm">
+        <p className="">{name}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{customer}</p>
+      <td className="px-5 py-5 border-b border-gray-200 text-gray-700 dark:text-gray-300 text-sm">
+        <p className="">{customer}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">${price}</p>
+      <td className="px-5 py-5 border-b border-gray-200 text-gray-700 dark:text-gray-300 text-sm">
+        <p className="">${price}</p>
       </td>
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{quantity}</p>
-      </td>
-
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p className="text-gray-900 ">{status}</p>
+      <td className="px-5 py-5 border-b border-gray-200 text-gray-700 dark:text-gray-300 text-sm">
+        <p className="">{quantity}</p>
       </td>
 
-      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+      <td className="px-5 py-5 border-b border-gray-200 text-gray-700 dark:text-gray-300 text-sm">
+        <p className="">{status}</p>
+      </td>
+
+      <td className="px-5 py-5 border-b border-gray-200 text-gray-700 dark:text-gray-300 text-sm">
         <div className="flex items-center gap-2">
           <select
             required
@@ -62,11 +62,11 @@ const LibrarianOrderDataRow = ({ order, refetch }) => {
           </select>
           <button
             onClick={() => setIsOpen(true)}
-            className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+            className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 dark:text-red-300 leading-tight"
           >
             <span
               aria-hidden="true"
-              className="absolute inset-0 bg-red-200 opacity-50 rounded-full"
+              className="absolute inset-0 bg-red-200 dark:bg-red-800 opacity-50 rounded-full"
             ></span>
             <span className="relative">Cancel</span>
           </button>

@@ -100,8 +100,11 @@ const AddBooksForm = () => {
 
   return (
     <div>
-      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl ">
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl">
+        <form
+          className="bg-white dark:bg-black overflow-hidden"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 border border-gray-200 p-8 rounded-2xl">
             <div className="space-y-6">
               {/* Name */}

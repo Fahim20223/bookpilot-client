@@ -62,72 +62,147 @@ const BookDetails = () => {
   };
 
   return (
-    <div className="min-h-[65vh] bg-gray-50 dark:bg-gray-900 py-8">
-      <div className="max-w-6xl mx-auto p-4">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* LEFT IMAGE */}
-          <div className="md:col-span-1 flex justify-center">
-            <div className="relative group">
-              <img
-                src={image}
-                alt={name}
-                className="w-full rounded-xl shadow-lg transform transition-transform duration-300 group-hover:scale-105"
-              />
-              <span className="absolute top-2 left-2 bg-purple-600 text-white px-3 py-1 rounded-full text-sm">
-                {status}
-              </span>
-            </div>
-          </div>
-
-          {/* RIGHT INFO */}
-          <div className="md:col-span-2 flex flex-col gap-6">
-            <Heading title={name} subtitle={`by ${author}`} />
-
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              {description}
-            </p>
-
-            <div className="flex items-center gap-4">
-              <img
-                className="w-12 h-12 rounded-full object-cover border-2 border-purple-400"
-                src={seller?.image}
-                alt={seller?.name}
-                referrerPolicy="no-referrer"
-              />
-              <div>
-                <p className="text-gray-900 dark:text-white font-medium">
-                  {seller?.name}
-                </p>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">
-                  Seller
-                </p>
+    <div className="min-h-screen bg-gray-100 dark:bg-linear-to-b from-gray-900 via-gray-800 to-gray-900 caret-transparent">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Main Content Card */}
+        <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-gray-200 overflow-hidden shadow-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            {/* LEFT IMAGE SECTION */}
+            <div className="md:col-span-1 flex justify-center p-6 lg:p-8  dark:bg-black md:h-120 h-96">
+              <div className="relative group">
+                {/* <div className="absolute inset-0 bg-linear-to-t from-purple-600/20 to-transparent rounded-xl"></div> */}
+                <img
+                  src={image}
+                  alt={name}
+                  className="w-full rounded-xl shadow-lg transform transition-transform duration-300 group-hover:scale-105 h-full object-cover"
+                />
+                <span className="absolute top-4 right-4 bg-linear-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg border border-purple-500/30">
+                  {status}
+                </span>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <p className="text-lg font-semibold text-gray-600 dark:text-gray-200">
-                Quantity: <span className="text-purple-600">{quantity}</span>{" "}
-                units left
-              </p>
+            {/* RIGHT INFO SECTION */}
+            <div className="md:col-span-1 p-6 flex flex-col gap-6">
+              {/* Title */}
+              <div className="border-b border-gray-700/50 pb-4">
+                <h1 className="text-3xl lg:text-4xl font-bold dark:text-white mb-2">
+                  {name}
+                </h1>
+                <p className="text-purple-600 text-lg font-medium">
+                  by {author}
+                </p>
+              </div>
 
-              {user && (
-                <button
-                  onClick={handleWishlists}
-                  className="btn btn-purple-outline w-full sm:w-auto"
-                >
-                  Add to Wishlist
-                </button>
-              )}
+              {/* Info Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="dark:bg-gray-800/60 rounded-lg p-4 border border-gray-700/30">
+                  <p className="dark:text-gray-400 text-sm mb-1">Author</p>
+                  <p className="dark:text-white font-semibold">{author}</p>
+                </div>
+                <div className="dark:bg-gray-800/60 rounded-lg p-4 border border-gray-700/30">
+                  <p className="dark:text-gray-400 text-sm mb-1">Rating</p>
+                  <p className="text-yellow-500 dark:text-yellow-400 font-semibold">
+                    ⭐ {rating}
+                  </p>
+                </div>
+              </div>
+
+              {/* Seller Info */}
+              <div className="dark:bg-gray-800/40 rounded-lg p-4 border border-gray-700/30">
+                <p className="dark:text-gray-400 text-sm mb-3">Seller</p>
+                <div className="flex items-center gap-4">
+                  <img
+                    className="w-14 h-14 rounded-full object-cover border-2 border-purple-500/50 shadow-lg"
+                    src={seller?.image}
+                    alt={seller?.name}
+                    referrerPolicy="no-referrer"
+                  />
+                  <div>
+                    <p className="dark:text-white font-semibold text-lg">
+                      {seller?.name}
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      Verified Seller
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                {user ? (
+                  <>
+                    <button
+                      onClick={() => setIsOpen(true)}
+                      className="flex-1 bg-linear-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-green-500/30 border border-green-500/30"
+                    >
+                      Order Now
+                    </button>
+                    <button
+                      onClick={handleWishlists}
+                      className="flex-1 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg"
+                    >
+                      Add to Wishlist
+                    </button>
+                  </>
+                ) : (
+                  <button className="w-full bg-linear-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/30 border border-purple-500/30">
+                    Login to Buy
+                  </button>
+                )}
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-4">
-              <p className="text-2xl font-bold text-purple-700">${price}</p>
+        {/* About Section */}
+        <div className="mt-8 bg-white dark:bg-black from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 lg:p-8 shadow-2xl">
+          <h2 className="text-2xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
+            About {name}
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base lg:text-lg">
+            {description}
+          </p>
+        </div>
 
-              {user ? (
-                <Button onClick={() => setIsOpen(true)} label="Order Now" />
-              ) : (
-                <Button label="Login to Buy" />
-              )}
+        {/* Details Grid */}
+        <div className="mt-8 grid md:grid-cols-2 gap-6">
+          {/* Availability */}
+          <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
+            <h3 className="text-xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
+              Availability
+            </h3>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="dark:text-gray-400 text-gray-700">
+                  Stock Status
+                </span>
+                <span className="dark:text-white font-semibold">{status}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="dark:text-gray-400 text-gray-700">
+                  Quantity
+                </span>
+                <span className="dark:text-purple-400 text-purple-600 font-bold">
+                  {quantity} units
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Pricing */}
+          <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
+            <h3 className="text-xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
+              Pricing
+            </h3>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="dark:text-gray-400 text-gray-700">Price</span>
+                <span className="text-3xl font-bold dark:text-white">
+                  ${price}
+                </span>
+              </div>
             </div>
           </div>
         </div>

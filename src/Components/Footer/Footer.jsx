@@ -2,33 +2,39 @@ import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineLocationMarker, HiOutlineMail } from "react-icons/hi";
+import logo from "../../assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-orange-50 py-12 px-6 dark:bg-orange-200">
+    <footer className="bg-orange-50 py-12 px-6 dark:bg-blue-950 ">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Get in Touch Section */}
           <div>
             <div className="flex items-center gap-2 mb-6">
-              <span className="text-2xl">📚</span>
-              <h2 className="text-xl font-bold text-gray-800">BookPilot</h2>
+              <img className="w-13 h-13" src={logo} alt="" />
+              <h2 className="text-xl font-bold text-purple-600">BookPilot</h2>
             </div>
 
-            <h3 className="font-semibold text-gray-800 mb-4">Get in Touch</h3>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-300 mb-4">
+              Get in Touch
+            </h3>
 
             <div className="space-y-3 mb-6">
-              <div className="flex items-start gap-2 text-sm text-gray-600">
-                <HiOutlineLocationMarker className="mt-1 flex-shrink-0" />
+              <div className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
+                <HiOutlineLocationMarker className="mt-1 shrink-0" />
                 <div>
                   <p>BookPilot premium books</p>
                   <p>Pot Ltd, Formsato, Dhaka-1204</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2 text-sm text-gray-600">
-                <HiOutlineMail className="mt-1 flex-shrink-0" />
+              <div className="flex items-start gap-2 text-sm text-gray-600 dark:text-white">
+                <HiOutlineMail
+                  className="mt-1 
+                shrink-0"
+                />
                 <div>
                   <p>bookish_premium_get2017.com</p>
                   <p>jasnahmed@lifestyle.com</p>
@@ -60,25 +66,39 @@ const Footer = () => {
 
           {/* Company Section */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Company</h3>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-300 mb-4">
+              Company
+            </h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   About us
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Jobs
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Records
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Supports
                 </a>
               </li>
@@ -87,25 +107,39 @@ const Footer = () => {
 
           {/* Community Section */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Community</h3>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-300 mb-4">
+              Community
+            </h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   For artists
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Updates
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Advertising
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Investor
                 </a>
               </li>
@@ -114,25 +148,39 @@ const Footer = () => {
 
           {/* Legal Section */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Legal</h3>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-300 mb-4">
+              Legal
+            </h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Privacy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Terms
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-800 transition">
+                <a
+                  href="#"
+                  className="hover:text-gray-800 dark:text-gray-300 transition"
+                >
                   Condition
                 </a>
               </li>
@@ -141,7 +189,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 border-t border-gray-300 text-center text-sm text-gray-500">
+        <div className="pt-8 border-t border-gray-300 text-center text-sm text-gray-500 dark:text-gray-300">
           © 2024 - All rights reserved
         </div>
       </div>

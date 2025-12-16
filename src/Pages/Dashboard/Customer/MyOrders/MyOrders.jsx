@@ -29,12 +29,12 @@ const MyOrders = () => {
   }
   return (
     <>
-      <div className="container px-4 sm:px-8 mx-auto">
+      <div className="container px-4 sm:px-8 mx-auto caret-transparent">
         <div className="py-8">
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="min-w-full leading-normal bg-white dark:bg-black">
+                <table className="min-w-full leading-normal">
                   <thead className="bg-gray-50 dark:bg-gray-900">
                     <tr>
                       <th
@@ -83,16 +83,9 @@ const MyOrders = () => {
 
                       <th
                         scope="col"
-                        className="px-5 py-3   border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
-                      >
-                        {/* Action */}
-                      </th>
-
-                      <th
-                        scope="col"
                         className="px-5 py-3  border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
                       >
-                        {/* Payment */}
+                        Action
                       </th>
                     </tr>
                   </thead>

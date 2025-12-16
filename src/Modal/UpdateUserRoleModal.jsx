@@ -40,12 +40,12 @@ const UpdateUserRoleModal = ({ isOpen, closeModal, user, refetch }) => {
             >
               <DialogTitle
                 as="h3"
-                className="text-base/7 font-medium text-black"
+                className="text-base/7 font-medium text-black dark:text-gray-300"
               >
                 Update User Role
               </DialogTitle>
               <form>
-                <div>
+                <div className="dark:text-green-600">
                   <select
                     value={updatedRole}
                     onChange={(e) => setUpdatedRole(e.target.value)}

@@ -63,7 +63,7 @@ const AboutUs = () => {
             </div>
           </div>
           <h1 className="text-6xl font-bold mb-6 text-gray-900 dark:text-white">
-            About BookCourier
+            About BookPilot
           </h1>
           <p className="text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Delivering knowledge, one book at a time. We're on a mission to make
@@ -110,7 +110,7 @@ const AboutUs = () => {
             </h2>
             <div className="space-y-4 text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
               <p>
-                BookCourier was born from a simple idea: what if getting your
+                BookPilot was born from a simple idea: what if getting your
                 favorite books could be as easy as ordering food? In 2020, our
                 founder Sarah Johnson, an avid reader frustrated with delayed
                 book deliveries, decided to create a solution.
@@ -146,9 +146,9 @@ const AboutUs = () => {
             <Truck className="w-12 h-12 mb-4" />
             <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
             <p className="text-lg opacity-90 leading-relaxed">
-              To become the world's most trusted book courier service, fostering
-              a global community of readers who never have to wait for their
-              next great read.
+              To become the world's most trusted BookPilot service, fostering a
+              global community of readers who never have to wait for their next
+              great read.
             </p>
           </div>
         </div>

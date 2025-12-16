@@ -52,7 +52,7 @@ const ContactUs = () => {
             Get in Touch
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Have questions about BookCourier? We're here to help deliver answers
+            Have questions about BookPilot? We're here to help deliver answers
             as fast as we deliver books.
           </p>
         </div>
@@ -69,7 +69,7 @@ const ContactUs = () => {
             {
               icon: Mail,
               title: "Email Us",
-              info: "hello@bookcourier.com",
+              info: "hello@BookPilot.com",
               subinfo: "We reply within 24hrs",
             },
             {

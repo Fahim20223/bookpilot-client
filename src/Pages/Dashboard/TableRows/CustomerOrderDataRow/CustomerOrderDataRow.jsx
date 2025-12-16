@@ -83,7 +83,7 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
   // };
 
   return (
-    <tr className="dark:bg-gray-700 transition-colors border-b border-gray-400 dark:border-gray-700 overflow-auto">
+    <tr className="dark:bg-gray-700 transition-colors border-b border-gray-200 dark:border-gray-700 overflow-auto">
       <td className="px-5 py-5 border-b border-gray-200 text-sm">
         <div className="flex items-center">
           <div className="shrink-">
@@ -134,60 +134,49 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
         <span
           className={`px-2 py-1 rounded ${
             paymentStatus === "paid"
-              ? "bg-green-400 dark:bg-blue-500  rounded-xl text-white"
-              : "bg-orange-200 text-black"
+              ? "bg-green-200 px-4 dark:bg-blue-500  rounded-full text-green-500 font-semibold"
+              : "bg-orange-100 text-orange-400 font-semibold px-2 rounded-full"
           }`}
         >
           {paymentStatus === "paid" ? "Paid" : "Unpaid"}
         </span>
       </td>
 
-      {/* Pay Button */}
-      <td className="px-5 py-5 border-b border-gray-200 text-sm text-center">
-        {status === "pending" && paymentStatus === "unpaid" ? (
-          <>
-            <button
-              onClick={() => setIsOpen(true)}
-              className="bg-red-500 text-white px-3 py-1 rounded-3xl"
-            >
-              Cancel
-            </button>
-            <DeleteModal
-              cancelOrder={cancelOrder}
-              isOpen={isOpen}
-              closeModal={closeModal}
-            />
-          </>
-        ) : (
-          ""
-          // <button
-          //   onClick={() => setIsOpen(true)}
-          //   className="bg-red-200 text-black px-3 py-1 rounded cursor-not-allowed"
-          //   disabled
-          // >
-          //   Cancel
-          // </button>
-        )}
-      </td>
+      <td className="flex items-center gap-3 justify-center text-sm text-center py-5">
+        {/* Cancel Button */}
+        <div className="">
+          {status === "pending" && paymentStatus === "unpaid" ? (
+            <>
+              <button
+                onClick={() => setIsOpen(true)}
+                className="bg-red-100 text-red-500 font-semibold px-3 py-1 rounded-full cursor-pointer"
+              >
+                Cancel
+              </button>
+              <DeleteModal
+                cancelOrder={cancelOrder}
+                isOpen={isOpen}
+                closeModal={closeModal}
+              />
+            </>
+          ) : (
+            ""
+          )}
+        </div>
 
-      {/* Pay Button */}
-      <td className="text-center border-b border-gray-200">
-        {status === "pending" && paymentStatus === "unpaid" ? (
-          <button
-            onClick={payOrder}
-            className="btn-primary btn btn-sm mr-3 btn-outline rounded-2xl"
-          >
-            Pay Now
-          </button>
-        ) : (
-          // <button
-          //   className="bg-gray-400 text-white px-3 py-1 rounded cursor-not-allowed"
-          //   disabled
-          // >
-          //   Pay Now
-          // </button>
-          ""
-        )}
+        {/* Pay Button */}
+        <div className="">
+          {status === "pending" && paymentStatus === "unpaid" ? (
+            <button
+              onClick={payOrder}
+              className="btn-primary btn btn-sm mr-3 btn-outline rounded-2xl"
+            >
+              Pay Now
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
       </td>
     </tr>
   );

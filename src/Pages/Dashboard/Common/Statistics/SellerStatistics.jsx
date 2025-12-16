@@ -12,6 +12,10 @@ import {
   ResponsiveContainer,
   LineChart,
   Line,
+  PieChart,
+  Pie,
+  Cell,
+  CartesianGrid,
 } from "recharts";
 
 const SellerStatistics = () => {
@@ -40,128 +44,241 @@ const SellerStatistics = () => {
     { name: "Revenue", value: stats.revenue },
     { name: "Orders", value: stats.orders },
     { name: "Books", value: stats.books },
-    { name: "users", value: stats.customers },
+    { name: "Users", value: stats.customers },
   ];
 
+  const COLORS = ["#f97316", "#3b82f6", "#ec4899", "#10b981"];
+
+  // Custom Tooltip
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+          <p className="text-gray-900 dark:text-gray-100 font-semibold">
+            {label}
+          </p>
+          <p className="text-blue-500 dark:text-blue-400 mt-1">
+            {payload[0].name === "Revenue" ? "$" : ""}
+            {payload[0].value}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // Custom Label for Pie Chart
+  const renderCustomLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * (Math.PI / 180));
+    const y = cy + radius * Math.sin(-midAngle * (Math.PI / 180));
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+        className="text-sm font-semibold"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
+
   return (
-    <div>
-      <div className="mt-12">
-        {/* small cards */}
-        <div className="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grow">
-          {/* Sales Card */}
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-orange-600 to-orange-400 text-white shadow-orange-500/40`}
-            >
-              <FaDollarSign className="w-6 h-6 text-white" />
+    <div className="p-4 sm:p-6 caret-transparent">
+      <div className="mt-6 sm:mt-12">
+        {/* Stats Cards */}
+        <div className="mb-8 sm:mb-12 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Total Revenue Card */}
+          <div className="relative flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/70">
+            <div className="bg-linear-to-tr from-orange-600 to-orange-400 mx-4 rounded-xl shadow-lg absolute -mt-4 grid h-14 w-14 sm:h-16 sm:w-16 place-items-center text-white shadow-orange-500/40">
+              <FaDollarSign className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div className="p-4 text-right">
-              <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
+              <p className="text-xs sm:text-sm font-normal text-gray-600 dark:text-gray-400">
                 Total Revenue
               </p>
-              <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+              <h4 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mt-1">
                 ${stats.revenue}
               </h4>
             </div>
           </div>
-          {/* Total Orders */}
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40`}
-            >
-              <BsFillCartPlusFill className="w-6 h-6 text-white" />
+
+          {/* Total Orders Card */}
+          <div className="relative flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/70">
+            <div className="bg-linear-to-tr from-blue-600 to-blue-400 mx-4 rounded-xl shadow-lg absolute -mt-4 grid h-14 w-14 sm:h-16 sm:w-16 place-items-center text-white shadow-blue-500/40">
+              <BsFillCartPlusFill className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div className="p-4 text-right">
-              <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
+              <p className="text-xs sm:text-sm font-normal text-gray-600 dark:text-gray-400">
                 Total Orders
               </p>
-              <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+              <h4 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mt-1">
                 {stats.orders}
               </h4>
             </div>
           </div>
-          {/* Total Books */}
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
-            >
-              <BsFillHouseDoorFill className="w-6 h-6 text-white" />
+
+          {/* Total Books Card */}
+          <div className="relative flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/70">
+            <div className="bg-linear-to-tr from-pink-600 to-pink-400 mx-4 rounded-xl shadow-lg absolute -mt-4 grid h-14 w-14 sm:h-16 sm:w-16 place-items-center text-white shadow-pink-500/40">
+              <BsFillHouseDoorFill className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div className="p-4 text-right">
-              <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
+              <p className="text-xs sm:text-sm font-normal text-gray-600 dark:text-gray-400">
                 Total Books
               </p>
-              <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+              <h4 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mt-1">
                 {stats.books}
               </h4>
             </div>
           </div>
-          {/* Users Card */}
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-            <div
-              className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
-            >
-              <FaUserAlt className="w-6 h-6 text-white" />
+
+          {/* Total Users Card */}
+          <div className="relative flex flex-col bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/70">
+            <div className="bg-linear-to-tr from-green-600 to-green-400 mx-4 rounded-xl shadow-lg absolute -mt-4 grid h-14 w-14 sm:h-16 sm:w-16 place-items-center text-white shadow-green-500/40">
+              <FaUserAlt className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div className="p-4 text-right">
-              <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total User
+              <p className="text-xs sm:text-sm font-normal text-gray-600 dark:text-gray-400">
+                Total Users
               </p>
-              <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+              <h4 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mt-1">
                 {stats.customers}
               </h4>
             </div>
           </div>
         </div>
 
-        <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-          {/*Sales Bar Chart */}
-
-          <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2">
-            {/* Chart goes here.. */}
+        {/* Charts Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+          {/* Bar Chart */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 p-4 sm:p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/70">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                Statistics (Bar)
+              </h4>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-500 animate-pulse" />
+            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <BarChart
+                data={chartData}
+                margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
+              >
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="currentColor"
+                  className="text-gray-200 dark:text-gray-700"
+                  opacity={0.5}
+                />
+                <XAxis
+                  dataKey="name"
+                  stroke="currentColor"
+                  className="text-gray-600 dark:text-gray-400"
+                  tick={{ fill: "currentColor", fontSize: 12 }}
+                />
+                <YAxis
+                  stroke="currentColor"
+                  className="text-gray-600 dark:text-gray-400"
+                  tick={{ fill: "currentColor", fontSize: 12 }}
+                />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend wrapperStyle={{ fontSize: "14px" }} />
+                <Bar dataKey="value" radius={[8, 8, 0, 0]} maxBarSize={50}>
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
-          {/* Calender */}
-          <div className=" relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden">
-            {/* Calender */}
-          </div>
-        </div>
-      </div>
-      <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-2">
-        {/* Bar Chart */}
-        <div className="bg-white rounded-xl shadow-md p-4">
-          <h4 className="text-lg font-semibold mb-2">
-            Customer Statistics (Bar)
-          </h4>
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={chartData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="value" fill="#8884d8" barSize={50} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
 
-        {/* Line Chart */}
-        <div className="bg-white rounded-xl shadow-md p-4">
-          <h4 className="text-lg font-semibold mb-2">
-            Customer Statistics (Line)
-          </h4>
-          <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={chartData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="#82ca9d"
-                strokeWidth={3}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          {/* Line Chart */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 p-4 sm:p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/70">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                Statistics (Line)
+              </h4>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500 animate-pulse" />
+            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <LineChart
+                data={chartData}
+                margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
+              >
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="currentColor"
+                  className="text-gray-200 dark:text-gray-700"
+                  opacity={0.5}
+                />
+                <XAxis
+                  dataKey="name"
+                  stroke="currentColor"
+                  className="text-gray-600 dark:text-gray-400"
+                  tick={{ fill: "currentColor", fontSize: 12 }}
+                />
+                <YAxis
+                  stroke="currentColor"
+                  className="text-gray-600 dark:text-gray-400"
+                  tick={{ fill: "currentColor", fontSize: 12 }}
+                />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend wrapperStyle={{ fontSize: "14px" }} />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#10b981"
+                  strokeWidth={3}
+                  dot={{ fill: "#10b981", r: 5 }}
+                  activeDot={{ r: 7 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Pie Chart */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 p-4 sm:p-6 transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-900/70 lg:col-span-2 xl:col-span-1">
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                Distribution (Pie)
+              </h4>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-500 animate-pulse" />
+            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={renderCustomLabel}
+                  outerRadius={90}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip content={<CustomTooltip />} />
+                <Legend wrapperStyle={{ fontSize: "14px" }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>
