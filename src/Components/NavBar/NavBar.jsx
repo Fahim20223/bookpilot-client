@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router";
 import { Moon, Sun } from "lucide-react";
 import logo from "../../assets/logo.png";
 import useAuth from "../../hooks/useAuth";
-// import "./NavBar.css";
+import "./NavBar.css";
 
 const NavBar = () => {
   const [theme, setTheme] = useState("light");
@@ -113,7 +113,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className=" bg-custom-navbar shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary">
+    <div className="bg-custom-navbar shadow-md sticky top-0 z-50 backdrop-blur-sm rounded-xl my-3 text-custom-primary">
       <div className="navbar max-w-7xl mx-auto">
         <div className="navbar-start">
           {/* Mobile Hamburger Menu */}
