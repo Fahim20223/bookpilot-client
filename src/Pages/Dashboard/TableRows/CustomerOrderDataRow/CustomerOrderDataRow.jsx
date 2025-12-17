@@ -15,7 +15,7 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   //category
-  const { image, name, price, quantity, status } = order || {};
+  const { image, name, price, quantity, status, createdAt } = order || {};
 
   const cancelOrder = async () => {
     try {
@@ -61,6 +61,10 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
 
   return (
     <tr className="dark:bg-gray-700 transition-colors border-b border-gray-200 dark:border-gray-700 overflow-auto">
+      <td className="px-5 py-5 border-b border-gray-200 text-sm text-center">
+        {createdAt ? new Date(createdAt).toLocaleDateString() : "—"}
+      </td>
+
       <td className="px-5 py-5 border-b border-gray-200 text-sm">
         <div className="flex items-center">
           <div className="shrink-">
@@ -146,9 +150,9 @@ const CustomerOrderDataRow = ({ order, refetch }) => {
           {status === "pending" && paymentStatus === "unpaid" ? (
             <button
               onClick={payOrder}
-              className="btn-primary btn btn-sm mr-3 btn-outline rounded-2xl"
+              className="bg-blue-200 text-blue-500 font-bold btn btn-sm mr-3 rounded-2xl"
             >
-              Pay Now
+              Pay
             </button>
           ) : (
             ""

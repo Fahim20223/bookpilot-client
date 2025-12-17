@@ -33,7 +33,7 @@ const Cards = () => {
   const totalPages = Math.ceil(cards.length / limit);
 
   return (
-    <div className="max-w-7xl mx-auto py-10 min-h-[63vh]">
+    <div className="max-w-7xl mx-auto py-10 min-h-[63vh] caret-transparent">
       {/* Search & Sort */}
       <div className="flex flex-col md:flex-row gap-4 mb-6 px-7 justify-between">
         <input

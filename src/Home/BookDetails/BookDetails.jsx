@@ -65,10 +65,10 @@ const BookDetails = () => {
     <div className="min-h-screen bg-gray-100 dark:bg-linear-to-b from-gray-900 via-gray-800 to-gray-900 caret-transparent">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Main Content Card */}
-        <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-gray-200 overflow-hidden shadow-2xl">
+        <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 overflow-hidden shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* LEFT IMAGE SECTION */}
-            <div className="md:col-span-1 flex justify-center p-6 lg:p-8  dark:bg-black md:h-120 h-96">
+            <div className="md:col-span-1 flex justify-center p-6 lg:p-8  dark:bg-gray-900 md:h-120 h-96">
               <div className="relative group">
                 {/* <div className="absolute inset-0 bg-linear-to-t from-purple-600/20 to-transparent rounded-xl"></div> */}
                 <img
@@ -157,7 +157,7 @@ const BookDetails = () => {
         </div>
 
         {/* About Section */}
-        <div className="mt-8 bg-white dark:bg-black from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 lg:p-8 shadow-2xl">
+        <div className="mt-8 bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 lg:p-8 shadow-2xl">
           <h2 className="text-2xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
             About {name}
           </h2>
@@ -169,7 +169,7 @@ const BookDetails = () => {
         {/* Details Grid */}
         <div className="mt-8 grid md:grid-cols-2 gap-6">
           {/* Availability */}
-          <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
+          <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
             <h3 className="text-xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
               Availability
             </h3>
@@ -192,7 +192,7 @@ const BookDetails = () => {
           </div>
 
           {/* Pricing */}
-          <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
+          <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
             <h3 className="text-xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
               Pricing
             </h3>

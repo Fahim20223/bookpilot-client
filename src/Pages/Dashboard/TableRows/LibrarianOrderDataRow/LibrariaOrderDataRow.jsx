@@ -12,7 +12,8 @@ const LibrarianOrderDataRow = ({ order, refetch }) => {
   let [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
 
-  const { name, price, quantity, status, customer } = order || {};
+  const { name, price, quantity, status, customer, paymentStatus } =
+    order || {};
 
   const cancelOrder = async () => {
     try {
@@ -26,6 +27,26 @@ const LibrarianOrderDataRow = ({ order, refetch }) => {
       toast.error("Cancel order failed");
     } finally {
       closeModal();
+    }
+  };
+
+  const updateStatus = async (e) => {
+    const newStatus = e.target.value;
+
+    try {
+      const res = await axiosSecure.patch(`/order/${order._id}`, {
+        status: newStatus,
+      });
+
+      if (res.data.modifiedCount > 0) {
+        toast.success("Order status updated");
+        refetch();
+      } else {
+        toast.info("Status cannot be changed");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Status update failed");
     }
   };
 
@@ -53,13 +74,15 @@ const LibrarianOrderDataRow = ({ order, refetch }) => {
           <select
             required
             defaultValue={status}
-            className="p-1 border-2 border-lime-300 focus:outline-lime-500 rounded-md text-gray-900  bg-white"
-            name="category"
+            onChange={updateStatus}
+            disabled={status === "cancelled" || paymentStatus === "paid"}
+            className="p-1 border-2 border-lime-300 focus:outline-lime-500 rounded-md text-gray-900 bg-white disabled:bg-gray-200 disabled:cursor-not-allowed"
           >
-            <option value="Pending">Pending</option>
-            <option value="In Progress">Start Processing</option>
-            <option value="Delivered">Deliver</option>
+            <option value="pending">Pending</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
           </select>
+
           <button
             onClick={() => setIsOpen(true)}
             className="relative disabled:cursor-not-allowed cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 dark:text-red-300 leading-tight"

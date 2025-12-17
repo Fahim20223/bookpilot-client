@@ -41,6 +41,13 @@ const MyOrders = () => {
                         scope="col"
                         className="px-5 py-3  border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
                       >
+                        Order Date
+                      </th>
+
+                      <th
+                        scope="col"
+                        className="px-5 py-3  border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
+                      >
                         Image
                       </th>
                       <th
@@ -85,7 +92,7 @@ const MyOrders = () => {
                         scope="col"
                         className="px-5 py-3  border-b border-gray-200 text-gray-800 text-sm uppercase font-bold dark:text-white"
                       >
-                        Action
+                        {/* Action */}
                       </th>
                     </tr>
                   </thead>

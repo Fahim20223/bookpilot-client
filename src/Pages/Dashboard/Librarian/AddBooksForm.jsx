@@ -75,6 +75,7 @@ const AddBooksForm = () => {
         quantity: Number(quantity),
         author,
         rating,
+        createdAt: new Date(),
         seller: {
           image: user?.photoURL,
           name: user?.displayName,
