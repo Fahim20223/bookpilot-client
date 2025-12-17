@@ -132,13 +132,13 @@ npm run dev
 npm start
 ```
 
-## 👨‍💼 Admin Credentials
+<!-- ## 👨‍💼 Admin Credentials
 
 - **Email**: admin@bookcourier.com
-- **Password**: Admin@123
+- **Password**: Admin@123 -->
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-**Built with ❤️ by [Your Name]**
+**Built with ❤️ by [Md Fahim Shahrier]**
