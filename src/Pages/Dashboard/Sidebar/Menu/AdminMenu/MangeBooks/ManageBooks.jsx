@@ -23,7 +23,7 @@ const ManageBooks = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-10 px-4">
+    <div className="max-w-7xl mx-auto py-10 px-4 caret-transparent">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           All the books added by the librarians

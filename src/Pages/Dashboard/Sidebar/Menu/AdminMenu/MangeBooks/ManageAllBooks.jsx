@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Star, ShoppingBag, Eye, Heart, Trash2 } from "lucide-react";
+import { Star, ShoppingBag, Eye, Trash2, SquarePen } from "lucide-react";
+
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../../../hooks/useAxiosSecure";
+import UpdateStatusModal from "../../../../../../Modal/UpdateStatusModal";
 
 const ManageAllBooks = ({ refetch, book, index = 0 }) => {
   const axiosSecure = useAxiosSecure();
@@ -11,7 +13,6 @@ const ManageAllBooks = ({ refetch, book, index = 0 }) => {
   const rowRef = useRef(null);
   const isInView = useInView(rowRef, { once: true, margin: "-50px" });
 
-  // Row animation variants
   const rowVariants = {
     hidden: {
       opacity: 0,
@@ -64,14 +65,14 @@ const ManageAllBooks = ({ refetch, book, index = 0 }) => {
       });
     }
   };
-
+  const [openModal, setOpenModal] = useState(false);
   return (
     <motion.tr
       ref={rowRef}
       variants={rowVariants}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-200 dark:border-gray-700"
+      className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-200 dark:border-gray-700 caret-transparent"
     >
       {/* Product (Image + Name) */}
       <td className="px-6 py-4">
@@ -136,6 +137,7 @@ const ManageAllBooks = ({ refetch, book, index = 0 }) => {
       <td className="px-6 py-4">
         <div className="flex items-center gap-2">
           <motion.button
+            onClick={() => setOpenModal(true)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             disabled={quantity === 0}
@@ -146,8 +148,15 @@ const ManageAllBooks = ({ refetch, book, index = 0 }) => {
             }`}
             title="Add to Cart"
           >
-            <ShoppingBag className="w-4 h-4" />
+            <SquarePen className="w-4 h-4" />
+            {/* <ShoppingBag className="w-4 h-4" /> */}
           </motion.button>
+          <UpdateStatusModal
+            refetch={refetch}
+            openModal={openModal}
+            onClose={() => setOpenModal(false)}
+            book={book}
+          ></UpdateStatusModal>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

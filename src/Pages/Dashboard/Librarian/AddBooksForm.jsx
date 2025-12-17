@@ -39,10 +39,12 @@ const AddBooksForm = () => {
     retry: 3,
   });
 
+  // const [preview, setPreview] = useState("");
   const {
     register,
     handleSubmit,
     reset,
+    // watch,
     formState: { errors },
   } = useForm();
 
@@ -93,6 +95,16 @@ const AddBooksForm = () => {
 
     // console.log(data);
   };
+
+  // const imageWatch = watch("image");
+  // useEffect(() => {
+  //   if (!imageWatch || imageWatch.length === 0) return;
+
+  //   const objectUrl = URL.createObjectURL(imageWatch[0]);
+  //   setPreview(objectUrl);
+
+  //   return () => URL.revokeObjectURL(objectUrl);
+  // }, [imageWatch]);
 
   if (isPending) return <LoadingSpinner></LoadingSpinner>;
 
