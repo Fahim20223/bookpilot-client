@@ -1,16 +1,144 @@
-# React + Vite
+# 📚 BookCourier - Library-to-Home Delivery System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern library delivery management system that allows users to request book pickup and delivery from nearby libraries, making it easier for students, researchers, and readers to borrow and return books without physically visiting the library.
 
-Currently, two official plugins are available:
+## 🔗 Live URL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[https://book-pilot-2c633.web.app](#)
 
-## React Compiler
+## 📋 Purpose
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+BookCourier bridges the gap between libraries and readers by providing a convenient book delivery service. Users can browse available books, place orders, track deliveries, and manage their reading list all from the comfort of their homes.
 
-## Expanding the ESLint configuration
+## ✨ Key Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### User Features
+
+- **Browse Books**: Explore a wide collection of books with detailed information
+- **Smart Search & Sort**: Find books quickly by name and sort by price
+- **Order Management**: Place orders, track status, and cancel pending orders
+- **Secure Payment**: Integrated payment system for book orders
+- **Wishlist System**: Save favorite books for later
+- **Review & Rating**: Share feedback on ordered books
+- **Order History**: View all past orders and invoices
+- **Profile Management**: Update personal information and profile picture
+
+### Librarian Features
+
+- **Add Books**: Add new books to the library catalog
+- **Manage Inventory**: Edit and publish/unpublish books
+- **Order Processing**: View and update order status (pending → shipped → delivered)
+- **Dashboard Analytics**: Track books and orders efficiently
+
+### Admin Features
+
+- **User Management**: Promote users to librarian or admin roles
+- **Book Moderation**: Publish, unpublish, or delete any book
+- **Complete Control**: Oversee all platform activities
+
+### Additional Features
+
+- **Authentication**: Secure login with email/password and social login
+- **Responsive Design**: Optimized for mobile, tablet, and desktop
+- **Dark/Light Mode**: Toggle between themes for comfortable viewing
+- **Real-time Updates**: Live order status tracking
+- **Coverage Map**: View delivery-available cities
+- **JWT Security**: Protected routes with token verification
+
+## 🛠️ NPM Packages Used
+
+### Frontend
+
+- `react` - UI library
+- `react-router-dom` - Routing and navigation
+- `firebase` - Authentication and hosting
+- `axios` - HTTP requests
+- `react-hook-form` - Form handling
+- `react-hot-toast` - Notifications
+- `@tanstack/react-query` - Data fetching and caching
+- `swiper` - Banner slider
+- `react-icons` - Icon components
+- `tailwindcss` - Styling framework
+- `daisyui` - UI components
+- `react-leaflet` - Map integration
+- `stripe` - Payment processing
+
+### Backend
+
+- `express` - Server framework
+- `mongodb` - Database
+- `dotenv` - Environment variables
+- `cors` - Cross-origin resource sharing
+- `jsonwebtoken` - JWT authentication
+- `stripe` - Payment processing
+- `firebase-admin` - Firebase token verification
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v14+)
+- MongoDB
+- Firebase Account
+- Stripe Account
+
+### Installation
+
+1. Clone the repositories
+
+```bash
+git clone <client-repo-url>
+git clone <server-repo-url>
+```
+
+2. Install dependencies
+
+```bash
+# Client
+cd client
+npm install
+
+# Server
+cd server
+npm install
+```
+
+3. Set up environment variables
+
+```bash
+# Client .env.local
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_API_URL=your_backend_url
+VITE_STRIPE_PUBLIC_KEY=your_stripe_key
+
+# Server .env
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+STRIPE_SECRET_KEY=your_stripe_secret
+```
+
+4. Run the application
+
+```bash
+# Client
+npm run dev
+
+# Server
+npm start
+```
+
+## 👨‍💼 Admin Credentials
+
+- **Email**: admin@bookcourier.com
+- **Password**: Admin@123
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+**Built with ❤️ by [Your Name]**
