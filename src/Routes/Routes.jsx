@@ -28,11 +28,13 @@ import ManageBooks from "../Pages/Dashboard/Sidebar/Menu/AdminMenu/MangeBooks/Ma
 import MyInvoices from "../Pages/Dashboard/Customer/MyInvoices/MyInvoices";
 import ContactUs from "../Components/ContactUs/ContactUs";
 import AboutUs from "../Components/AboutUs/AboutUs";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -68,6 +70,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: AuthLayouts,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/login",
@@ -87,6 +90,7 @@ export const router = createBrowserRouter([
         <DashboardLayouts></DashboardLayouts>
       </PrivateRouter>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

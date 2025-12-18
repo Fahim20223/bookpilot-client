@@ -27,7 +27,7 @@ const Sidebar = () => {
     setActive(!isActive);
   };
 
-  if (isRoleLoading) return <LoadingSpinner></LoadingSpinner>;
+  // if (isRoleLoading) return <LoadingSpinner></LoadingSpinner>;
 
   return (
     <>

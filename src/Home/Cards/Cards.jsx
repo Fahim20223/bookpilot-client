@@ -7,30 +7,22 @@ import LoadingSpinner from "../../Components/LoadingSpinner";
 const Cards = () => {
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState("asc");
-  const [page, setPage] = useState(0);
 
-  const limit = 8;
-
-  const sanitizedSearch = search.trim(); // 🔹 trim spaces
+  const sanitizedSearch = search.trim();
 
   const { data: cards = [], isLoading } = useQuery({
-    queryKey: ["books", sanitizedSearch, order, page],
+    queryKey: ["books", sanitizedSearch, order],
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/books`, {
         params: {
           search: sanitizedSearch,
           sort: "price",
           order,
-          limit,
-          skip: page * limit,
         },
       });
       return res.data;
     },
-    keepPreviousData: true,
   });
-
-  const totalPages = Math.ceil(cards.length / limit);
 
   return (
     <div className="max-w-7xl mx-auto py-10 min-h-[63vh] caret-transparent">
@@ -41,19 +33,13 @@ const Cards = () => {
           placeholder="Search book name..."
           className="input input-bordered"
           value={search}
-          onChange={(e) => {
-            setSearch(e.target.value); // keep the typed value
-            setPage(0);
-          }}
+          onChange={(e) => setSearch(e.target.value)}
         />
 
         <select
           className="select select-bordered"
           value={order}
-          onChange={(e) => {
-            setOrder(e.target.value);
-            setPage(0);
-          }}
+          onChange={(e) => setOrder(e.target.value)}
         >
           <option value="asc">Price: Low → High</option>
           <option value="desc">Price: High → Low</option>
@@ -62,9 +48,6 @@ const Cards = () => {
 
       {/* Loader */}
       {isLoading && <LoadingSpinner />}
-      {/* {isFetching && !isLoading && (
-        <p className="text-center text-sm text-gray-500 mb-4">Searching...</p>
-      )} */}
 
       {/* Cards */}
       {cards.length > 0 ? (
@@ -75,25 +58,8 @@ const Cards = () => {
         </div>
       ) : (
         !isLoading && (
-          <p className="text-center text-gray-500 text-5xl">No books found</p>
+          <p className="text-center text-gray-500 text-3xl">No books found</p>
         )
-      )}
-
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex justify-center mt-8 gap-2">
-          {[...Array(totalPages).keys()].map((num) => (
-            <button
-              key={num}
-              onClick={() => setPage(num)}
-              className={`btn btn-sm ${
-                page === num ? "btn-primary" : "btn-outline"
-              }`}
-            >
-              {num + 1}
-            </button>
-          ))}
-        </div>
       )}
     </div>
   );

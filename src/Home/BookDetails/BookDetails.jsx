@@ -65,7 +65,7 @@ const BookDetails = () => {
     <div className="min-h-screen bg-gray-100 dark:bg-linear-to-b from-gray-900 via-gray-800 to-gray-900 caret-transparent">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Main Content Card */}
-        <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 overflow-hidden shadow-2xl">
+        <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl dark:border border-gray-800 overflow-hidden shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2">
             {/* LEFT IMAGE SECTION */}
             <div className="md:col-span-1 flex justify-center p-6 lg:p-8  dark:bg-gray-900 md:h-120 h-96">
@@ -141,13 +141,16 @@ const BookDetails = () => {
                     </button>
                     <button
                       onClick={handleWishlists}
-                      className="flex-1 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg"
+                      className="flex-1 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg"
                     >
                       Add to Wishlist
                     </button>
                   </>
                 ) : (
-                  <button className="w-full bg-linear-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/30 border border-purple-500/30">
+                  <button
+                    className="w-full bg-linear-to-r
+                  bg-purple-600 dark:from-amber-600 dark:to-amber-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/30 border border-purple-500/30"
+                  >
                     Login to Buy
                   </button>
                 )}
@@ -157,7 +160,7 @@ const BookDetails = () => {
         </div>
 
         {/* About Section */}
-        <div className="mt-8 bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 lg:p-8 shadow-2xl">
+        <div className="mt-8 bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl dark:border dark:border-gray-800 p-6 lg:p-8 shadow-2xl">
           <h2 className="text-2xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
             About {name}
           </h2>
@@ -169,7 +172,7 @@ const BookDetails = () => {
         {/* Details Grid */}
         <div className="mt-8 grid md:grid-cols-2 gap-6">
           {/* Availability */}
-          <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
+          <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl dark:border dark:border-gray-800 p-6 shadow-2xl">
             <h3 className="text-xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
               Availability
             </h3>
@@ -192,7 +195,7 @@ const BookDetails = () => {
           </div>
 
           {/* Pricing */}
-          <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl border border-gray-200 p-6 shadow-2xl">
+          <div className="bg-white dark:bg-gray-900 backdrop-blur-sm rounded-2xl dark:border dark:border-gray-800 p-6 shadow-2xl">
             <h3 className="text-xl font-bold dark:text-white mb-4 border-b border-gray-700/50 pb-3">
               Pricing
             </h3>
