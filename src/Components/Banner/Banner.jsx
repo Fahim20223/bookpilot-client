@@ -6,71 +6,29 @@ import { Link } from "react-router";
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [slides, setSlides] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const slides = [
-    {
-      id: 1,
-      title: "Norwegian Wood",
-      author: "Haruki Murakami",
-      description:
-        "A huge collection of online books to boost your curiosity. To reach peoples heart and desire. With an affordable price and just few clicks away.",
-      price: "$20.00",
-      image:
-        "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&h=1000&fit=crop",
-      rating: 4.8,
-      reviews: "10K+",
-      bgColorLight: "from-amber-50 to-orange-100",
-      bgColorDark: "dark:from-slate-900 dark:to-amber-950",
-      accentColor: "bg-indigo-900 dark:bg-indigo-600",
-    },
-    {
-      id: 2,
-      title: "The Midnight Library",
-      author: "Matt Haig",
-      description:
-        "Between life and death there is a library. A place of infinite possibilities. Discover your perfect life in this inspiring tale of hope and second chances.",
-      price: "$24.99",
-      image:
-        "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=800&h=1000&fit=crop",
-      rating: 4.9,
-      reviews: "15K+",
-      bgColorLight: "from-blue-50 to-indigo-100",
-      bgColorDark: "dark:from-slate-900 dark:to-blue-950",
-      accentColor: "bg-blue-900 dark:bg-blue-600",
-    },
-    {
-      id: 3,
-      title: "Atomic Habits",
-      author: "James Clear",
-      description:
-        "Transform your life with tiny changes. An easy and proven way to build good habits and break bad ones. Start your journey to success today.",
-      price: "$18.50",
-      image:
-        "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&h=1000&fit=crop",
-      rating: 5.0,
-      reviews: "25K+",
-      bgColorLight: "from-green-50 to-emerald-100",
-      bgColorDark: "dark:from-slate-900 dark:to-emerald-950",
-      accentColor: "bg-emerald-900 dark:bg-emerald-600",
-    },
-    {
-      id: 4,
-      title: "The Silent Patient",
-      author: "Alex Michaelides",
-      description:
-        "A psychological thriller that will keep you on the edge of your seat. Unravel the mystery behind a woman's silence and discover shocking truths.",
-      price: "$22.00",
-      image:
-        "https://images.unsplash.com/photo-1491841651911-c44c30c34548?w=800&h=1000&fit=crop",
-      rating: 4.7,
-      reviews: "12K+",
-      bgColorLight: "from-purple-50 to-violet-100",
-      bgColorDark: "dark:from-slate-900 dark:to-purple-950",
-      accentColor: "bg-purple-900 dark:bg-purple-600",
-    },
-  ];
+  // Fetch banner data from JSON file
+  useEffect(() => {
+    const fetchBannerData = async () => {
+      try {
+        const response = await fetch("/Banner.json");
+        const data = await response.json();
+        setSlides(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error loading banner data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchBannerData();
+  }, []);
 
   useEffect(() => {
+    if (slides.length === 0) return;
+
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -110,6 +68,31 @@ const Banner = () => {
       return next;
     });
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="relative w-full min-h-screen overflow-hidden bg-linear-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-slate-300">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Empty state
+  if (slides.length === 0) {
+    return (
+      <div className="relative w-full min-h-screen overflow-hidden bg-linear-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 dark:text-slate-300">
+            No banner data available
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
@@ -381,4 +364,5 @@ const Banner = () => {
     </div>
   );
 };
+
 export default Banner;

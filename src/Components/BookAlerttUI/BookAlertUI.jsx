@@ -1,82 +1,34 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Bell, ArrowRight, BookOpen, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 const BookAlertUI = () => {
-  const books = [
-    {
-      id: 1,
-      image:
-        "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
-      title: "Midnight Sky",
-    },
-    {
-      id: 2,
-      image:
-        "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop",
-      title: "Chess Master",
-    },
-    {
-      id: 3,
-      image:
-        "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
-      title: "Success Path",
-    },
-    {
-      id: 4,
-      image:
-        "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=600&fit=crop",
-      title: "Desert Walk",
-    },
-    {
-      id: 5,
-      image:
-        "https://images.unsplash.com/photo-1491841651911-c44c30c34548?w=400&h=600&fit=crop",
-      title: "Hell We Create",
-    },
-    {
-      id: 6,
-      image:
-        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=600&fit=crop",
-      title: "Where You Begin",
-    },
-    {
-      id: 7,
-      image:
-        "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=600&fit=crop",
-      title: "Burning Out",
-    },
-    {
-      id: 8,
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
-      title: "Autumn Tales",
-    },
-    {
-      id: 9,
-      image:
-        "https://images.unsplash.com/photo-1510172951991-856a654063f9?w=400&h=600&fit=crop",
-      title: "Walk in Dark",
-    },
-    {
-      id: 10,
-      image:
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=600&fit=crop",
-      title: "Rambling",
-    },
-    {
-      id: 11,
-      image:
-        "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&h=600&fit=crop",
-      title: "The Gate",
-    },
-    {
-      id: 12,
-      image:
-        "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop",
-      title: "Potter Magic",
-    },
-  ];
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Icon mapping
+  const iconMap = {
+    Bell: Bell,
+    BookOpen: BookOpen,
+    Sparkles: Sparkles,
+  };
+
+  // Fetch data from JSON file
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/BookAlert.json");
+        const jsonData = await response.json();
+        setData(jsonData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error loading book alert data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -99,6 +51,29 @@ const BookAlertUI = () => {
     },
   };
 
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-linear-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-amber-950 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-amber-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-slate-300">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Empty state
+  if (!data) {
+    return (
+      <div className="min-h-screen bg-linear-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-amber-950 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 dark:text-slate-300">No data available</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-linear-to-br from-orange-50 via-amber-50 to-yellow-50 dark:from-slate-950 dark:via-slate-900 dark:to-amber-950 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
@@ -117,9 +92,13 @@ const BookAlertUI = () => {
               transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
               className="inline-flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md dark:shadow-slate-900/50"
             >
-              <Bell className="w-4 h-4 text-amber-600 dark:text-amber-400 animate-pulse" />
+              <Bell
+                className={`w-4 h-4 text-amber-600 dark:text-amber-400 ${
+                  data.badge.showPulse ? "animate-pulse" : ""
+                }`}
+              />
               <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
-                New Releases Coming
+                {data.badge.text}
               </span>
               <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             </motion.div>
@@ -132,7 +111,7 @@ const BookAlertUI = () => {
                 transition={{ delay: 0.4 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-slate-50 leading-tight"
               >
-                Upcoming Book Alert...
+                {data.heading}
               </motion.h1>
 
               <motion.div
@@ -153,7 +132,7 @@ const BookAlertUI = () => {
               transition={{ delay: 0.7 }}
               className="text-lg sm:text-xl text-gray-600 dark:text-slate-300 leading-relaxed"
             >
-              Get 30% off by just booking a book before release
+              {data.subheading}
             </motion.p>
 
             {/* CTA Button */}
@@ -168,7 +147,7 @@ const BookAlertUI = () => {
               whileTap={{ scale: 0.95 }}
               className="btn bg-linear-to-r from-indigo-900 to-blue-900 dark:from-cyan-600 dark:to-blue-600 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
             >
-              Notify Me
+              {data.ctaButton.text}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
 
@@ -179,30 +158,22 @@ const BookAlertUI = () => {
               transition={{ delay: 1.1 }}
               className="flex flex-wrap gap-6 pt-4"
             >
-              <div className="space-y-1">
-                <div className="text-3xl font-bold text-gray-900 dark:text-slate-50">
-                  250+
+              {data.stats.map((stat, index) => (
+                <div key={index} className="space-y-1">
+                  <div
+                    className={`text-3xl font-bold ${
+                      stat.highlighted
+                        ? "text-amber-600 dark:text-amber-400"
+                        : "text-gray-900 dark:text-slate-50"
+                    }`}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-slate-400">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-slate-400">
-                  Upcoming Books
-                </div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-3xl font-bold text-gray-900 dark:text-slate-50">
-                  50K+
-                </div>
-                <div className="text-sm text-gray-600 dark:text-slate-400">
-                  Pre-orders
-                </div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-3xl font-bold text-amber-600 dark:text-amber-400">
-                  30%
-                </div>
-                <div className="text-sm text-gray-600 dark:text-slate-400">
-                  Early Bird Discount
-                </div>
-              </div>
+              ))}
             </motion.div>
           </motion.div>
 
@@ -214,11 +185,11 @@ const BookAlertUI = () => {
             className="relative"
           >
             {/* Decorative blur circles */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-300 dark:bg-amber-500/30 rounded-full blur-3xl opacity-30 pointer-events-none" />
+            <div className="absolute md-top-10 md:-right-10 w-40 h-40 bg-amber-300 dark:bg-amber-500/30 rounded-full blur-3xl opacity-30 pointer-events-none" />
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-300 dark:bg-blue-500/30 rounded-full blur-3xl opacity-30 pointer-events-none" />
 
-            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 relative pb-8 pr-8">
-              {books.map((book, index) => (
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 relative pb-8 md:pr-8">
+              {data.books.map((book) => (
                 <motion.div
                   key={book.id}
                   variants={itemVariants}
@@ -235,7 +206,7 @@ const BookAlertUI = () => {
                     className="w-full h-full object-cover"
                   />
 
-                  {/* Gradient overlay on hover */}
+                  {/* linear overlay on hover */}
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   {/* Book title on hover */}
@@ -258,36 +229,28 @@ const BookAlertUI = () => {
           transition={{ delay: 1.3 }}
           className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6"
         >
-          {[
-            { icon: Bell, title: "Early Access", desc: "Be the first to read" },
-            {
-              icon: BookOpen,
-              title: "Exclusive Content",
-              desc: "Bonus chapters included",
-            },
-            {
-              icon: Sparkles,
-              title: "Special Editions",
-              desc: "Limited signed copies",
-            },
-          ].map((feature, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -5 }}
-              className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-md dark:shadow-slate-900/50 hover:shadow-xl dark:hover:shadow-cyan-900/30 transition-all duration-300 border border-transparent dark:border-slate-700/50"
-            >
-              <feature.icon className="w-8 h-8 text-amber-600 dark:text-amber-400 mb-3" />
-              <h3 className="font-bold text-gray-900 dark:text-slate-50 mb-1">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-slate-300">
-                {feature.desc}
-              </p>
-            </motion.div>
-          ))}
+          {data.features.map((feature, index) => {
+            const IconComponent = iconMap[feature.icon];
+            return (
+              <motion.div
+                key={index}
+                whileHover={{ y: -5 }}
+                className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-md dark:shadow-slate-900/50 hover:shadow-xl dark:hover:shadow-cyan-900/30 transition-all duration-300 border border-transparent dark:border-slate-700/50"
+              >
+                <IconComponent className="w-8 h-8 text-amber-600 dark:text-amber-400 mb-3" />
+                <h3 className="font-bold text-gray-900 dark:text-slate-50 mb-1">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-slate-300">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </div>
   );
 };
+
 export default BookAlertUI;

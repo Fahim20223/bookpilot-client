@@ -3,3 +3,6 @@
 
 /* Custom Dark Mode Variables */
 @custom-variant dark (&:where(.dark, .dark *));
+/* * {
+  overflow-x: hidden !important;
+} */

@@ -20,7 +20,7 @@ const NewsletterSubscription = () => {
     <div
       className="bg-linear-to-br from-slate-100 via-purple-50 to-indigo-100 
       dark:from-gray-900 dark:via-gray-950 dark:to-black 
-      flex items-center justify-center p-4 py-12"
+      flex items-center justify-center p-4 py-12 overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
