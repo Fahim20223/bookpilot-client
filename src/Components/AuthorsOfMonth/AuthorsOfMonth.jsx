@@ -81,7 +81,7 @@ const AuthorsOfMonth = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3"
         >
           {authors.map((author, index) => (
             <motion.div
@@ -125,7 +125,7 @@ const AuthorsOfMonth = () => {
                         {author.name}
                       </h3>
                       <div className="flex items-center gap-1 text-gray-600 dark:text-slate-300">
-                        <MapPin className="w-4 h-4 flex-shrink-0" />
+                        <MapPin className="w-4 h-4 shrink-0" />
                         <p className="text-sm truncate">{author.location}</p>
                       </div>
                     </div>

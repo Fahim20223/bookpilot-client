@@ -68,7 +68,7 @@ const Cards = () => {
 
       {/* Cards */}
       {cards.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 px-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 w-[90%] mx-auto">
           {cards.map((card) => (
             <Card key={card._id} card={card} />
           ))}

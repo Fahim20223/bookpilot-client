@@ -46,7 +46,7 @@ const LatestBooks = () => {
   return (
     <div className="max-w-7xl mx-auto py-10">
       {books && books.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 w-[90%] mx-auto">
           {books.map((card) => (
             <Card key={card._id} card={card} />
           ))}

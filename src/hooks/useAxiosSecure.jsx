@@ -4,7 +4,7 @@ import { AuthContext } from "../Context/AuthContext";
 // import { AuthContext } from "../Provider/AuthProvider";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://bookpilot-backend.vercel.app",
 });
 
 const useAxiosSecure = () => {
