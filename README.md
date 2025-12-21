@@ -8,7 +8,7 @@ A modern library delivery management system that allows users to request book pi
 
 ## 📋 Purpose
 
-BookCourier bridges the gap between libraries and readers by providing a convenient book delivery service. Users can browse available books, place orders, track deliveries, and manage their reading list all from the comfort of their homes.
+BookPilot bridges the gap between libraries and readers by providing a convenient book delivery service. Users can browse available books, place orders, track deliveries, and manage their reading list all from the comfort of their homes.
 
 ## ✨ Key Features
 
