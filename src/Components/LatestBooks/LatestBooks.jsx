@@ -44,14 +44,19 @@ const LatestBooks = () => {
   //   }
 
   return (
-    <div className="max-w-7xl mx-auto py-10">
-      {books && books.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 w-[90%] mx-auto">
-          {books.map((card) => (
-            <Card key={card._id} card={card} />
-          ))}
-        </div>
-      ) : null}
+    <div className="dark:bg-gray-900">
+      <h2 className="text-center md:text-4xl text-3xl dark:text-white font-bold py-7">
+        Latest Books
+      </h2>
+      <div className="max-w-7xl mx-auto py-10">
+        {books && books.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 w-[90%] mx-auto">
+            {books.map((card) => (
+              <Card key={card._id} card={card} />
+            ))}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };
