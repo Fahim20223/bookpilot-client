@@ -182,7 +182,7 @@ const Banner = () => {
                       boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className={`${slides[currentSlide].accentColor} text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 group`}
+                    className={`${slides[currentSlide].accentColor} text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 group dark:bg-orange-500`}
                   >
                     Get a book
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

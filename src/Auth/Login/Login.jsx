@@ -128,7 +128,7 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="btn text-white mt-4 rounded-full bg-linear-to-r from-purple-500 via-indigo-500 to-blue-500 hover:from-purple-600 hover:via-indigo-600 hover:to-blue-600"
+                className="btn text-white mt-4 rounded-full btn-primary dark:bg-orange-600 border-0"
               >
                 Login
               </button>

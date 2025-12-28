@@ -145,7 +145,7 @@ const BookAlertUI = () => {
                 boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="btn bg-linear-to-r from-indigo-900 to-blue-900 dark:from-cyan-600 dark:to-blue-600 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
+              className="btn btn-primary dark:bg-orange-500 border-0 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
             >
               {data.ctaButton.text}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
