@@ -135,7 +135,7 @@ const BookDetails = () => {
                   <>
                     <button
                       onClick={() => setIsOpen(true)}
-                      className="flex-1 bg-linear-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-green-500/30 border border-green-500/30"
+                      className="flex-1 bg-linear-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/30 border border-purple-500/30"
                     >
                       Order Now
                     </button>

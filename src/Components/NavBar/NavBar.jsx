@@ -48,7 +48,7 @@ const NavBar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "font-semibold bg-primary text-white dark:bg-orange-500"
+              ? "font-semibold bg-purple-600 text-white dark:bg-orange-500"
               : ""
           }
         >
@@ -60,7 +60,7 @@ const NavBar = () => {
           to="/books"
           className={({ isActive }) =>
             isActive
-              ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+              ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
               : ""
           }
         >
@@ -73,7 +73,7 @@ const NavBar = () => {
             to="/dashboard"
             className={({ isActive }) =>
               isActive
-                ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+                ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
                 : ""
             }
           >
@@ -88,7 +88,7 @@ const NavBar = () => {
               to="/about"
               className={({ isActive }) =>
                 isActive
-                  ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+                  ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
                   : ""
               }
             >
@@ -100,7 +100,7 @@ const NavBar = () => {
               to="/contact"
               className={({ isActive }) =>
                 isActive
-                  ? "font-semibold bg-primary dark:bg-orange-500 text-white"
+                  ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
                   : ""
               }
             >
@@ -210,13 +210,13 @@ const NavBar = () => {
             <div className="flex gap-1 sm:gap-2">
               <Link
                 to="/login"
-                className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-xs sm:text-sm"
+                className="btn bg-purple-600 text-white dark:bg-orange-500 dark:border-0 btn-sm text-xs sm:text-sm"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="btn btn-primary dark:bg-orange-500 dark:border-0 btn-sm text-white text-xs sm:text-sm"
+                className="btn bg-purple-600 dark:bg-orange-500 dark:border-0 btn-sm text-white text-xs sm:text-sm"
               >
                 Register
               </Link>

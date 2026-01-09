@@ -41,7 +41,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-gray-900 dark:text-white transition-colors duration-300">
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
@@ -57,7 +57,7 @@ const ContactUs = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
           {/* Contact Cards */}
           {[
             {
@@ -87,7 +87,7 @@ const ContactUs = () => {
               <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
                 {item.title}
               </h3>
-              <p className="text-lg mb-1 text-gray-700 dark:text-gray-300">
+              <p className="text-md mb-1 text-gray-700 dark:text-gray-300">
                 {item.info}
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -98,7 +98,7 @@ const ContactUs = () => {
         </div>
 
         {/* Main Contact Form Section */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left Side - Form */}
           <div className="p-8 rounded-2xl bg-white dark:bg-slate-800 shadow-xl shadow-gray-200/50 dark:shadow-slate-900/50">
             <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
@@ -120,7 +120,7 @@ const ContactUs = () => {
                       message: "Name must be at least 2 characters",
                     },
                   })}
-                  className={`w-full px-4 py-3 rounded-lg transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
+                  className={`w-full px-4 py-3 rounded-md transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
                     errors.name
                       ? "border-red-500 dark:border-red-400"
                       : "border-gray-200 dark:border-slate-600"
@@ -149,7 +149,7 @@ const ContactUs = () => {
                         message: "Invalid email address",
                       },
                     })}
-                    className={`w-full px-4 py-3 rounded-lg transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
+                    className={`w-full px-4 py-3 rounded-md transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
                       errors.email
                         ? "border-red-500 dark:border-red-400"
                         : "border-gray-200 dark:border-slate-600"
@@ -177,7 +177,7 @@ const ContactUs = () => {
                         message: "Invalid phone number",
                       },
                     })}
-                    className={`w-full px-4 py-3 rounded-lg transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
+                    className={`w-full px-4 py-3 rounded-md transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
                       errors.phone
                         ? "border-red-500 dark:border-red-400"
                         : "border-gray-200 dark:border-slate-600"
@@ -201,7 +201,7 @@ const ContactUs = () => {
                   {...register("subject", {
                     required: "Please select a subject",
                   })}
-                  className={`w-full px-4 py-3 rounded-lg transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
+                  className={`w-full px-4 py-3 rounded-md transition-all duration-200 bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
                     errors.subject
                       ? "border-red-500 dark:border-red-400"
                       : "border-gray-200 dark:border-slate-600"
@@ -239,7 +239,7 @@ const ContactUs = () => {
                     },
                   })}
                   rows="5"
-                  className={`w-full px-4 py-3 rounded-lg transition-all duration-200 resize-none bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
+                  className={`w-full px-4 py-3 rounded-md transition-all duration-200 resize-none bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white border ${
                     errors.message
                       ? "border-red-500 dark:border-red-400"
                       : "border-gray-200 dark:border-slate-600"
@@ -257,7 +257,7 @@ const ContactUs = () => {
               <button
                 onClick={handleSubmit(onSubmit)}
                 disabled={status === "sending"}
-                className="w-full py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02]"
+                className="w-full py-4 rounded-md font-semibold transition-all duration-300 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/30 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02]"
               >
                 {status === "sending" ? (
                   <>Sending...</>
@@ -298,7 +298,7 @@ const ContactUs = () => {
               </div>
             </div>
 
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 dark:from-blue-600 dark:to-blue-800 text-white shadow-xl">
+            <div className="p-8 rounded-2xl bg-linear-to-br from-blue-500 to-blue-700 dark:from-blue-600 dark:to-blue-800 text-white shadow-xl">
               <MessageSquare className="w-10 h-10 mb-4" />
               <h3 className="text-2xl font-bold mb-4">Quick Response</h3>
               <p className="mb-4 opacity-90">
@@ -319,7 +319,7 @@ const ContactUs = () => {
                 Before reaching out, check our FAQ section for instant answers
                 to common questions.
               </p>
-              <button className="px-6 py-3 rounded-lg font-medium transition-all duration-300 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-900 dark:text-white">
+              <button className="px-6 py-3 rounded-md font-medium transition-all duration-300 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-900 dark:text-white">
                 View FAQs →
               </button>
             </div>

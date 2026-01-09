@@ -37,26 +37,26 @@ const Footer = () => {
                 />
                 <div>
                   <p>bookish_premium_get2017.com</p>
-                  <p>jasnahmed@lifestyle.com</p>
+                  <p>fahimshahrier2023@gmail.com</p>
                 </div>
               </div>
             </div>
 
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://www.facebook.com/md.fahim.747416"
                 className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition"
               >
                 <FaFacebookF size={14} />
               </a>
               <a
-                href="#"
+                href="https://x.com/shahrier86261"
                 className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-gray-900 transition"
               >
                 <FaXTwitter size={14} />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/fahim_x_x_/"
                 className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition"
               >
                 <FaInstagram size={14} />
@@ -71,34 +71,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   About us
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Jobs
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Records
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Supports
                 </a>
               </li>
@@ -112,34 +100,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   For artists
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Updates
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Advertising
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Investor
                 </a>
               </li>
@@ -153,34 +129,22 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Privacy
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Policy
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Terms
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="hover:text-gray-800 dark:text-gray-300 transition"
-                >
+                <a className="hover:text-gray-800 dark:text-gray-300 transition">
                   Condition
                 </a>
               </li>
@@ -190,7 +154,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="pt-8 border-t border-gray-300 text-center text-sm text-gray-500 dark:text-gray-300">
-          © 2024 - All rights reserved
+          © 2026 - All rights reserved
         </div>
       </div>
     </footer>
