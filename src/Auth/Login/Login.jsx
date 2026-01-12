@@ -72,8 +72,8 @@ const Login = () => {
   // Demo credentials auto-fill
   const fillDemoCredentials = (type) => {
     if (type === "user") {
-      setValue("email", "demo@user.com");
-      setValue("password", "User@123");
+      setValue("email", "osman@hadi.com");
+      setValue("password", "456321Ab!");
       toast.info("Demo user credentials filled");
     } else if (type === "admin") {
       setValue("email", "admin@bookpilot.com");
@@ -216,13 +216,13 @@ const Login = () => {
               >
                 Demo User
               </button>
-              <button
+              {/* <button
                 type="button"
                 onClick={() => fillDemoCredentials("admin")}
                 className="flex-1 py-2.5 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 font-medium rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/50 transition duration-200"
               >
                 Demo Admin
-              </button>
+              </button> */}
             </div>
           </div>
 
