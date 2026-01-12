@@ -67,34 +67,20 @@ const NavBar = () => {
           Books
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+              : ""
+          }
+        >
+          About-Us
+        </NavLink>
+      </li>
       {user && (
-        <li>
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              isActive
-                ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
-                : ""
-            }
-          >
-            Dashboard
-          </NavLink>
-        </li>
-      )}
-      {!user && (
         <>
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive
-                  ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
-                  : ""
-              }
-            >
-              About-Us
-            </NavLink>
-          </li>
           <li>
             <NavLink
               to="/contact"
@@ -107,9 +93,50 @@ const NavBar = () => {
               Contact-Us
             </NavLink>
           </li>
+
+          <li>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive
+                  ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+                  : ""
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
         </>
       )}
+      {/* {!user && (
+        // <>
+        //   <li>
+        //     <NavLink
+        //       to="/about"
+        //       className={({ isActive }) =>
+        //         isActive
+        //           ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+        //           : ""
+        //       }
+        //     >
+        //       About-Us
+        //     </NavLink>
+        //   </li>
+        //   {/* <li>
+        //     <NavLink
+        //       to="/contact"
+        //       className={({ isActive }) =>
+        //         isActive
+        //           ? "font-semibold bg-purple-600 dark:bg-orange-500 text-white"
+        //           : ""
+        //       }
+        //     >
+        //       Contact-Us
+        //     </NavLink>
+        //   </li> */}{" "}
     </>
+    // )}
+    // </>
   );
 
   return (
@@ -202,6 +229,12 @@ const NavBar = () => {
                   >
                     Logout
                   </a>
+                  <Link
+                    to={"/dashboard/profile"}
+                    className="text-secondary font-bold"
+                  >
+                    Profile
+                  </Link>
                 </li>
               </ul>
             </div>

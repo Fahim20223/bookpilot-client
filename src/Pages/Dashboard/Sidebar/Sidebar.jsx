@@ -105,7 +105,7 @@ const Sidebar = () => {
             />
             <button
               onClick={logOut}
-              className="flex cursor-pointer w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+              className="flex cursor-pointer w-full items-center px-4 py-2 mt-5 text-gray-800 dark:text-white hover:bg-purple-500   dark:hover:bg-orange-500 hover:text-white transition-colors duration-300 transform"
             >
               <GrLogout className="w-5 h-5" />
 

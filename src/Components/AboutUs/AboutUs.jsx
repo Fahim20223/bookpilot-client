@@ -9,6 +9,7 @@ import {
   TrendingUp,
   Globe,
 } from "lucide-react";
+import { Link } from "react-router";
 
 const AboutUs = () => {
   const stats = [
@@ -214,9 +215,12 @@ const AboutUs = () => {
             our team, we'd love to hear from you.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <button className="px-8 py-4 rounded-lg font-semibold bg-white text-blue-600 hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg">
+            <Link
+              to={"/contact"}
+              className="px-8 py-4 rounded-lg font-semibold bg-white text-blue-600 hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg"
+            >
               Contact Us
-            </button>
+            </Link>
             <button className="px-8 py-4 rounded-lg font-semibold bg-blue-700 hover:bg-blue-800 transition-all duration-300 hover:scale-105 shadow-lg">
               Become a Partner
             </button>
